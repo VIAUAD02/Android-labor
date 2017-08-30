@@ -59,7 +59,7 @@ Fordítás menete Android platformon
 
 ### SDK és könyvtárai
 
-A [d.android.com/sdk](https://developer.android.com/studio) oldalról letölthető az IDE és az SDK. Ennek fontosabb mappáit, eszközeit tekintsék át a laborvezető segítségével!
+A [d.android.com/sdk](https://developer.android.com/studio) oldalról letölthető az IDE és az SDK. Ennek fontosabb mappáit, eszközeit **tekintsék át a laborvezető segítségével**!
 
 ![](assets/ide_android.png)
 
