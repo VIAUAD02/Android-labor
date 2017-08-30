@@ -48,7 +48,7 @@ Az Android Studio Gradle-t használ, ami lehetőséget biztosít köztes állapo
 
 *   A teljes folyamat a szoftverfejlesztők számítógépein megy végbe, az ügyfélhez a bájtkódokat tartalmazó kész alkalmazás jut el.
 
-<img src="./images/lab-1-compile.png" width= "630" align="middle">
+![](assets/lab-1-compile.png)
 
 Fordítás menete Android platformon
 
