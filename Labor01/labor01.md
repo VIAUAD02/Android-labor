@@ -14,6 +14,10 @@ A mérés az alábbi témákat érinti:
 *   Android projekt létrehozása és futtatása emulátoron
 *   Manifest állomány felépítése
 
+###  A labor értékelése
+A feladat a leírás végén szereplő feladatok megoldása. **A megoldásokról készítsen jegyzőkönyvet (képernyőképekkel és lényegre törő szöveggel), melyet a tárgy oldalára töltsön fel a labor végén!**
+
+
 ###  Fordítás menete Android platformon
 
 A projekt létrehozása után a forráskód az _src_ könyvtárban, míg a felhasználói felület leírására szolgáló XML állományok a _res_ könyvtárban találhatók. Az erőforrás állományokat egy “_R.java”_ állomány köti össze a forráskóddal, így könnyedén elérhetjük Java oldalról az XML-ben definiált felületi elemeket. Az Android projekt fordításának eredménye egy APK állomány, melyet közvetlenül telepíthetünk mobil eszközre.
