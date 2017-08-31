@@ -12,6 +12,10 @@ iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az
 
 Minden labor leírása tartalmazza, hogy mi a megoldandó feladat. A megoldásokat minden esetben az AUT portálra kell feltölteni.
 
+### Beugró
+
+Az első labort kivéve minden labor előtt lesz beugró, mely feltétele a labor teljesítésének.
+
 ### Kis ZH-k
 
 A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át.
