@@ -1,6 +1,26 @@
 
 
-# Labor 0 - Hello World
+# Labor 01 - Hello World
+
+## Általános tudnivalók
+
+### iMSC pontok
+
+Az első laboron még nem szerezhető iMSc pont. A többi laboron szerezhető iMSc-s feladatok megoldásainak AUT portálra *.zip fájlba csomagoltan való feltöltési határideje az aktuális labortól számított három nap. Ha egy feladatban
+kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már
+végzett (laborvezető ellenőrzi a haladást).
+
+### Laborok értékelése
+
+Minden labor leírása tartalmazza, hogy mi a megoldandó feladat. A megoldásokat minden esetben az AUT portálra kell feltölteni.
+
+### Kis ZH-k
+
+A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át.
+
+A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjók. A mostani Labor 01-en nincs kisZH.
+
+## Labor 01 információk
 
 A mérés célja, hogy bemutassa az Android fejlesztőkörnyezetet, az alkalmazáskészítés, illetve a tesztelés és fordítás folyamatát, az alkalmazás felügyeletét, valamint az emulátor és a fejlesztőkörnyezet funkcióit. Továbbá, hogy ismertesse egy Hello World alkalmazás elkészítésének módját.
 A mérés során a laborvezető részletesen bemutatja az eszközöket.
