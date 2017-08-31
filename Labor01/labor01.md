@@ -221,6 +221,8 @@ Itt lehetséges virtuális SMS vagy telefonhívás küldése, fake GPS pozíció
 
 ## Feladatok:
 
+**A megoldásokról készítsen jegyzőkönyvet (képernyőképekkel és lényegre törő szöveggel), melyet a tárgy oldalára töltsön fel a labor végén!**
+
 1.  Az új alkalmazást futtassák emulátoron (akinek saját készüléke van, az is próbálja ki)!
 2.  Helyezzenek breakpointot a kódba, és debug módban indítsák az alkalmazást! (érdemes megyfigyelni, hogy most másik Gradle Task fut a képernyő alján)
 3.  Indítsanak hívást és küldjenek SMS-t az emulátoron! Mit tapasztalnak?
