@@ -246,10 +246,10 @@ Itt lehetséges virtuális SMS vagy telefonhívás küldése, fake GPS pozíció
 1.  Az új alkalmazást futtassák emulátoron (akinek saját készüléke van, az is próbálja ki)!
 2.  Helyezzenek breakpointot a kódba, és debug módban indítsák az alkalmazást! (érdemes megyfigyelni, hogy most másik Gradle Task fut a képernyő alján)
 3.  Indítsanak hívást és küldjenek SMS-t az emulátoron! Mit tapasztalnak?
-4.  Tekintse át a DDMS nézet funkcióit a laborvezető segítségével!
-5.  Hajtson végre egy telefonhívást a DDMS nézetről!
-6.  Küldjön egy SMS-t a DDMS nézetről!
-7.  Változtassa a készülék pozícióját a DDMS nézeten!
+4.  Tekintse át az emulátor vezérlésének lehetőségeit a laborvezető segítségével!
+5.  Hajtson végre egy bejövő telefonhívást emulátorban!
+6.  Küldjön egy SMS-t az emulátor vezérlő nézetről nézetről!
+7.  Változtassa meg az emulátor fölrajzi koordinátáit!
 8.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
 9.  Vizsgálja meg a LogCat nézet tartalmát!
 10.  Keresse ki a létrehozott HelloWorld projekt mappáját és a bin könyvtáron belül
