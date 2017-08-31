@@ -6,9 +6,7 @@
 
 ### iMSC pontok
 
-Az első laboron még nem szerezhető iMSc pont. A többi laboron szerezhető iMSc-s feladatok megoldásainak AUT portálra *.zip fájlba csomagoltan való feltöltési határideje az aktuális labortól számított három nap. Ha egy feladatban
-kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már
-végzett (laborvezető ellenőrzi a haladást).
+iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az első laboron  nem szerezhető iMSc pont. A későbbi laborokon ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásainak AUT portálra *.zip fájlba csomagoltan való feltöltési határideje az aktuális labortól számított három nap. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).
 
 ### Laborok értékelése
 
