@@ -23,7 +23,7 @@ tudja venni egy listába a kiadásait, bevételeit vagy törölni tudja az egés
 
 A képernyő mintaképe:
 
-TODO
+![](assets/sample_screen.png)
 
 Az alkalmazás felépítése és működése a következő:
 
@@ -38,8 +38,6 @@ tudja menteni a listába a tranzakcióját. Amennyiben itt bármelyik mező
 - A lista görgethető kell legyen (a későbbi laborokban a profi lista kezelésre
 majd a RecyclerView komponenst fogjuk használni).
 
-TODO
-
 ## Laborfeladatok
 
 A labor során az alábbi feladatokat kell megvalósítani a laborvezető
@@ -53,7 +51,7 @@ Hozzon létre egy AndroidWallet nevű projektet Android Studioban:
 követően: hu.aut.bme. (a varázsló automatikusan kiegészíti az alkalmazásunk nevével),
 - Company Domain-t kihagyjuk,
 
-TODO
+![](assets/new_project.png)
 
 - Phone and Tablet, Minimum SDK maradhat API 16,
 - Válasszuk a Basic Activity-t,
@@ -63,7 +61,7 @@ a varázslónak, de maradjunk most a MainActivity elnevezésnél.
 - Finish és várjuk meg amíg a Studio mindent legenerál, ez első alkalomkor
 valamivel hosszabb időt vesz igénybe.
 
-TODO
+![](assets/activity.png)
 
 ### Számunkra szükségtelen részek eltávolítása
 
@@ -74,6 +72,8 @@ Mivel a varázsló olyan dolgokat is generál amelyre nekünk semmi szükségün
 (mellesleg itt láthatjuk is az include-olt content_main-t).
 - Nyissuk meg a MainActivity osztályt, ebből a FloatingActionButton-hoz kapcsolódó részt töröljük.
 
+![](assets/floating_action_button.png)
+
 Az előkészületeink után egy első futtatást ki is próbálhatunk, akinél van kábel akár saját
 készüléken vagy az előre telepített emulátoron (érdemes a laborgépek korlátozott erőforrásai miatt
 saját készüléket használni).
@@ -83,8 +83,12 @@ Mint látjuk, az történt amit vártunk, a kezdeti hello world felirat eltűnt,
 alkalmazás nevével és egy lenyíló menünk amit a szemfülesek már a kódból észre vehettek, hogy nem fog
 csinálni semmit a kattintásra. De mivel ez a menüpont a Settings nevet viseli ezt azonnal korrigáljuk is.
 
+![](assets/app_screen.png)
+
 - res/values/strings: egy új string-et veszünk fel a már ott megtalálhatókhoz hasonlóan
 action_delete_all néven és Delete All tartalommal illetve az action_settings-et töröljük.
+
+![](assets/resources.png)
 
 - Majd a res/menu/menu_main.xml-ben a pirosra változott action_settings-et javítjuk az általunk
 hozzáadott új action_delete_all -ra.
@@ -239,6 +243,9 @@ A listaelemünk felépítése szintén teljesen lineáris elrendezéssel kivitel
 tehát a LinearLayout-ot használjuk.
 
 - res/layout mappán jobb gomb, new -> Layout resource file, salary_row néven LinerLayout root elemmel.
+
+![](assets/layout.png)
+
 Az XML szerkezete: 
 - Egy horizontális LinearLayout mivel az icon és a feliratok egymás mellett helyezkednek el.
 Mivel ez csak egy lista elem lesz ezért wrap_content-re kell vennünk a szélességét magasságát.
@@ -338,7 +345,7 @@ ha valamelyik mező nincs kitöltve!
 leszünk visszatérni a content_main.xml -re ahol a listának szánt layout-unknak adjunk
 egy id-t list_of_rows néven.
 
-TODO
+![](assets/linear_layout.png)
 
 - Elkérjük az Android inflate-elő service-ét
 
