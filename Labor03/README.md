@@ -212,8 +212,6 @@ erőforrás nevét kell megadnunk.
 	</LinearLayout>
 ```
 
-TODO
-
 - Mivel erre is van lehetőség bármi kódolás nélkül, érdemes már most beállítani a
 ToggleButton két állapotának feliratát a textOn illetve textOff attribútomokkal
 amelyhez az INCOME illetve EXPENSE string erőforrásokat kell felvennünk
@@ -226,8 +224,6 @@ amelyhez az INCOME illetve EXPENSE string erőforrásokat kell felvennünk
             android:textOff="@string/toggle_text_expense"
             android:textOn="@string/toggle_text_income" />
 ```
-
-TODO
 
 ### Egy listaelem XML-ének összeállítása a későbbi inflate-eléshez
 
@@ -300,8 +296,6 @@ alkalmával, most a magasság és szélesség is 40dp legyen.
 
 Megjegyzés: a „tools” névtérnek csak a preview-ra van hatása, tervezés közben
 beírhatunk oda bármit a lefordított alkalmazásban sehol nem fog látszani .
-
-TODO
 
 ### A Java kód
 
