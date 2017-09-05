@@ -20,7 +20,7 @@ Az első labort kivéve minden labor előtt lesz beugró, mely feltétele a labo
 
 A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át.
 
-A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjók. A mostani Labor 01-en nincs kisZH.
+A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjük. A mostani Labor 01-en nincs kisZH.
 
 ## Labor 01 információk
 
@@ -91,7 +91,7 @@ SDK szerkezet
 *   **docs:** Dokumentáció
 *   **extras:** különböző extra szoftverek helye. Maven repository, support libes anyagok, analytics sdk, google [android usb driver](https://developer.android.com/studio/run/win-usb.html) (amennyiben SDK managerrel ezt is letöltöttük) stb.
 *   **platform-tools:** fastboot és adb binárisok helye (legtöbbet használt eszközök)
-*   **platforms, samples, sources, system-images:** minden API levelhez külön almappában a platform anyagok, források, példaprojektek, OS imag-ek
+*   **platforms, samples, sources, system-images:** minden API levelhez külön almappában a platform anyagok, források, példaprojektek, OS image-k
 *   **tools:** fordítást és tesztelést segítő eszközök, SDK manager, DDMS, 9Patch drawer, emulátor binárisok stb.
 
 ### AVD és SDK manager
@@ -124,16 +124,16 @@ Az AVD bal oldali tabfülén a létező virtuális eszközök listáját találj
 
 1.  A bal oldali tabfülön, kattintsunk a jobb oldali “Create…” gombra!
 2.  Töltsük ki a mezőket!
-    1.  Név legyen mondjuk “Labor_2″
-    2.  Az eszköz pl. Nexus 5
-    3.  Célnak adjunk meg egy rendelkezésre álló API szintet
-    4.  CPU/ABI alapvetően ARM alapú legyen. (Az SDK támogatja a hardveres gyorsítást, ha ez be van állítva, akkor x86-os architektúrát is választhatunk)
+    1.  Név legyen mondjuk “Labor_1″.
+    2.  Az eszköz pl. Nexus 5.
+    3.  Célnak adjunk meg egy rendelkezésre álló API szintet.
+    4.  CPU/ABI alapvetően ARM alapú legyen. (Az SDK támogatja a hardveres gyorsítást, ha ez be van állítva, akkor x86-os architektúrát is választhatunk).
     5.  Van-e billentyűzet, milyen kinézete legyen.
     6.  Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
     7.  Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
     8.  Belső flash memória és SD kártya mérete.
     9.  Snapshot: elmenti az emulátor állapotát, és abból tölti vissza legközelebb, ha igényeljük.
-    10.  GPU segítsége: Kizáró vagy kapcsolatban áll a Snapshot funkcióval, viszont nem csak a megjelenésen tud javítani, az emulátor sebessége is javulhat tőle. Gyengébb GPU és IO teljesítmény esetén inkább a snapshotot válasszuk. (Intel HD4000 és alatta, például)
+    10.  GPU segítsége: Kizáró vagy kapcsolatban áll a Snapshot funkcióval, viszont nem csak a megjelenésen tud javítani, az emulátor sebessége is javulhat tőle. Gyengébb GPU és IO teljesítmény esetén inkább a snapshotot válasszuk. (Intel HD4000 és alatta, például).
 3.  Ha mindent rendben talál az ablak, akkor OK!
 
 ![](assets/avd_create.png)
@@ -191,7 +191,7 @@ Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-
 *   **CTRL + P:** Paraméterek mutatása
 *   **ALT + INSERT:** Metódus generálása
 *   **CTRL + O:** Metódus felüldefiniálása
-*   **CTRL +F9:** Fordítás
+*   **CTRL + F9:** Fordítás
 *   **SHIFT + F10:** Fordítás és futtatás
 *   **SHIFT SHIFT:** Keresés mindenhol
 
@@ -250,7 +250,7 @@ Itt lehetséges virtuális SMS vagy telefonhívás küldése, fake GPS pozíció
 3.  Indítsanak hívást és küldjenek SMS-t az emulátoron! Mit tapasztalnak?
 4.  Tekintse át az emulátor vezérlésének lehetőségeit a laborvezető segítségével!
 5.  Hajtson végre egy bejövő telefonhívást emulátorban!
-6.  Küldjön egy SMS-t az emulátor vezérlő nézetről nézetről!
+6.  Küldjön egy SMS-t az emulátor vezérlő nézetről!
 7.  Változtassa meg az emulátor fölrajzi koordinátáit!
 8.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
 9.  Vizsgálja meg a LogCat nézet tartalmát!
