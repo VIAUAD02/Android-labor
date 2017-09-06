@@ -126,8 +126,8 @@ Az AVD bal oldali tabfülén a létező virtuális eszközök listáját találj
 2.  Töltsük ki a mezőket!
     1.  Név legyen mondjuk “Labor_1″.
     2.  Az eszköz pl. Nexus 5.
-    3.  Célnak adjunk meg egy rendelkezésre álló API szintet.
-    4.  CPU/ABI alapvetően ARM alapú legyen. (Az SDK támogatja a hardveres gyorsítást, ha ez be van állítva, akkor x86-os architektúrát is választhatunk).
+    3.  Célnak adjunk meg egy rendelkezésre álló API szintet, legyen mondjuk Android O.
+    4.  A CPU/ABI x86 legyen, ez gyorsabban fut, mert az ARM-ot emulálni kell. Viszont ahhoz, hogy otthon is működjön, engedélyezni kell az Intel VT-X-et, telepíteni kell az Intel HAXM-ot, és ki kell kapcsolni a Hyper-V-t.
     5.  Van-e billentyűzet, milyen kinézete legyen.
     6.  Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
     7.  Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
