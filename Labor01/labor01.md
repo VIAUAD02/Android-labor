@@ -254,5 +254,5 @@ Itt lehetséges virtuális SMS vagy telefonhívás küldése, fake GPS pozíció
 7.  Változtassa meg az emulátor fölrajzi koordinátáit!
 8.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
 9.  Vizsgálja meg a LogCat nézet tartalmát!
-10.  Keresse ki a létrehozott HelloWorld projekt mappáját és a bin könyvtáron belül
+10. Keresse ki a létrehozott HelloWorld projekt mappáját és az app/build/outputs/apk útvonalon található könyvtáron belül
     vizsgálja meg az .apk állomány tartalmát! Hol található a lefordított kód?
