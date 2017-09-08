@@ -4,7 +4,7 @@
 
 A labor során egy tömegközlekedési vállalat számára megálmodott alkalmazás vázát készítjük el. Az alkalmazással a felhasználók különböző járművekre vásárolhatnak majd bérleteket. Az üzleti logikát (az authentikációt, a bevitt adatok ellenőrzését, a fizetés lebonyolítását) egyelőre csak szimulálni fogjuk, a labor fókusza a felületek és a köztük való navigáció elkészítése lesz.
 
-<p float="left">
+<p align="center">
 <img src="./assets/login.jpg" width="160">
 <img src="./assets/list.jpg" width="160">
 <img src="./assets/details.jpg" width="160">
@@ -17,7 +17,7 @@ Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `PublicTran
 
 Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 15-ös minimum SDK szintet.
 
-Az első Activity-nk legyen egy Empty Activity, és nevezzük el `LoginActivity`-nek. A hozzá tartozó layout fájl automatikusan megkapja az `activity_main.xml` nevet.
+Az első Activity-nk legyen egy Empty Activity, és nevezzük el `LoginActivity`-nek. A hozzá tartozó layout fájl automatikusan megkapja az `activity_login.xml` nevet.
 
 ## Splash képernyő
 
@@ -27,7 +27,7 @@ Az első Activity-nk a nevéhez híven a felhasználó bejelentkezéséért lesz
 <img src="./assets/splash.jpg" width="320">
 </p>
 
-Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent az Android nézetről a Project nézetre váltunk).
+Először töltsük le [az alkalmazáshoz képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha Android Studio-ban bal fent a szokásos Android nézetről a Project nézetre váltunk).
 
 Hozzunk létre egy új XML fájlt a `drawable` mappában `splash_background.xml` néven. Ez lesz a splash képernyőnkön megjelenő grafika. A tartalma az alábbi legyen:
 
@@ -46,7 +46,7 @@ Hozzunk létre egy új XML fájlt a `drawable` mappában `splash_background.xml`
 
 Jelen esetben egyetlen képet teszünk ide, de további `item`-ek felvételével komplexebb dolgokat is összeállíthatnánk itt. Tipikus megoldás például egy egyszínű háttér beállítása, amin az alkalmazás ikonja látszik.
 
-Nyissuk meg a `values/styles.xml` fájlt. Ez definiálja az alkalmazásban használt különböző témákat. A splash képernyőhöz egy új témát fogunk létrehozni, amelyben az előbb létrehozott drawable-t állítjuk be az alkalmazásablakunk hátternének (mivel ez látszik valójában, amíg nem töltött be a UI többi része). Ezt így tehetjük meg:
+Nyissuk meg a `values/styles.xml` fájlt. Ez definiálja az alkalmazásban használt különböző témákat. A splash képernyőhöz egy új témát fogunk létrehozni, amelyben az előbb létrehozott drawable-t állítjuk be az alkalmazásablakunk hátterének (mivel ez látszik valójában, amíg nem töltött be a UI többi része). Ezt így tehetjük meg:
 
 ```xml
 <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -54,7 +54,7 @@ Nyissuk meg a `values/styles.xml` fájlt. Ez definiálja az alkalmazásban haszn
 </style>
 ```
 
-Ennek használatához az alkalmazásunk manifest fájlját kell módosítanunk. Ezt megnyitva láthatjuk, hogy jelenleg a teljes alkalmazás az `AppTheme` nevű témát használja.
+Ennek használatához az alkalmazásunk manifest fájlját (`AndroidManifest.xml`) kell módosítanunk. Ezt megnyitva láthatjuk, hogy jelenleg a teljes alkalmazás az `AppTheme` nevű témát használja.
 
 ```xml
 <application
@@ -208,7 +208,7 @@ btnLogin.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
-Amennyiben valamelyik `EditText` üres volt, a `requestFocus` függvény meghívásával aktívvá tesszük, majd a [`setError`](https://developer.android.com/reference/android/widget/TextView.html#setError(java.lang.CharSequence)) függvénnyel kiírunk rá egy hibaüzenetet. Ez egy kényelmes, beépített megoldás input hibák jelzésére. Így nem kell például egy külön `TextView`-t használnunk erre a célra, és abba beleírni a fellépő hibát. Ezt már akár ki is próbálhatjuk, bár sikeres "bejelentkezés" esetén még nem történik semmi.
+Amennyiben valamelyik `EditText` üres volt, a `requestFocus` függvény meghívásával aktívvá tesszük, majd a [`setError`](https://developer.android.com/reference/android/widget/TextView.html#setError(java.lang.CharSequence)) függvénnyel kiírunk rá egy hibaüzenetet. Ez egy kényelmes, beépített megoldás input hibák jelzésére. Így nem kell például egy külön `TextView`-t használnunk erre a célra, és abba beleírni a fellépő hibát. Ezt már akár ki is próbálhatjuk, bár helyes adatok megadása esetén még nem történik semmi.
 
 ## Lehetőségek listája
 
@@ -296,19 +296,21 @@ A `FrameLayout` egy nagyon egyszerű és gyors elrendezés, amely lényegében c
 </FrameLayout>
 ```
 
-Az `ImageButton` pont az, aminek hangzik: egy olyan gomb, amelyen egy képet helyezhetünk el. Azt, hogy ez melyik legyen, az `src` attribútummal adtuk meg. Az utána szereplő `TextView` fehér színnel és nagy méretű betűkkel a kép fölé fog kerülni, ebbe írjuk bele a jármű nevét.
+Az itt használt `ImageButton` pont az, aminek hangzik: egy olyan gomb, amelyen egy képet helyezhetünk el. Azt, hogy ez melyik legyen, az `src` attribútummal adtuk meg. Az utána szereplő `TextView` fehér színnel és nagy méretű betűkkel a kép fölé fog kerülni, ebbe írjuk bele a jármű nevét.
 
 Töltsük ki ehhez hasonló módon a másik két `FrameLayout`-ot is, ID-ként használjuk a `@+id/btnBus` és `@+id/btnTrain` értékeket, képnek pedig használhatjuk a korábban már bemásolt `@drawable/bus` és `@drawable/trains` erőforrásokat. Ne felejtsük el a `TextView`-k szövegét is értelemszerűen átírni.
 
-Az Activity Java fájlját megnyitva az alábbi kóddal kikereshetjük a létrehozott View-kat (az `onCreate` függvényben):
+Az Activity Java fájlját megnyitva az alábbi kóddal kikereshetjük a gombjainkat (most is az `onCreate` függvényben):
 
 ```java
+ImageButton btnBike = (ImageButton) findViewById(R.id.btnBike);
 ImageButton btnBus = (ImageButton) findViewById(R.id.btnBus);
 ImageButton btnTrain = (ImageButton) findViewById(R.id.btnTrain);
-ImageButton btnBike = (ImageButton) findViewById(R.id.btnBike);
 ```
 
 Ezek lenyomásának kezelésére később fogunk visszatérni.
+
+Próbáljuk ki az alkalmazásunkat, bejelentkezés után a most elkészített lista nézethez kell jutnunk.
 
 ## Részletes nézet
 
@@ -341,7 +343,7 @@ Hozzuk létre ezt az új Activity-t `DetailsActivity` néven, a layout-ját kezd
 </ScrollView>
 ```
 
-Az eddigiekhez képest itt újdonság, hogy a használt `LinearLayout`-ot egy `ScrollView`-ba tesszük, mivel sok nézetet fogunk egymás alatt elhelyezni, és alapértelmezetten egy `LinearLayout` nem lenne görgethető, így egy idő után ezek a képernyőn kívül lennének.
+Az eddigiekhez képest itt újdonság, hogy a használt `LinearLayout`-ot egy `ScrollView`-ba tesszük, mivel sok nézetet fogunk egymás alatt elhelyezni, és alapértelmezetten egy `LinearLayout` nem görgethető, így ezek bizonyos eszközökön már a képernyőn kívül lennének.
 
 ---
 
@@ -397,7 +399,7 @@ Ezeknek a `DatePicker`-eknek is adtunk ID-kat, hiszen később szükségünk les
 
 Még egy beállítás van hátra, az árkategória kiválasztása - nyugdíjasoknak és közalkalmazottaknak különböző kedvezményeket adunk a jegyek árából.
 
-Mivel ezek közül az opciók közül egyszerre csak egynek akarjuk megengedni a kiválasztását, ezért `RadioButton`-öket fogunk használni, amelyeket Androidon egy `RadioGroup`-pal kell összefognunk, hogy tudjuk, melyikek tartoznak össze.
+Mivel ezek közül az opciók közül egyszerre csak egynek akarjuk megengedni a kiválasztását, ezért `RadioButton`-öket fogunk használni, amelyeket Androidon egy `RadioGroup`-pal kell összefognunk, hogy jelezzük, melyikek tartoznak össze.
 
 ```
 <TextView
@@ -458,7 +460,7 @@ Végül az oldal alján kiírjuk a kiválasztott bérlet árát, illetve ide ker
 
 ---
 
-Meg kell oldanunk még azt, hogy az előző képernyőn tett választás eredménye elérhető legyen ebben az Activity-ben is. Ezt úgy tehetjük meg, hogy az Activity indításához használt `Intent`-be teszünk egy azonosítót, amiből kiderül, hogy melyik típust választotta a felhasználó.
+Meg kell oldanunk még azt, hogy az előző képernyőn tett választás eredménye elérhető legyen a `DetailsActivity`-ben. Ezt úgy tehetjük meg, hogy az Activity indításához használt `Intent`-be teszünk egy azonosítót, amiből kiderül, hogy melyik típust választotta a felhasználó.
 
 Ehhez a `DetailsActivity`-ben vegyünk fel egy konstanst, ami ennek a paraméternek a kulcsaként fog szolgálni:
 
@@ -487,7 +489,7 @@ btnBike.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
-A másik két gomb listener-je ugyanerre a mintára működik, csupán az átadott típus konstanst kell megváltoztatni bennük. Hozzuk létre ezeket is! Ezt a viselkedést érdemes lehet később kiszervezni egy külön osztályba, ami implementálja az `OnClickListener` interfészt, de ezt most nem tesszük meg.
+A másik két gomb listener-je ugyanerre a mintára működik, csupán az átadott típus konstanst kell megváltoztatni bennük. Hozzuk létre ezeket is! (Ezt a viselkedést érdemes lehet később kiszervezni egy külön osztályba, ami implementálja az `OnClickListener` interfészt, de ezt most nem tesszük meg.)
 
 Még hátra van az, hogy a `DetailsActivity`-ben kiolvassuk ezt az átadott paramétert, és megjelenítsük a felhasználónak. Ezt az `onCreate` függvényében tehetjük meg, az Activity indításához használt `Intent` elkérésével, majd az előbbi kulcs használatával:
 
@@ -496,7 +498,7 @@ Intent intent = getIntent();
 final int transportType = intent.getIntExtra(KEY_TRANSPORT_TYPE, -1);
 ```
 
-Ezt az átadott számot még le kell képeznünk egy `String`-re, ehhez vegyünk fel egy egyszerű segédfüggvényt:
+Ezt az átadott számot még le kell képeznünk egy stringre, ehhez vegyünk fel egy egyszerű segédfüggvényt:
 
 ```java
 private String getTypeString(int transportType) {
@@ -513,14 +515,14 @@ private String getTypeString(int transportType) {
 }
 ```
 
-Végül pedig az `onCreate` függvénybe visszatérve meg kell keresnünk a megfelelő `TextView`-t, és beállítani a függvény által visszaadott értéket:
+Végül pedig az `onCreate` függvénybe visszatérve meg kell keresnünk a megfelelő `TextView`-t, és beállítani a szövegének a függvény által visszaadott értéket:
 
 ```java
 TextView tvTicketType = (TextView) findViewById(R.id.tvTicketType);
 tvTicketType.setText(getTypeString(transportType));
 ```
 
-Próbáljuk ki az alkalmazást, a `DetailsActivity`-ben meg kell jelennie a hozzáadott beállításoknak, illetve a tetején a megfelelő jegy típusnak.
+Próbáljuk ki az alkalmazást! A `DetailsActivity`-ben meg kell jelennie a hozzáadott beállításoknak, illetve a tetején a megfelelő jegy típusnak.
 
 ## A bérlet
 
@@ -532,14 +534,14 @@ Az alkalmazás utolsó képernyője már kifejezetten egyszerű lesz, ez magát 
 
 Hozzuk létre a szükséges Activity-t, `PassActivity` néven. Ennek az Activity-nek szüksége lesz a jegy típusára és a kiválasztott dátumokra - a QR kód az egyszerűség kedvéért egy fix kép lesz.
 
-Vegyünk fel két kulcsot a `PassActivity`-ben:
+Az adatok átadásához először vegyünk fel két kulcsot a `PassActivity`-ben:
 
 ```java
 public final static String KEY_DATE_STRING = "KEY_DATE_STRING";
 public final static String KEY_TYPE_STRING = "KEY_TYPE_STRING";
 ```
 
-Ezeket az adatokat a `DetailsActivity`-ben kell összekészítenünk és beleraknunk az `Intent`-be. Ehhez először keressük ki a a View-kat, amikre szükségünk van:
+Ezeket az adatokat a `DetailsActivity`-ben kell összekészítenünk és beleraknunk az `Intent`-be. Ehhez először keressük ki a `DetailsActivity` `onCreate` függvényében a View-kat, amikre szükségünk van:
 
 ```java
 final DatePicker dpStartDate = (DatePicker) findViewById(R.id.dpStartDate);
@@ -553,10 +555,11 @@ Majd adjunk hozzá a vásárlás gombhoz egy listener-t:
 btnPurchase.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(final View view) {
+        String typeString = getTypeString(transportType);
         String dateString = getDateFrom(dpStartDate) + " - " + getDateFrom(dpEndDate);
 
         Intent intent = new Intent(DetailsActivity.this, PassActivity.class);
-        intent.putExtra(PassActivity.KEY_TYPE_STRING, getTypeString(transportType));
+        intent.putExtra(PassActivity.KEY_TYPE_STRING, typeString);
         intent.putExtra(PassActivity.KEY_DATE_STRING, dateString);
         startActivity(intent);
     }
@@ -574,7 +577,7 @@ private String getDateFrom(final DatePicker picker) {
 }
 ```
 
-(Itt a hónaphoz azért adtunk hozzá egyet, mert akárcsak a `Calendar` osztály esetében, a `DatePicker` osztálynál is 0 indexelésűek a hónapok.)
+(Itt a hónaphoz azért adtunk hozzá egyet, mert akárcsak a [`Calendar`](https://developer.android.com/reference/java/util/Calendar.html#MONTH) osztály esetében, a `DatePicker` osztálynál is 0 indexelésűek a hónapok.)
 
 ---
 
@@ -599,8 +602,8 @@ Most már elkészíthetjük a `PassActivity`-t. Kezdjük a layout-jával (`activ
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:text="Train pass"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            tools:text="Train pass" />
 
         <TextView
             android:id="@+id/tvDates"
