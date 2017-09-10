@@ -11,9 +11,23 @@ A labor során egy tömegközlekedési vállalat számára megálmodott alkalmaz
 <img src="./assets/pass.jpg" width="160">
 </p>
 
-## iMSC pontok
+## IMSc pontok
 
-A laborfeladatok sikeres befejezése után az iMSc feladat-ot megoldva 2 iMSc pont szerezhető.
+A laborfeladatok sikeres befejezése után az IMSc feladat-ot megoldva 2 IMSc pont szerezhető.
+
+## Értékelés
+
+Osztályzás:
+- Splash képernyő: 0.5 pont
+- Login képernyő: 0.5 pont
+- Lehetőségek listája: 1 pont
+- Részletes nézet: 1 pont
+- A bérlet: 1 pont
+- Önálló feladat (hajó bérlet): 1 pont
+
+IMSc:
+- Különböző bérlet napi árak: 1 IMSc pont
+- Százalékos kedvezmények: 1 IMSc pont
 
 ## Projekt létrehozása
 
