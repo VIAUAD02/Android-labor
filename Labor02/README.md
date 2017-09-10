@@ -11,6 +11,10 @@ A labor során egy tömegközlekedési vállalat számára megálmodott alkalmaz
 <img src="./assets/pass.jpg" width="160">
 </p>
 
+## iMSC pontok
+
+A laborfeladatok sikeres befejezése után az iMSc feladat-ot megoldva 2 iMSc pont szerezhető.
+
 ## Projekt létrehozása
 
 Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `PublicTransport`, a Company Domain pedig `aut.bme.hu`. Láthatjuk, hogy ez alapján automatikusan a `hu.bme.aut.publictransport` package-et kapja az alkalmazás. 
