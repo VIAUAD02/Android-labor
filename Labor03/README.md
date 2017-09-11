@@ -15,6 +15,14 @@ dokumentáció segítségével kell elkészíteni az alkalmazást.
 Az elkészült megoldást egy ZIP formájában (teljes Android Studio projekt – build
 mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
 
+## Értékelés
+- Beviteli rész: 1 pont
+- Listaelemek layoutja: 1 pont
+- Listaelemek inflate-elése: 1 pont
+- Toast üeznetek helyett SnackBar (önálló): 1 pont
+- Összegző mező megjelenítése (önálló): 0,5 pont
+- Összegző mező helyes működése (önálló): 0,5 pont
+
 ## Az elkészítendő megoldás
 A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészítése
 AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel
