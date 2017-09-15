@@ -1,38 +1,40 @@
 # Labor 07 - Weather Info
 
 ## 1 Felkészülés a laborra
+
 A labor célja egy olyan alkalmazás fejlesztése, melyen keresztül bemutatjuk az Android platformon megszokott UI tervezési mintákat, valamint a hálózati kommunikáció megvalósításának egy lehetséges módját.
 Felhasznált technológiák:
 - Activity,
-- 
+
 - Fragment,
-- 
+
 - ViewPager,
-- 
+
 - Retrofit,
-- 
+
 - Glide.
 
 ## 2 Feltöltés
-Az elkészült megoldást egy ZIP formájában (teljes Android Studio projekt – build mappa és app/build mappa kivételével) kell feltölteni a tárgy oldalán. Az eredmények is itt lesznek.
+
+Az elkészült megoldást egy ZIP formájában (**teljes Android Studio projekt – build mappa és app/build mappa kivételével**) kell feltölteni a tárgy oldalán. Az eredmények is itt lesznek.
 
 ## 3 Az elkészítendő megoldás
-Az elkészítendő megoldás egy időjárás jelentést megjelenítő alkalmazás lesz. Az applikáció indításakor egy város lista fogadja a felhasználót. A lista egy elemére kattintva egy új Activity nyílik meg, ahol először a fő adatok látszódnak, de jobbra swipe-olással részletesebb információkhoz is juthatunk.
+
+Az elkészítendő megoldás egy időjárás jelentést megjelenítő alkalmazás lesz. Az applikáció indításakor egy város lista fogadja a felhasználót. A lista egy elemére kattintva egy új *Activity* nyílik meg, ahol először a fő adatok látszódnak, de jobbra swipe-olással részletesebb információkhoz is juthatunk.
 
 <p align="center">
 <img src="./assets/list.png">
-<img src="./assets/list.png">
-<img src="./assets/list.png">
+<img src="./assets/main.png">
+<img src="./assets/details.png">
 </p>
 
 ## 4 Laborfeladatok
-A labor során az alábbi feladatokat kell megvalósítani a laborvezető segítségével, illetve a jelölt feladatoknál önállóan.
 
-*A labor során egy kompelx időjárás alkalmazás készül el. A labor szűkös időkeret miatt szükség lesz nagyobb kódblokkok másolására, azonban minden esetben figyeljen a laborvezető magyarázatára, hogy a kódrészek érthetőek legyenek. A cél nem egy copy-paste labor végigvitele, hanem a bemutatott kódok elmagyarázása, kipróbálása és teljes értékű elsajátítására.*
+A labor során egy kompelx időjárás alkalmazás készül el. A labor szűkös időkeret miatt szükség lesz nagyobb kódblokkok másolására, azonban minden esetben figyeljen a laborvezető magyarázatára, hogy a kódrészek érthetőek legyenek. A cél nem egy copy-paste labor végigvitele, hanem a bemutatott kódok elmagyarázása, kipróbálása és teljes értékű elsajátítására.
 
 *Elnézést kérünk még egyszer a nagyobb kód blokkokért, de egy ilyen méretű feladatnál kisebb méretben nem oldható meg, illetve elveszítené a labor a lényegét, ha csak egy „hello world” hálózati kommunikációs lekérést valósítanánk meg. Köszönjük a megértést.*
 
-###4.1 Kezdő projekt létrehozása
+### 4.1 Kezdő projekt létrehozása
 
 Hozzon létre egy **WeatherInfo** nevű projektet Android Studioban **Basic Activity**-vel inicializálva. A laborvezetővel vizsgálja meg a létrejött projektet és annak felépítését. Vizsgálja meg, hogyan áll össze a jelenlegi felület (*CoordinatorLayout*, *AppBarLayout* a *Toolbar*-al és az include-olt *content_main*.xml).
 
@@ -40,9 +42,9 @@ Hozzon létre egy **WeatherInfo** nevű projektet Android Studioban **Basic Acti
 
 Vegyük fel az alábbi függőségeket a modul-hoz tartozó **build.gradle**-be:
 
-'''java
+```java
 compile 'com.android.support:appcompat-v7:24.2.0' compile 'com.android.support:design:24.2.0' compile 'com.squareup.retrofit2:retrofit:2.1.0' compile 'com.squareup.retrofit2:converter-gson:2.1.0' compile 'com.github.bumptech.glide:glide:3.7.0'
-'''
+```
 
 Ha ez megvan, akkor kattintsunk a jobb felső sarokban megjelent **Sync now** gombra.
 
@@ -50,15 +52,15 @@ Ezek a függőségek előadáson már elhangzottak, ha valamelyik nem ismerős, 
 
 Az alkalmazásban szükségünk lesz internet elérésre. Vegyük tehát fel a Manifest állományban az **Internet permission**-t:
 
-'''xml
+```xml
 <uses-permission android:name="android.permission.INTERNET" />
-'''
+```
 
 [Az alkalmazáshoz képeit tartalmazó tömörített fájlt](./assets/drawables.zip) tartalmát megfelelő módon tömörítse ki az erőforrás (**res**) mappába.
 
 Vegyük fel az alábbi szöveges erőforrásokat a res/values/**strings.xml**-be, hogy ezekkel a későbbiekben már ne legyen gond:
 
-'''xml
+```xml
 <resources>
     <string name="app_name">WeatherInfo</string>
     <string name="action_settings">Settings</string>
@@ -77,17 +79,17 @@ Vegyük fel az alábbi szöveges erőforrásokat a res/values/**strings.xml**-be
     <string name="details">Details</string>
 </resources>
 
-'''
+```
 
 **Regisztráljunk saját felhasználót** az [OpenWeatherMap](https://openweathermap.org/) oldalon, hogy legyen saját kulcsunk az API használatához: API keys tab regisztráció után.
 
-###4.2 Városlista megvalósítása
+### 4.2 Városlista megvalósítása
 
 Ebben a lépésben a *MainAcitivity*-t valósítjuk meg, amely gyakorlatilag egy *RecyclerView*-t jelenít meg a városok listájával. A város nevére kattintva jelenik meg egy részletező nézet majd (*DetailsAcitivity*), ahol az időjárás információk letöltése fog történni. Új város felvételére egy *FloatingActionButton* fog szolgálni.
 
 A városlista megvalósításának első lépéseként adjuk hozzá a *MainActivity*-hez egy *RecyclerView*-t, vagyis cseréljük le a *content_main.xml* tartalmát:
 
-'''xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -97,11 +99,11 @@ A városlista megvalósításának első lépéseként adjuk hozzá a *MainActiv
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     />
-'''
+```
 
 Az *activity_main.xml*-ben cserélje le a *FloatingActionButton* ikonját a kitömörített *ic_add_white_36dp* erőforrásra. A *layout* tartalma így az alábbi lesz:
 
-'''xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -134,15 +136,15 @@ Az *activity_main.xml*-ben cserélje le a *FloatingActionButton* ikonját a kit�
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        **android:src="@drawable/ic_add_white_36dp"/>**
+        android:src="@drawable/ic_add_white_36dp"/>
 </android.support.design.widget.CoordinatorLayout>
-'''
+```
 
 A felhasználói felülethez kapcsolódó osztályokat külön *package*-be fogjuk szervezni. Ennek megfelelően kattintsunk jobb gombbal az alkalmazás *package*-re, majd válasszuk a *New* > *Package* opciót. A *package* nevének **ui**-t adjunk meg. Ezen belül hozzunk létre egy újabb *package*-t **main** néven, hogy az egyes *Activity*-khez tartozó osztályokat is el tudjuk különíteni. *Drag and drop*-pal helyezzük át a *MainActivity*-t az előbb létrehozott *package*-be, a felugró dialógusban pedig kattintsunk a **Refactor** gombra.
 
 A *MainActivity* kezdő tartalma az alábbi legyen:
 
-'''java
+```java
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -187,20 +189,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 }
-'''
+```
 
 A *MainActivity* jelen állapotában hibát jelez, mivel nincs *CityAdapter* osztály, illetve az *OnCitySelectedListener* interfész, melyet az *CityAdapter* vár a konstruktorában.
-Hozzuk létre ebben a main *packageben*, egy külön *fileban* az *OnCitySelectedListener* interfészt, melyen keresztül a *CityAdapter* jelzi, ha egy város ki lett választva:
+Hozzuk létre ebben a main *packageben*, egy külön fileban az *OnCitySelectedListener* interfészt, melyen keresztül a *CityAdapter* jelzi, ha egy város ki lett választva:
 
-'''java
+```java
 public interface OnCitySelectedListener {
     void onCitySelected(String city);
 }
-'''
+```
 
 Ezt követően hozzuk létre a *CityAdapter* osztályt:
 
-'''java
+```java
 public class CityAdapter extends 
   RecyclerView.Adapter<CityAdapter.CityViewHolder> {
 
@@ -269,11 +271,11 @@ public void removeCity(int position) {
         }
     }
 }
-'''
+```
 
-A hivatkozott item_city.xml layout tartalma:
+A hivatkozott *item_city.xml* layout tartalma:
 
-'''xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -301,7 +303,7 @@ A hivatkozott item_city.xml layout tartalma:
         android:text="@string/remove"/>
 
 </LinearLayout>
-'''
+```
 
 Vizsgálja meg a laborvezetővel a *CityAdapter* osztályban az alábbiakat:
 - Hogyan történik a lista tartalmi elemeinek kezelése?
@@ -313,32 +315,32 @@ A *MainActivity*-vel kapcsolatos következő lépés az új város nevét bekér
 
 Hozzunk létre egy *AddCityDialogListener* **interfészt** külön fileban a *ui*/*main* packageban:
 
-'''java
+```java
 public interface AddCityDialogListener {
     void onCityAdded(String city);
 }
-'''
+```
 
 Implementáljuk a *MainActivity*-ben az *AddCityDialogListener*-t, melyen keresztül a *DialogFragment* értesíti majd a *MainActivity*-t az új városnévről:
 
-'''java
+```java
 public class MainActivity extends AppCompatActivity 
-  **implements AddCityDialogListener** {
+  implements AddCityDialogListener {
 ...
-'''
+```
 
 Implementáljuk az *onCityAdded(…)* metódust a *MainActivity*-ben, mely gyakorlatilag az új várost felveszi a *RecyclerView*-ba az *adapter*-en keresztül:
 
-'''java
+```java
 @Override
 public void onCityAdded(String city) {
     adapter.addCity(city);
 }
-'''
+```
 
 A dialógus megjelenítéséhez hozzunk létre egy *dialog_new_city.xml*-t a layout erőforrás mappában, mely gyakorlatilag az új dialógus felületét fogja jelképezni:
 
-'''xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -353,11 +355,11 @@ A dialógus megjelenítéséhez hozzunk létre egy *dialog_new_city.xml*-t a lay
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
-'''
+```
 
 Hozzuk létre a *ui*/*main* packageben az *AddCityDialogFragment* dialógust az alábbi módon:
 
-'''java
+```java
 public class AddCityDialogFragment extends AppCompatDialogFragment {
 
     public static final String TAG = "AddCityDialogFragment";
@@ -403,18 +405,18 @@ public class AddCityDialogFragment extends AppCompatDialogFragment {
         return view;
     }
 }
-'''
+```
 
 A laborvezetővel vizsgálja meg az *AddCityDialogFragment* implementációjában az alábbiakat:
 - Hogyan ellenőrizzük az *onCreate(…)*-ben (**ami a Fragmentnek is van!**), hogy az *Activity*, akihez csatoltak implementálja-e az *AddCityDialogListener* *interfacet*?
 - Hogyan kerül beállításra az egyedi *layout* a *DialogFragment*-ben?
 - Hogyan térünk vissza a beírt városnévvel?
 - Kis házi feladat otthonra: ne engedje üres város létrehozását!
-- Tipp: [http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked](http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked)
+</t>- Tipp: [http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked](http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked)
 
 Végül a *MainActivity* *initFab(…)* függvényét egészítse ki, hogy a gombra kattintva az új dialógus megjelenjen:
 
-'''java
+```java
 private void initFab() {
     FloatingActionButton fab = 
         (FloatingActionButton) findViewById(R.id.fab);
@@ -426,17 +428,17 @@ private void initFab() {
         }
     });
 }
-'''
+```
 
 Ezt követően teszteljük az alkalmazást, amely már képes városnevek kezelésére *RecyclerView*-n keresztül.
 
-###4.3	Részletes nézet létrehozása és bekötése
+### 4.3	Részletes nézet létrehozása és bekötése
 
-A következő lépésben a *ui* package-n belül hozzuk létre a **details** packaget, melyben hozzuk létre az **Empty Activity** típusú *DetailsActivity*-t.
+A következő lépésben a *ui* *package*-n belül hozzuk létre a **details** packaget, melyben hozzuk létre az *Empty Activity* típusú *DetailsActivity*-t.
 
 A hozzá tartozó *activity_details.xml* layout az alábbi legyen:
 
-'''xml
+```xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -459,13 +461,13 @@ A hozzá tartozó *activity_details.xml* layout az alábbi legyen:
     </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
-'''
+```
 
 A felület gyakorlatilag egy *ViewPager*-t tartalmaz, melyben két *Fragment*et fogunk megjeleníteni balra-jobbra lapozással. A *PagerTabStrip* biztosítja a *Tab* jellegű fejlécet a lapozáskor.
 
 A *DetailsActivity.java* kezdő kódja az alábbi:
 
-'''java
+```java
 public class DetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "DetailsActivity";
@@ -500,13 +502,13 @@ public class DetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-'''
+```
 
 Adjuk hozzá a *strings.xml*-hez a hiányzó szöveges erőforrást.
 
-'''xml
+```xml
 <string name="weather">Weather in %s </string>
-'''
+```
 
 A **%s** használatával lehetővé válik egy **String argumentum** beillesztése, ahogy a fenti kódrészletben láthatjuk.
 
@@ -514,7 +516,7 @@ Figyeljük meg, hogy a *DetailsActivity* hogyan állítja be az *ActionBar* cím
 
 Valósítsuk meg a *MainActivity* *initRecyclerView(…)* függvényében, hogy a megfelelő esemény kerüljön végrehajtásra az *OnCitySelectedListener* segítségével amikor egy városnév került kiválasztásra és *DetailsActivity* megfelelően felparaméterezve indulhasson el:
 
-'''java
+```java
 adapter = new CityAdapter(new OnCitySelectedListener() {
         @Override
         public void onCitySelected(String city) {
@@ -526,26 +528,26 @@ adapter = new CityAdapter(new OnCitySelectedListener() {
             startActivity(showDetailsIntent);
         }
     });
-'''
+```
 
 Próbáljuk ki az alkalmazást, kattintsunk egy város nevére.
 
-###4.4	Modell osztályok létrehozása
+### 4.4	Modell osztályok létrehozása
 
 A modell osztályok számára hozzunk létre új *package*-et **model** néven. Az új osztály neve legyen *WeatherData*. Ez fog létrejönni az időjárás szolgáltatástól kapott *JSON* válasz alapján.
 
-'''java
+```java
 public class WeatherData {
 
     public List<Weather> weather;
     public MainWeatherData main;
     public Wind wind;
 }
-'''
+```
 
-Hozzuk létre a hivatkozott Weather osztályt.
+Hozzuk létre a hivatkozott *Weather* osztályt.
 
-'''java
+```java
 public class Weather {
 
     public long id;
@@ -554,11 +556,11 @@ public class Weather {
     public String icon;
 
 }
-'''
+```
 
-Majd ezt követően a MainWeatherData osztályt.
+Majd ezt követően a *MainWeatherData* osztályt.
 
-'''java
+```java
 public class MainWeatherData {
 
     public float temp;
@@ -567,67 +569,67 @@ public class MainWeatherData {
     public float temp_min;
     public float temp_max;
 }
-'''
+```
 
-Végül a Wind osztályt definiáljuk.
+Végül a *Wind* osztályt definiáljuk.
 
-'''java
+```java
 public class Wind {
 
     public float speed;
     public float deg;
 }
-'''
+```
 
-Hozzuk létre a *ui*/*detils* *package*-be a *WeatherDataHolder* interfészt, ezen keresztül fogják a *Fragment*ek lekérni az *Activity*-től az időjárás adatokat.
+Hozzuk létre a *ui*/*details* *package*-be a *WeatherDataHolder* interfészt, ezen keresztül fogják a *Fragment*ek lekérni az *Activity*-től az időjárás adatokat.
 
-'''java
+```java
 public interface WeatherDataHolder {
     public WeatherData getWeatherData();
 }
-'''
+```
 
 A *DetailsActiviy*-be vegyünk fel egy *WeatherData* tagváltozót:
 
-'''java
+```java
 private WeatherData weatherData = null;
-'''
+```
 
-**Implementálja** a *DetailsActivity* a *WeatherDataHolder* interfészt:
+**Implementálja** a *DetailsActivity* a *WeatherDataHolder* **interfészt**:
 
-'''java
+```java
 public class DetailsActivity extends AppCompatActivity implements WeatherDataHolder {…
-'''
+```
 
 Implementáljuk a szükséges metódust:
 
-'''java
+```java
 @Override
 public WeatherData getWeatherData() {
     return weatherData;
 }
-'''
+```
 
 A használt *weatherData* változónak fogunk később értéket adni amikor visszaérkezett az értéke a hálózati hívás eredményeként. A *ViewPager* két lapján levő *Fragment*ek a *WeatherDataHolder* interfészen keresztül fogják az *Activity*-től lekérni a *weatherData* objekutmot a megjelenítéshez.
 
-###4.5	Hálózati kommunikáció megvalósítása
+### 4.5	Hálózati kommunikáció megvalósítása
 
 A hálózati kommunikáció megvalósításához a [Retrofit 2](http://square.github.io/retrofit/) *library*-t fogjuk használni, amit már a *build.gradle*-be felvettünk. 
 
 Hozzuk létre a **network** *package*-t, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni. Ezen belül hozzuk létre a *WeatherApi* interfészt. Ehhez jobb gombbal kattintsunk a *network* *package*-re, majd válasszuk a *New* > *Java class* lehetőséget, és a **kind** *dropdown*-ból válasszuk ki az *Interface*-t. Másoljuk be az alábbi kódot. Látható, hogy **annotációkon** keresztül tudjuk megmondani, hogy a hívás egy *GET* kérést jelent, és hogy a szerver url-en belül milyen címre küldjük a kérést. A függvény argumentumait a *@Query* annotáció a kéréshez fűzi paraméterként, az annotációban megadott kulccsal. A visszatérési érték pedig egy *Call<WeatherData>* objektum lesz, vagyis egy olyan hívás, aminek *WeatherData* a visszatérési értéke.
 
-'''java
+```java
 public interface WeatherApi {
 
     @GET("/data/2.5/weather")
     Call<WeatherData> getWeather(@Query("q") String cityName,
       @Query("units") String units, @Query("appid") String appId);
 }
-'''
+```
 
 Hozzuk létre a *NetworkManager* osztályt. Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. Az osztály a **Singleton pattern**-t valósítja meg, hiszen egyetlen példány elég belőle. Konstansokban van tárolva a szerver címe, valamint a szolgáltatás használatához szükséges API kulcs. A *WeatherApi* interfészből a *Retrofit* osztály segítségével tudunk működő implementációt generálni. A *retrofit.create()* függvény eredményeképpen visszaadott objektum megvalósítja a *WeatherApi* interfészt, és metódusát meghívva el is végzi a hálózati kommunikációt. Az APP_ID paramétert elfedjük az időjárást lekérdező osztályok elől, ezért a *NetworkManager* is tartalmaz egy *getWeather()* függvényt, ami a *WeatherApi* implementációba hív tovább.
 
-'''java
+```java
 public class NetworkManager {
 
     private static final String ENDPOINT_ADDRESS = "http://api.openweathermap.org";
@@ -658,17 +660,17 @@ public class NetworkManager {
         return weatherApi.getWeather(city, "metric", APP_ID);
     }
 }
-'''
+```
 
 **Cseréljük le** az *APP_ID* értékét az [OpenWeatherMap](https://openweathermap.org/) oldalon regisztrált saját értékre (bejelentkezés után -> API keys tab).
 
-###4.6	Részletes nézet továbbfejlesztése
+### 4.6	Részletes nézet továbbfejlesztése
 
 A modell elemek és a hálózati kommunikáció megvalósítása után a részletes nézetet fogjuk továbbfejleszteni.
 
 A *ViewPager* megfelelő működéséhez létre kell hoznunk egy *FragmentPagerAdapter* objektumot, mely kezeli, hogy melyik „lapon” melyik fragment jelenjen meg:
 
-'''java
+```java
 public class DetailsPagerAdapter extends FragmentPagerAdapter {
     private Context context;
 
@@ -714,13 +716,13 @@ public class DetailsPagerAdapter extends FragmentPagerAdapter {
         return 2;
     }
 }
-'''
+```
 
-A *DetailsPagerAdapter* jelenleg hibás, mivel nem létezik a két Fragment (*DetailsMainFragment* és *DetailsMoreFragment*), hozzuk ezeket létre a felülettel együtt:
+A *DetailsPagerAdapter* jelenleg hibás, mivel nem létezik a két *Fragment* (*DetailsMainFragment* és *DetailsMoreFragment*), hozzuk ezeket létre a felülettel együtt:
 
 *res/layout/fragment_details_main.xml*:
 
-'''xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -750,11 +752,11 @@ A *DetailsPagerAdapter* jelenleg hibás, mivel nem létezik a két Fragment (*De
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>
-'''
+```
 
 *ui/details packageben a DetailsMainFragment.java*:
 
-'''xml
+```xml
 public class DetailsMainFragment extends Fragment {
     private TextView tvMain;
     private TextView tvDescription;
@@ -802,7 +804,7 @@ public class DetailsMainFragment extends Fragment {
                 .into(ivIcon);
     }
 }
-'''
+```
 
 Figyelje meg, hogy a **Glide library** hogyan kerül felhasználásra képek betöltésére. Az *OpenWeatherMap* API-tól a képek lekérhetők a visszakapott adatok alapján, pl:
 
@@ -812,7 +814,7 @@ A *DetailsMoreFragment* megalósításáshoz tegyük az alábbiakat:
 
 *res/layout/fragment_details_more.xml*:
 
-'''xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -877,11 +879,11 @@ A *DetailsMoreFragment* megalósításáshoz tegyük az alábbiakat:
             tools:text="50 %"/>
     </TableRow>
 </TableLayout>
-'''
+```
 
 *ui/details/DetailsMoreFragment.java*:
 
-'''java
+```java
 public class DetailsMoreFragment extends Fragment {
     private TextView tvTemperature;
     private TextView tvMinTemp;
@@ -930,13 +932,13 @@ public class DetailsMoreFragment extends Fragment {
         tvHumidity.setText("" + weatherData.main.humidity);
     }
 }
-'''
+```
 
 Figyeljük meg, hogyan ellenőrzi a *DetailsMainFragment* és a *DetailsMoreFragment*, hogy az *Activity* implementálja-e a *WeatherDataHolder* interfészt. Fontos, hogy ezt a két *Fragment*et majd csak aztán kerül valójában a *DetailsActivity*-re a *ViewPager*-en keresztül, amikor az időjárás lekérdezés hálózati kérés már adott vissza eredményt.
 
 Ideiglenesen a *DetailsActivity* *onResume()* függvénye legyen az alábbi:
 
-'''java
+```java
 @Override
 protected void onResume() {
     super.onResume();
@@ -946,15 +948,15 @@ protected void onResume() {
       new DetailsPagerAdapter(getSupportFragmentManager(), this);
     mainViewPager.setAdapter(detailsPagerAdapter);
 }
-'''
+```
 
 Próbáljuk ki az alkalmazást, kattintsunk egy városnevére, jelenleg még nem jelennek meg valós adatok.
 
-###4.7	Hálózati hívás bekötése
+### 4.7	Hálózati hívás bekötése
 
 Az időjárás adatok lekérdezésére valósítsunk meg egy *loadWeatherData()* nevű függvényt a *DetailsActivity*-ben:
 
-'''java
+```java
 private void loadWeatherData() {
     NetworkManager.getInstance().getWeather(city).enqueue(new Callback<WeatherData>() {
         @Override
@@ -979,11 +981,11 @@ private void loadWeatherData() {
         }
     });
 }
-'''
+```
 
 Illetve a *displayWeatherData(..)*-t, mely siker esetén megjeleníti az eredményt beállítva a *ViewPagert* megfelelően a két *Fragment*tel:
 
-'''java
+```java
 private void displayWeatherData(WeatherData receivedWeatherData) {
     weatherData = receivedWeatherData;
     ViewPager mainViewPager = 
@@ -992,17 +994,17 @@ private void displayWeatherData(WeatherData receivedWeatherData) {
       new DetailsPagerAdapter(getSupportFragmentManager(), this);
     mainViewPager.setAdapter(detailsPagerAdapter);
 }
-'''
+```
 
 A *DetailsActivity* *onResume(…)* függvényében hívjuk meg a *loadWeatherData()* függvényt:
 
-'''java
+```java
 @Override
 protected void onResume() {
     super.onResume();
     **loadWeatherData();**
 }
-'''
+```
 
 ### 4.8	Önálló feladat: város listában a törlés megvalósítása
 
