@@ -392,7 +392,7 @@ ide bemásolva, és nem cél, hogy csak kimásolásra kerüljenek)
   - a ToggleButton állapota alapján beállítjuk az ikont, ehhez az income.png és expense.png képeket a drawable mappába kell beillesztenünk.
 
 ```java
-                icon.setImageResource(typeChooserButton.isChecked() ? R.drawable.income : R.drawable.expense);
+                icon.setImageResource(typeChooserButton.isChecked() ? R.drawable.expense : R.drawable.income);
 ```
 
   - a két EditText alapján beállítjuk a szövegeket
