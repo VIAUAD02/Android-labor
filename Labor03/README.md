@@ -54,12 +54,9 @@ segítségével, illetve a jelölt feladatoknál önállóan.
 
 Hozzon létre egy AndroidWallet nevű projektet Android Studioban:
 - File->New->New Project
-- Application name: AndroidWallet, Package name sor végén editet
-követően: hu.aut.bme. (a varázsló automatikusan kiegészíti az alkalmazásunk nevével),
-- Company Domain-t kihagyjuk,
-
-![](assets/new_project.png)
-
+- Application name: AndroidWallet
+- Company Domain: aut.bme.hu
+- Láthatjuk, hogy ez alapján automatikusan a hu.bme.aut.androidwallet package-et kapja az alkalmazás.
 - Phone and Tablet, Minimum SDK maradhat API 15;
 - válasszuk a Basic Activity-t;
 - az Activity nevéhez próbáljunk meg egy betűt vagy szót írni, figyeljük meg,
