@@ -38,7 +38,7 @@ Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most ne
 ### A resource-ok hozzáadása
 
 Először töltsük le [az alkalmazás képeit tartalmazó tömörített fájlt](./downloads/res.zip), ami tartalmazza az összes 
-képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha _Android Studio_ban 
+képet, amire szükségünk lesz. A tartalmát másoljuk be az `app/src/main/res` mappába (ehhez segít, ha _Android Studio_-ban 
 bal fent a szokásos _Android_ nézetről a _Project_ nézetre váltunk erre az időre).
 
 Az alábbi, alkalmazáshoz szükséges _string resource_-okat másoljuk be a `res/values/strings.xml` fájlba:
@@ -88,8 +88,8 @@ public class DrawingView extends View {
 }
 ```
 
-Miután létrehoztuk a `DrawingView`t, nyissuk meg a `res/layout/activity_drawing.xml`-t, és hozzunk létre gyökérelemként 
-egy `RelativeLayout`ot, azon belül pedig felülre a frissen létrehozott `DrawingView`-nkból helyezzünk el egy példányt 
+Miután létrehoztuk a `DrawingView`-t, nyissuk meg a `res/layout/activity_drawing.xml`-t, és hozzunk létre gyökérelemként 
+egy `RelativeLayout`-ot, azon belül pedig felülre a frissen létrehozott `DrawingView`-nkból helyezzünk el egy példányt 
 fekete háttérrel, alulra pedig egy `Toolbar`-t rakjunk ki. Technikai okokból a `Toolbar`-t kell előbb definiálni, és 
 csak ezután a `DrawingView`-t, különben utóbbi nem látja az előbbi ID-ját. Végezetül a layoutnak így kell kinéznie:
 
@@ -118,7 +118,7 @@ csak ezután a `DrawingView`-t, különben utóbbi nem látja az előbbi ID-ját
 ### 2. feladat: Stílusválasztó (2 pont)
 
 Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős `Toolbar`-t, hozzuk létre a menüt, amivel be lehet 
-állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új _Android resource directory_-t `menu` néven, 
+állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új _Android resource directory_-t `menu` néven a `res` mappában, 
 és _Resource type_-nak is válasszuk azt, hogy `menu`. Ezen belül hozzunk létre egy új _Menu resource file_-t 
 `toolbar_menu.xml` néven. Ebben hozzunk létre az alábbi hierarchiát:
 
@@ -282,16 +282,16 @@ eltároljuk, hogy jelenleg milyen stílus van kiválasztva. Ehhez írjunk egy _s
 állítani a rajzolási stílust.
 
 ```java
-    public enum DrawingStyle {
-        LINE,
-        POINT,
-    }
-    
-    private DrawingStyle currentDrawingStyle = DrawingStyle.LINE;
-    
-    public void setDrawingStyle(final DrawingStyle drawingStyle) {
-        this.currentDrawingStyle = drawingStyle;
-    }
+public enum DrawingStyle {
+    LINE,
+    POINT
+}
+
+private DrawingStyle currentDrawingStyle = DrawingStyle.LINE;
+
+public void setDrawingStyle(final DrawingStyle drawingStyle) {
+    this.currentDrawingStyle = drawingStyle;
+}
 ```
 
 Ha ezek megvannak, akkor egészítsük ki a `DrawingActivity`-ben a menükezelést, úgy, hogy a megfelelő függvények 
@@ -332,8 +332,7 @@ public boolean onOptionsItemSelected(final MenuItem item) {
 ```
 #### Inicializálások
 
-A rajzolási funkció megvalósításához fel kell vennünk néhány további `field`-et, amiket a konstruktorban inicialiáznunk 
-kell.
+A rajzolási funkció megvalósításához fel kell vennünk néhány további `field`-et a `DrawingView` osztályban, amiket a konstruktorban inicializálnunk kell.
 
 ```java
 private Paint paint;
@@ -420,7 +419,7 @@ kívül minden egyes alkalommal meghívjuk az `invalidate()` függvényt, ami ki
 
 A rajzolás megvalósításához a `View` ősosztály `onDraw()` metódusát kell felüldefiniálnunk. Egyrészt ki kell rajzolnunk 
 a már meglévő objektumokat (amiket a `MotionEvent.ACTION_UP` eseménynél beleraktunk a listába), valamint ki kell 
-rajzolnunk az aktuális kezdőpont (`MotionEvent.ACTION_DOWN`) és a felhasználó ujja közötti vonalat.
+rajzolnunk az aktuális kezdőpont (a `MotionEvent.ACTION_DOWN` eseménytől) és a felhasználó ujja közötti vonalat.
 
 ```java
 @Override
@@ -470,7 +469,7 @@ Hozzunk létre egy új _package_-et az `hu.be.aut.simpledrawer`-en belül, amine
 
 Az objektumaink adatait tároló táblák létrehozása előtt hozzunk létre egy új _package_-et az `sqlite`-on belül `table` 
 néven. Ezen belül először a `Point` osztálynak hozunk létre egy új `PointsTable` nevű táblát. Ezen belül létrehozunk egy 
-`enum`˙-ot, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását 
+`enum`-ot, hogy könnyebben tudjuk kezelni a tábla oszlopait, majd konstansokban eltároljuk a tábla létrehozását 
 szolgáló _SQL utasítást_ valamint a tábla nevét is. Végezetül elkészítjük azokat a függvényeket, amelyeket a tábla 
 létrehozásakor, illetve upgrade-elésekor kell meghívni.
 
@@ -739,9 +738,7 @@ private void restorePersistedObjects() {
 }
 ```
 
-Végezetül szeretnénk, hogy amikor a felhasználó ki szeretne lépni az alkalmazásból, akkor egy dialógusablak jelenjen 
-meg, hogy biztos-e benne, és ha igen, csak abban az esetben mentsük el a rajzolt objektumokat, és lépjünk ki az 
-alkalmazásból. Ehhez felül kell definiálnunk az `Activity` `onBackPressed()` függvényét.
+Végezetül szeretnénk, hogy amikor a felhasználó ki szeretne lépni az alkalmazásból, akkor egy dialógusablak jelenjen meg, hogy biztos kilép-e, és ha igen, csak abban az esetben mentsük el a rajzolt objektumokat, és lépjünk ki az alkalmazásból. Ehhez felül kell definiálnunk az `Activity` `onBackPressed()` függvényét.
 
 ```java
 @Override
