@@ -341,9 +341,9 @@ private Point startPoint;
  
 private Point endPoint;
  
-private LinkedList<Line> lines;
+private List<Line> lines;
  
-private LinkedList<Point> points;
+private List<Point> points;
  
 public DrawingView(final Context context, final AttributeSet attrs) {
     super(context, attrs);
@@ -359,8 +359,8 @@ private void initPaint() {
 }
  
 private void initLists() {
-    lines = new LinkedList<>();
-    points = new LinkedList<>();
+    lines = new ArrayList<>();
+    points = new ArrayList<>();
 }
 ```
 
@@ -612,8 +612,8 @@ public class PersistentDataHelper {
         }
     }
  
-    public LinkedList<Point> restorePoints() {
-        final LinkedList<Point> points = new LinkedList<>();
+    public List<Point> restorePoints() {
+        final List<Point> points = new ArrayList<>();
         final Cursor cursor = database.query(PointsTable.TABLE_POINTS, pointColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -648,8 +648,8 @@ public class PersistentDataHelper {
         }
     }
  
-    public LinkedList<Line> restoreLines() {
-        final LinkedList<Line> points = new LinkedList<>();
+    public List<Line> restoreLines() {
+        final List<Line> points = new ArrayList<>();
         final Cursor cursor = database.query(LinesTable.TABLE_LINES, lineColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -686,17 +686,17 @@ Ahhoz, hogy a rajzolt objektumainkat el tudjuk menteni az adatbázisba, fel kell
 arra, hogy átadja, illetve meg lehessen adni neki kívülről is őket. Ehhez a következő függvényeket kell felvennünk:
 
 ```java
-public void restoreObjects(final LinkedList<Point> points, final LinkedList<Line> lines) {
+public void restoreObjects(final List<Point> points, final List<Line> lines) {
     this.points = points;
     this.lines = lines;
     invalidate();
 }
  
-public LinkedList<Point> getPoints() {
+public List<Point> getPoints() {
     return points;
 }
  
-public LinkedList<Line> getLines() {
+public List<Line> getLines() {
     return lines;
 }
 ```
