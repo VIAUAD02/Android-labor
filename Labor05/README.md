@@ -90,28 +90,27 @@ public class DrawingView extends View {
 
 Miután létrehoztuk a `DrawingView`-t, nyissuk meg a `res/layout/activity_drawing.xml`-t, és hozzunk létre gyökérelemként 
 egy `RelativeLayout`-ot, azon belül pedig felülre a frissen létrehozott `DrawingView`-nkból helyezzünk el egy példányt 
-fekete háttérrel, alulra pedig egy `Toolbar`-t rakjunk ki. Technikai okokból a `Toolbar`-t kell előbb definiálni, és 
-csak ezután a `DrawingView`-t, különben utóbbi nem látja az előbbi ID-ját. Végezetül a layoutnak így kell kinéznie:
+fekete háttérrel, alulra pedig egy `Toolbar`-t rakjunk ki. Végezetül a layoutnak így kell kinéznie:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_width="match_parent"
-   android:layout_height="match_parent">
-   
-   <android.support.v7.widget.Toolbar
-       android:id="@+id/toolbar"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
-       android:background="@color/colorPrimary" />
-   
-   <hu.bme.aut.simpledrawer.view.DrawingView
-       android:id="@+id/canvas"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_above="@id/toolbar"
-       android:background="@android:color/black" />
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<hu.bme.aut.simpledrawer.view.DrawingView
+		android:id="@+id/canvas"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/toolbar"
+		android:background="@android:color/black" />
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:background="@color/colorPrimary" />
 </RelativeLayout>
 ```
 
