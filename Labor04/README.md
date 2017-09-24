@@ -8,7 +8,7 @@ A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhaszn�
 <img src="./assets/menu.png" width="160">
 <img src="./assets/profile1.png" width="160">
 <img src="./assets/profile2.png" width="160">
-<img src="./assets/holiday.png" width="160">
+<img src="./assets/holiday1.png" width="160">
 <img src="./assets/datepicker.png" width="160">
 </p>
 
@@ -171,7 +171,8 @@ public class Person {
     private String taxId;
     private String registrationId;
 
-    public Person(String name, String email, String address, String id, String socialSecurityNumber, String taxId, String registrationId) {
+    public Person(String name, String email, String address, String id,
+                  String socialSecurityNumber, String taxId, String registrationId) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -252,7 +253,8 @@ A két Fragment-ben származzunk le a Fragment osztályból (support-os verziót
 public class MainProfileFragment extends Fragment {
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_main, container, false);
 
         TextView tvName = rootView.findViewById(R.id.tvName);
@@ -275,7 +277,8 @@ public class MainProfileFragment extends Fragment {
 public class DetailsProfileFragment extends Fragment {
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_detail, container, false);
 
         TextView tvId = rootView.findViewById(R.id.tvId);
@@ -527,7 +530,7 @@ App szintű build.gradle:
 ```yml
 dependencies {
     ...
-	compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }
 ```
 
@@ -611,7 +614,8 @@ A következő lépésben a Take Holiday gombra megjelenő dátumválasztó műk�
 
 Hozzunk létre egy DatePickerDialogFragment osztályt:
 ```java
-public class DatePickerDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class DatePickerDialogFragment extends DialogFragment
+        implements DatePickerDialog.OnDateSetListener {
     private OnDateSelectedListener onDateSelectedListener;
 
     @Override
@@ -620,7 +624,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
 
         if (!(context instanceof OnDateSelectedListener)) {
             throw new RuntimeException("The activity does not implement the" +
-                    "OnDateTimeSelected interface");
+                    "OnDateSelectedListener interface");
         }
 
         onDateSelectedListener = (OnDateSelectedListener) context;
@@ -664,7 +668,8 @@ btnTakeHoliday.setOnClickListener(new View.OnClickListener() {
 
 A kiválasztott dátum feldolgozásához implementáljuk az OnDateSelectedListener-t a HolidayActivity-ben:
 ```java
-public class HolidayActivity extends AppCompatActivity implements DatePickerDialogFragment.OnDateSelectedListener
+public class HolidayActivity extends AppCompatActivity
+        implements DatePickerDialogFragment.OnDateSelectedListener {
 
 ...
 
