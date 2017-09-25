@@ -1,8 +1,8 @@
-# Labor 04 - Felhasználói felület készítés - Fragmentek, Chartok
+# Labor 04 - Felhasználói felület készítése - Fragmentek, Chartok
 
 ## Bevezető
 
-A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhasználó meg tudja tekinteni személyes adatait, illetve szabadságot tud rögzíteni. Az alkalmazás nem használ perzisztens adattárolást és valós bejelentkeztetést, csak demo adatokkal dolgozik. A labor fókusza a Fragmentekkel való felület készítés lesz.
+A labor során egy HR alkalmazást készítünk el, amelybe belépve a felhasználó meg tudja tekinteni személyes adatait, illetve szabadságot tud rögzíteni. Az alkalmazás nem használ perzisztens adattárolást és valós bejelentkeztetést, csak demo adatokkal dolgozik. A labor fő témája a Fragmentekkel való felületkészítés lesz.
 
 <p align="center">
 <img src="./assets/menu.png" width="160">
@@ -31,7 +31,7 @@ IMSc: Fizetés menüpont megvalósítása
 
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `WorkplaceApp`, a Company Domain pedig `aut.bme.hu`. Láthatjuk, hogy ez alapján automatikusan a `hu.bme.aut.workplaceapp` package nevet kapja az alkalmazás. 
+Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `WorkplaceApp`, a Company domain pedig `aut.bme.hu`.
 
 Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 15-ös minimum SDK szintet.
 
@@ -39,7 +39,7 @@ Az első Activity-nk legyen egy Empty Activity, és nevezzük el `MenuActivity`-
 
 ## Főmenü képernyő
 
-Az első Activity, amit elkészítünk a navigációért lesz felelős. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
+Az első Activity amit elkészítünk a navigációért lesz felelős. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
 
 A projekt készítésekor már létrejött `activity_menu.xml` tartalmát cseréljük ki az alábbira:
 
@@ -49,8 +49,8 @@ A projekt készítésekor már létrejött `activity_menu.xml` tartalmát cseré
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -517,7 +517,7 @@ public int getRemainingHolidays() {
 A PieChart kirajzolásához az [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library-t fogjuk használni.
 
 Projekt szintű build.gradle:
-```yml
+```groovy
 allprojects {
     repositories {
         ...
@@ -527,7 +527,7 @@ allprojects {
 ```
 
 App szintű build.gradle:
-```yml
+```groovy
 dependencies {
     ...
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
@@ -690,15 +690,15 @@ Próbáljuk ki az alkalmazást! Most már a gomb is jól kell, hogy működjön,
 
 ## Önálló feladat
 
-- Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi
+- Csak akkor engedjünk új szabadságot kivenni, ha a kiválasztott nap a mai napnál későbbi.
 - Ha elfogyott a szabadságkeretünk, akkor a Take Holiday gomb legyen letiltva.
 
 ## iMSc feladat
 
 ### Fizetés menüpont megvalósítása
 
-A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewPager-el és 2 Fragment-el (A Profile menüponthoz hasonlóan):
-- PaymentTaxesFragment: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
-- MonthlyPaymentFragment: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
+A Payment menüpontra kattintva jelenjen meg egy PaymentActivity rajta egy ViewPager-rel és 2 Fragment-tel (A Profile menüponthoz hasonlóan):
+- `PaymentTaxesFragment`: kördiagram, aminek a közepébe van írva az aktuális fizetés és mutatja a nettó jövedelmet illetve a levont adókat (adónként külön)
+- `MonthlyPaymentFragment`: egy oszlopdiagramot mutasson 12 oszloppal, a havi szinten lebontott fizetéseket mutatva - érdemes az adatokat itt is a DataManager osztályban tárolni
 
 [Segítség](https://github.com/PhilJay/MPAndroidChart/wiki)

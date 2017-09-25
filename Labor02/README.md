@@ -31,7 +31,7 @@ IMSc:
 
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `PublicTransport`, a Company Domain pedig `aut.bme.hu`. Láthatjuk, hogy ez alapján automatikusan a `hu.bme.aut.publictransport` package-et kapja az alkalmazás. 
+Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `PublicTransport`, a Company domain pedig `aut.bme.hu`. Láthatjuk, hogy ez alapján automatikusan a `hu.bme.aut.publictransport` package-et kapja az alkalmazás. 
 
 Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 15-ös minimum SDK szintet.
 
