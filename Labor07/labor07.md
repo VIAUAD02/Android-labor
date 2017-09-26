@@ -43,7 +43,11 @@ Hozzon létre egy **WeatherInfo** nevű projektet Android Studioban **Basic Acti
 Vegyük fel az alábbi függőségeket a modul-hoz tartozó **build.gradle**-be:
 
 ```java
-compile 'com.android.support:appcompat-v7:24.2.0' compile 'com.android.support:design:24.2.0' compile 'com.squareup.retrofit2:retrofit:2.1.0' compile 'com.squareup.retrofit2:converter-gson:2.1.0' compile 'com.github.bumptech.glide:glide:3.7.0'
+compile 'com.android.support:appcompat-v7:24.2.0' 
+compile 'com.android.support:design:24.2.0' 
+compile 'com.squareup.retrofit2:retrofit:2.1.0' 
+compile 'com.squareup.retrofit2:converter-gson:2.1.0' 
+compile 'com.github.bumptech.glide:glide:3.7.0'
 ```
 
 Ha ez megvan, akkor kattintsunk a jobb felső sarokban megjelent **Sync now** gombra.
@@ -1002,7 +1006,7 @@ A *DetailsActivity* *onResume(…)* függvényében hívjuk meg a *loadWeatherDa
 @Override
 protected void onResume() {
     super.onResume();
-    **loadWeatherData();**
+    loadWeatherData();
 }
 ```
 
