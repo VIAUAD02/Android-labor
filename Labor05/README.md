@@ -627,11 +627,11 @@ public class PersistentDataHelper {
     public void clearPoints() {
         database.delete(PointsTable.TABLE_POINTS, null, null);
     }
- 
+
     private Point cursorToPoint(final Cursor cursor) {
         final Point point = new Point();
-        point.setX(cursor.getFloat(LinesTable.Columns.start_x.ordinal()));
-        point.setY(cursor.getFloat(LinesTable.Columns.start_y.ordinal()));
+        point.setX(cursor.getFloat(PointsTable.Columns.coord_x.ordinal()));
+        point.setY(cursor.getFloat(PointsTable.Columns.coord_y.ordinal()));
         return point;
     }
  
