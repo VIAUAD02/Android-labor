@@ -4,11 +4,11 @@
 A labor célja az Android alapvető felületi elemeivel történő megismerkedés, valamint a perzisztencia megvalósítási lehetőségei közül az ORM bemutatása egy konkrét példán keresztül
 
 Felhasznált technológiák:
-- Activity
-- Fragment
-- RecyclerView
-- FloatingActionButton
-- SugarORM
+- *Activity*
+- *Fragment*
+- *RecyclerView*
+- *FloatingActionButton*
+- *SugarORM*
 
 ## Feltöltés
 Az elkészült megoldást egy ZIP formájában (teljes Android Studio projekt – build mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
@@ -22,28 +22,28 @@ A képernyők mintaképei:
 <img src="./assets/new_item.png" width="320">
 </p>
 
-Az alkalmazás egy Activity-ből áll, mely a listát jeleníti meg. Új elemet a FloatingActionButton segítségével adhatunk hozzá, mely a jobb alsó sarokban található. Erre kattintva egy dialógus jelenik meg, melynek segítségével megadhatjuk a vásárolni kívánt áru nevét, leírását, kategóriáját és becsült árát.
-Az adatok a lista elemen megjelennek. CheckBox segítségével jelezhetjük a már megvásárolt elemeket. A kuka ikonra kattintva törölhetjük az egyes elemeket.
+Az alkalmazás egy *Activity*-ből áll, mely a listát jeleníti meg. Új elemet a *FloatingActionButton* segítségével adhatunk hozzá, mely a jobb alsó sarokban található. Erre kattintva egy dialógus jelenik meg, melynek segítségével megadhatjuk a vásárolni kívánt áru nevét, leírását, kategóriáját és becsült árát.
+Az adatok a lista elemen megjelennek. *CheckBox* segítségével jelezhetjük a már megvásárolt elemeket. A kuka ikonra kattintva törölhetjük az egyes elemeket.
 A menüben található „Remove all” opcióval az összes listaelemet törölhetjük.
 
 ## Laborfeladatok
 A labor során az alábbi feladatokat kell megvalósítani a laborvezető segítségével, illetve a jelölt feladatoknál önállóan.
 
 ### Kezdő projekt létrehozása
-Hozzon létre egy ShoppingList nevű projektet Android Studioban. A Company domain-nek aut.bme.hu-t adjon meg. Az alkalmazás típusának válassza ki a Phone and Tablet opciót, a minimum SDK-nak pedig API 15-öt (default). Az Activity típusok közül a Basic Activity-t válassza. Ezután kattintson a Finish gombra.
-Másolja be a labor anyagban található drawables.zip könyvtár tartalmát a projekt erőforrás mappájába megfelelő módon.
+Hozzon létre egy `ShoppingList` nevű projektet Android Studioban. A Company domain-nek `aut.bme.hu`-t adjon meg. Az alkalmazás típusának válassza ki a **Phone and Tablet** opciót, a minimum SDK-nak pedig API 15-öt (default). Az Activity típusok közül a **Basic Activity**-t válassza. Ezután kattintson a **Finish** gombra.
+Másolja be a labor anyagban található *drawables.zip* könyvtár tartalmát a projekt erőforrás mappájába megfelelő módon.
 
 ### Perzisztenica megvalósítása
 Az adatok perzisztens tárolásához a Sugar ORM (http://satyan.github.io/sugar/) könyvtárat fogjuk használni.
 
 #### Sugar ORM importálása
-Ehhez az app modulhoz tartozó build.gradle fájlban a dependencies részhez adja hozzá a következő sort:
+Ehhez az app modulhoz tartozó build.gradle fájlban a *dependencies* részhez adja hozzá a következő sort:
 ```gradle
 compile 'com.github.satyan:sugar:1.4'
 ```
-Ezután kattintson a jobb felső sarokban a Sync now gombra.
+Ezután kattintson a jobb felső sarokban a **Sync now** gombra.
 
-A Sugar ORM számára a Manifest-ben elhelyezett meta-data tag-ek segítségével adhatjuk meg az adatbázist tartalmazó fájl nevét és verzióját, hogy logolja-e a query-ket, illetve hogy milyen domain-t használunk. Frissítsük az AndroidManifest.xml-t az alábbiak szerint:
+A **Sugar ORM** számára a *Manifest*-ben elhelyezett meta-data tag-ek segítségével adhatjuk meg az adatbázist tartalmazó fájl nevét és verzióját, hogy logolja-e a query-ket, illetve hogy milyen domain-t használunk. Frissítsük az *AndroidManifest.xml*-t az alábbiak szerint:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="hu.bme.aut.shoppinglist"
@@ -76,16 +76,16 @@ A Sugar ORM számára a Manifest-ben elhelyezett meta-data tag-ek segítségéve
 
 </manifest>
 ```
-Hozzon létre új Java osztályt: kattintson jobb gombbal az alkalmazás package-re, majd válassza a New > Java class opciót. Az osztály neve legyen ShoppingApplication.
+Hozzon létre új Java osztályt: kattintson jobb gombbal az alkalmazás package-re, majd válassza a **New** > **Java class** opciót. Az osztály neve legyen `ShoppingApplication`.
 ```java
 public class ShoppingApplication extends SugarApp {
 }
 ```
-Ennek a SugarApp-ból kell származnia, ezzel biztosítjuk a Sugar ORM megfelelő inicializálását, illetve lezárását.
-Később ha bármikor szükségünk van saját Application osztályra ezt az osztályt bővíthetjük.
+Ennek a `SugarApp`-ból kell származnia, ezzel biztosítjuk a Sugar ORM megfelelő inicializálását, illetve lezárását.
+Később ha bármikor szükségünk van saját *Application* osztályra ezt az osztályt bővíthetjük.
 
 #### Modell osztály létrehozása
-Hozzon létre új Java osztályt: kattintson jobb gombbal az alkalmazás package-re, majd válassza a New > Java class opciót. Az osztály neve legyen ShoppingItem. Másolja be az osztály kódját.
+Hozzon létre új Java osztályt: kattintson jobb gombbal az alkalmazás package-re, majd válassza a **New** > **Java class** opciót. Az osztály neve legyen `ShoppingItem`. Másolja be az osztály kódját.
 ```java
 public class ShoppingItem extends SugarRecord {
 
@@ -111,11 +111,11 @@ public class ShoppingItem extends SugarRecord {
     public boolean isBought;
 }
 ```
-Látható, hogy ősosztályként a SugarRecord-ot használtuk, ez biztosítja, hogy az osztály példányait adatbázisba lehessen menteni.
+Látható, hogy ősosztályként a `SugarRecord`-ot használtuk, ez biztosítja, hogy az osztály példányait adatbázisba lehessen menteni.
 
 #### Adapter létrehozása
-Következő lépésként az adaptert fogjuk létrehozni, mely a modell elemek megjelenítéséért felel. Hozzunk létre új Java osztályt ShoppingAdapter néven. Mivel a listát RecyclerView segítségével szeretnénk megjeleníteni, ezért az adapter a RecyclerView.Adapter osztályból fog leszármazni. A modell elemeket egy listában fogjuk tárolni. Szükség lesz még egy ViewHolder osztály megadására is, ezen keresztül érhetjük majd el a listaelemekhez tartozó View-kat.
-Az ősosztály három abstract függvényt definiál, amelyeket meg kell valósítanunk. Az onCreateViewHolder()-ben hozzuk létre az adott sort megjelenítő View-t és a hozzá tartozó ViewHolder-t, az onBindViewHolder()-ben kötjük hozzá a modell elemhez a nézetet, a getItemCount() pedig a listában található elemek számát adja vissza.
+Következő lépésként az adaptert fogjuk létrehozni, mely a modell elemek megjelenítéséért felel. Hozzunk létre új Java osztályt `ShoppingAdapter` néven. Mivel a listát *RecyclerView* segítségével szeretnénk megjeleníteni, ezért az adapter a `RecyclerView.Adapter` osztályból fog leszármazni. A modell elemeket egy listában fogjuk tárolni. Szükség lesz még egy *ViewHolder* osztály megadására is, ezen keresztül érhetjük majd el a listaelemekhez tartozó *View*-kat.
+Az ősosztály három abstract függvényt definiál, amelyeket meg kell valósítanunk. Az `onCreateViewHolder()`-ben hozzuk létre az adott sort megjelenítő *View*-t és a hozzá tartozó *ViewHolder*-t, az `onBindViewHolder()`-ben kötjük hozzá a modell elemhez a nézetet, a `getItemCount()` pedig a listában található elemek számát adja vissza.
 ```java
 public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder> {
 
@@ -151,7 +151,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     }
 }
 ```
-Az R.layout.item_shopping-ra hibát dog a fordító, hiszen még nem hoztuk létre a layout erőforrást. Kattintson rá, majd nyomja meg az Alt + Enter billentyű kombinációt. Válassza az első lehetőséget: „Create layout resource file item_shopping_list.xml”. Cseréljük le az újonnan létrehozott fájl tartalmát az alábbira:
+Az `R.layout.item_shopping`-ra hibát dog a fordító, hiszen még nem hoztuk létre a layout erőforrást. Kattintson rá, majd nyomja meg az **Alt + Enter** billentyű kombinációt. Válassza az első lehetőséget: **„Create layout resource file item_shopping_list.xml”**. Cseréljük le az újonnan létrehozott fájl tartalmát az alábbira:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
@@ -202,7 +202,7 @@ Az R.layout.item_shopping-ra hibát dog a fordító, hiszen még nem hoztuk lét
 
 </LinearLayout>
 ```
-Ilessze be a belső LinearLayout-ba a szövegmezőket:
+Ilessze be a belső `LinearLayout`-ba a szövegmezőket:
 ```xml
 <TextView
     android:id="@+id/ShoppingItemNameTextView"
@@ -229,9 +229,9 @@ Ilessze be a belső LinearLayout-ba a szövegmezőket:
     tools:text="20 Ft"/>
 ```
 Adja hozzá a szükséges képi erőforrásokat.
-Hozzuk létre a @string/bought erőforrást, ehhez kattintsunk rá a hivatkozásra, majd Alt + Enter lenyomása után válasszuk a „Create string value resource ’bought’” lehetőséget. A felugró ablakban adjuk meg a kívánt értéket.
+Hozzuk létre a `@string/bought` erőforrást, ehhez kattintsunk rá a hivatkozásra, majd **Alt + Enter** lenyomása után válasszuk a **„Create string value resource ’bought’”** lehetőséget. A felugró ablakban adjuk meg a kívánt értéket.
 
-Térjünk vissza az adapterhez, és adjuk hozzá a ViewHolder-hez a megfelelő mezőket. Ezeken a mezőkön keresztül fogjuk tudni elérni az egyes sorokhoz tartozó nézeteket.
+Térjünk vissza az adapterhez, és adjuk hozzá a *ViewHolder*-hez a megfelelő mezőket. Ezeken a mezőkön keresztül fogjuk tudni elérni az egyes sorokhoz tartozó nézeteket.
 ```java
 public class ShoppingViewHolder extends RecyclerView.ViewHolder {
 
@@ -268,7 +268,7 @@ public void onBindViewHolder(ShoppingViewHolder holder, int position) {
     holder.isBoughtCheckBox.setChecked(item.isBought);
 }
 ```
-Adjuk hozzá az adapter osztályhoz a getImageResource() metódust:
+Adjuk hozzá az adapter osztályhoz a `getImageResource()` metódust:
 ```java
 private @DrawableRes int getImageResource(ShoppingItem.Category category) {
     @DrawableRes int ret;
@@ -303,8 +303,8 @@ public void update(List<ShoppingItem> shoppingItems) {
 ```
 
 ### RecyclerView hozzáadása
-A lista megjelenítéséhez a MainActivity tartalmát egy RecyclerView-ra kell lecserélnünk.
-Ehhez a content_main.xml tartalmát kell frissíteni:
+A lista megjelenítéséhez a `MainActivity` tartalmát egy *RecyclerView*-ra kell lecserélnünk.
+Ehhez a `content_main.xml` tartalmát kell frissíteni:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.RecyclerView
@@ -316,12 +316,12 @@ Ehhez a content_main.xml tartalmát kell frissíteni:
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     />
 ```
-Adjuk hozzá az alábbi mezőket a MainActivity-hez:
+Adjuk hozzá az alábbi mezőket a `MainActivity`-hez:
 ```java
 private RecyclerView recyclerView;
 private ShoppingAdapter adapter;
 ```
-Adjuk hozzá a RecyclerView-t inicializáló kódrészletet. A loadItemsInBackground() függvény háttérszálon betölti az adatbázisba mentett elemeket, majd a UI szálon megjeleníti őket (átadja az adapter-nek). Ehhez az AsyncTask osztályt használjuk, melynek doInBackground() metódusa háttérszálon fut le, az onPostExecute() pedig már a UI szálon hívódik meg.
+Adjuk hozzá a *RecyclerView*-t inicializáló kódrészletet. A `loadItemsInBackground()` függvény háttérszálon betölti az adatbázisba mentett elemeket, majd a UI szálon megjeleníti őket (átadja az adapter-nek). Ehhez az *AsyncTask* osztályt használjuk, melynek `doInBackground()` metódusa háttérszálon fut le, az `onPostExecute()` pedig már a UI szálon hívódik meg.
 ```java
 private void initRecyclerView() {
     recyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
@@ -347,7 +347,7 @@ private void loadItemsInBackground() {
     }.execute();
 }
 ```
-Hívjuk meg a fenti függvényt az onCreate()-ből:
+Hívjuk meg a fenti függvényt az `onCreate()`-ből:
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -369,7 +369,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 Ezzel az adatbázisban szereplő elemeket meg tudná jeleníteni a program, azonban sajnos még egy elemünk sincs. A következő lépés az új elem létrehozása lesz.
 ### Dialógus megvalósítása új elem hozzáadásához
-A dialógus megjelenítéséhez DialogFragment-et fogunk használni. Hozzunk létre új Java osztályt NewShoppingItemDialogFragment néven. Az osztályban definiálunk egy listener interface-t, amelyen keresztül az Activity értesülhet az új elem létrehozásáról.
+A dialógus megjelenítéséhez *DialogFragment*-et fogunk használni. Hozzunk létre új Java osztályt `NewShoppingItemDialogFragment` néven. Az osztályban definiálunk egy listener interface-t, amelyen keresztül az *Activity* értesülhet az új elem létrehozásáról.
 ```java
 public class NewShoppingItemDialogFragment extends AppCompatDialogFragment {
 
@@ -398,7 +398,7 @@ public class NewShoppingItemDialogFragment extends AppCompatDialogFragment {
     }
 }
 ```
-A megjelenő dialógust az onCreateDialog() függvényben fogjuk összeállítani. Ehhez az AlertDialog.Builder osztályt hívjuk segítségül. 
+A megjelenő dialógust az `onCreateDialog()` függvényben fogjuk összeállítani. Ehhez az `AlertDialog.Builder` osztályt hívjuk segítségül. 
 ```java
 @NonNull
 @Override
@@ -416,7 +416,7 @@ public Dialog onCreateDialog(Bundle savedInstanceState) {
             .create();
 }
 ```
-Hiányzik még a dialógus tartalmát létrehozó getContentView() függvény. Adjuk hozzá ezt is:
+Hiányzik még a dialógus tartalmát létrehozó `getContentView()` függvény. Adjuk hozzá ezt is:
 ```java
 private View getContentView() {
     View contentView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_new_shopping_item, null);
@@ -429,7 +429,7 @@ private View getContentView() {
     return contentView;
 }
 ```
-Ezt követően hozzuk létre a dialógushoz tartozó layout file-t. Ehhez kattintson a getContentView() első sorában található R.layout.dialog_new_shopping_item-re, majd Alt Enter-t nyomva válassza az első lehetőséget: Create layout resource file …, majd kattintsunk az Ok-ra. Másolja be a layout fájl tartalmát:
+Ezt követően hozzuk létre a dialógushoz tartozó layout file-t. Ehhez kattintson a `getContentView()` első sorában található `R.layout.dialog_new_shopping_item`-re, majd **Alt + Enter**-t nyomva válassza az első lehetőséget: **Create layout resource file …**, majd kattintsunk az **Ok**-ra. Másolja be a layout fájl tartalmát:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
@@ -491,7 +491,7 @@ Ezt követően hozzuk létre a dialógushoz tartozó layout file-t. Ehhez kattin
 
 </LinearLayout>
 ```
-Adjuk hozzá a hiányzó szöveges erőforásokat a strings.xml fájlhoz:
+Adjuk hozzá a hiányzó szöveges erőforásokat a `strings.xml` fájlhoz:
 ```xml
 <string name="new_shopping_item">New shopping item</string>
 <string name="ok">Ok</string>
@@ -519,7 +519,7 @@ holder.isBoughtCheckBox.setOnClickListener(new View.OnClickListener() {
     
 });
 ```
-Adja hozzá a strings.xml-hez a hiányzó szöveges erőforrásokat:
+Adja hozzá a `strings.xml`-hez a hiányzó szöveges erőforrásokat:
 ```xml
 <string name="name">Name</string>
 <string name="description">Description</string>
@@ -532,7 +532,7 @@ Adja hozzá a strings.xml-hez a hiányzó szöveges erőforrásokat:
     <item>Book</item>
 </string-array>
 ```
-Az új elemet az positiveButton onClickListener-jében fogjuk létrehozni, amennyiben a bevitt adatok validak, vagyis a név ki van töltve.
+Az új elemet az positiveButton *onClickListener*-jében fogjuk létrehozni, amennyiben a bevitt adatok validak, vagyis a név ki van töltve.
 ```java
 @Override
 public void onClick(DialogInterface dialogInterface, int i) {
@@ -560,7 +560,7 @@ private ShoppingItem getShoppingItem() {
     return shoppingItem;
 }
 ```
-A MainActivity onCreate()-jében frissítsük a FloatingActionButton OnClickListener-jét, hogy az a fentebb megvalósított dialógust dobja fel:
+A `MainActivity` `onCreate()`-jében frissítsük a `FloatingActionButton` `OnClickListener`-jét, hogy az a fentebb megvalósított dialógust dobja fel:
 ```java
 fab.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -569,7 +569,7 @@ fab.setOnClickListener(new View.OnClickListener() {
     }
 });
 ```
-Frissítse a MainActivity-t, hogy implementálja a dialógusban definiált interface-t:
+Frissítse a `MainActivity`-t, hogy implementálja a dialógusban definiált interface-t:
 ```java
 public class MainActivity extends AppCompatActivity implements NewShoppingItemDialogFragment.INewShoppingItemDialogListener {
 
@@ -581,7 +581,7 @@ public void onShoppingItemCreated(ShoppingItem newItem) {
 }
 }
 ```
-Frissítse az activity_main.xml layout fájlban a FloatingActionButton ikonját:
+Frissítse az `activity_main.xml` layout fájlban a `FloatingActionButton` ikonját:
 ```xml
 <android.support.design.widget.FloatingActionButton
     android:id="@+id/fab"
@@ -597,9 +597,9 @@ Próbálja ki az alkalmazást.
 
 ### IMSc feladatok
 #### Megerősítő dialógus
-Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a Remove all menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (OK és Cancel). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
+Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a Remove all menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (**OK** és **Cancel**). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
 #### Elemek szerkesztése
-Valósítsa meg a listaelem szerkesztését. A lista elemre helyezzen egy szerkesztés gombot, melynek hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. Az OK gomb hatására a meglévő listaelem módosuljon az adatbázisban és a nézeten is.
+Valósítsa meg a listaelem szerkesztését. A lista elemre helyezzen egy szerkesztés gombot, melynek hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. Az **OK** gomb hatására a meglévő listaelem módosuljon az adatbázisban és a nézeten is.
 
 
 
