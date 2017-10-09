@@ -593,7 +593,12 @@ Frissítse az `activity_main.xml` layout fájlban a `FloatingActionButton` ikonj
 ```
 Próbálja ki az alkalmazást.
 
-### Önálló feladat
+### Önálló feladat: törlés megvalósítása
+- ViewHolder-ben elem pozíciójának tárolása
+- Adapter-ben érintésre elem törlése
+- Adapter értesítése, hogy frissítse a nézetet
+- Menú kiegészítése: összes elem törlése
+- Összes elem törlésének megvalósítása
 
 ### IMSc feladatok
 #### Megerősítő dialógus
