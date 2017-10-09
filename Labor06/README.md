@@ -593,6 +593,15 @@ Frissítse az activity_main.xml layout fájlban a FloatingActionButton ikonját:
 ```
 Próbálja ki az alkalmazást.
 
+### Önálló feladat
+
+### IMSc feladatok
+#### Megerősítő dialógus
+Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhasználó a Remove all menüpontra kattint. A dialógus tartalmazzon egy rövid szöveges figyelmeztetést, hogy minden elem törlődni fog, egy pozitív és negatív gombot (OK és Cancel). A pozitív gomb lenyomásakor törlődjenek csak az elemek.
+#### Elemek szerkesztése
+Valósítsa meg a listaelem szerkesztését. A lista elemre helyezzen egy szerkesztés gombot, melynek hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. Az OK gomb hatására a meglévő listaelem módosuljon az adatbázisban és a nézeten is.
+
+
 
 
 
