@@ -302,5 +302,297 @@ public void update(List<ShoppingItem> shoppingItems) {
 }
 ```
 
+### RecyclerView hozzáadása
+A lista megjelenítéséhez a MainActivity tartalmát egy RecyclerView-ra kell lecserélnünk.
+Ehhez a content_main.xml tartalmát kell frissíteni:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/MainRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    />
+```
+Adjuk hozzá az alábbi mezőket a MainActivity-hez:
+```java
+private RecyclerView recyclerView;
+private ShoppingAdapter adapter;
+```
+Adjuk hozzá a RecyclerView-t inicializáló kódrészletet. A loadItemsInBackground() függvény háttérszálon betölti az adatbázisba mentett elemeket, majd a UI szálon megjeleníti őket (átadja az adapter-nek). Ehhez az AsyncTask osztályt használjuk, melynek doInBackground() metódusa háttérszálon fut le, az onPostExecute() pedig már a UI szálon hívódik meg.
+```java
+private void initRecyclerView() {
+    recyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
+    adapter = new ShoppingAdapter();
+    loadItemsInBackground();
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    recyclerView.setAdapter(adapter);
+}
+
+private void loadItemsInBackground() {
+    new AsyncTask<Void, Void, List<ShoppingItem>>() {
+
+        @Override
+        protected List<ShoppingItem> doInBackground(Void... voids) {
+            return ShoppingItem.listAll(ShoppingItem.class);
+        }
+
+        @Override
+        protected void onPostExecute(List<ShoppingItem> shoppingItems) {
+            super.onPostExecute(shoppingItems);
+            adapter.update(shoppingItems);
+        }
+    }.execute();
+}
+```
+Hívjuk meg a fenti függvényt az onCreate()-ből:
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+    });
+    initRecyclerView();
+}
+```
+Ezzel az adatbázisban szereplő elemeket meg tudná jeleníteni a program, azonban sajnos még egy elemünk sincs. A következő lépés az új elem létrehozása lesz.
+### Dialógus megvalósítása új elem hozzáadásához
+A dialógus megjelenítéséhez DialogFragment-et fogunk használni. Hozzunk létre új Java osztályt NewShoppingItemDialogFragment néven. Az osztályban definiálunk egy listener interface-t, amelyen keresztül az Activity értesülhet az új elem létrehozásáról.
+```java
+public class NewShoppingItemDialogFragment extends AppCompatDialogFragment {
+
+    public static final String TAG = "NewShoppingItemDialogFragment";
+
+    public interface INewShoppingItemDialogListener {
+        void onShoppingItemCreated(ShoppingItem newItem);
+    }
+
+    private INewShoppingItemDialogListener listener;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        FragmentActivity activity = getActivity();
+        if (activity instanceof INewShoppingItemDialogListener) {
+            listener = (INewShoppingItemDialogListener) activity;
+        } else {
+            throw new RuntimeException("Activity must implement the INewShoppingItemDialogListener interface!");
+        }
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return new AlertDialog.Builder(getContext()).create();
+    }
+}
+```
+A megjelenő dialógust az onCreateDialog() függvényben fogjuk összeállítani. Ehhez az AlertDialog.Builder osztályt hívjuk segítségül. 
+```java
+@NonNull
+@Override
+public Dialog onCreateDialog(Bundle savedInstanceState) {
+    return new AlertDialog.Builder(getContext())
+            .setTitle(R.string.new_shopping_item)
+            .setView(getContentView())
+            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    
+                }
+            })
+            .setNegativeButton(R.string.cancel, null)
+            .create();
+}
+```
+Hiányzik még a dialógus tartalmát létrehozó getContentView() függvény. Adjuk hozzá ezt is:
+```java
+private View getContentView() {
+    View contentView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_new_shopping_item, null);
+    nameEditText = (EditText) contentView.findViewById(R.id.ShoppingItemNameEditText);
+    descriptionEditText = (EditText) contentView.findViewById(R.id.ShoppingItemDescriptionEditText);
+    estimatedPriceEditText = (EditText) contentView.findViewById(R.id.ShoppingItemEstimatedPriceEditText);
+    categorySpinner = (Spinner) contentView.findViewById(R.id.ShoppingItemCategorySpinner);
+    categorySpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.category_items)));
+    alreadyPurchasedCheckBox = (CheckBox) contentView.findViewById(R.id.ShoppingItemIsPurchasedCheckBox);
+    return contentView;
+}
+```
+Ezt követően hozzuk létre a dialógushoz tartozó layout file-t. Ehhez kattintson a getContentView() első sorában található R.layout.dialog_new_shopping_item-re, majd Alt Enter-t nyomva válassza az első lehetőséget: Create layout resource file …, majd kattintsunk az Ok-ra. Másolja be a layout fájl tartalmát:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dip">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"/>
+
+    <EditText
+        android:id="@+id/ShoppingItemNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dip"
+        android:text="@string/description"/>
+
+    <EditText
+        android:id="@+id/ShoppingItemDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dip"
+        android:text="@string/category"/>
+
+    <Spinner
+        android:id="@+id/ShoppingItemCategorySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dip"
+        android:text="@string/estimated_price"/>
+
+    <EditText
+        android:id="@+id/ShoppingItemEstimatedPriceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+
+    <CheckBox
+        android:id="@+id/ShoppingItemIsPurchasedCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/already_purchased"/>
+
+</LinearLayout>
+```
+Adjuk hozzá a hiányzó szöveges erőforásokat a strings.xml fájlhoz:
+```xml
+<string name="new_shopping_item">New shopping item</string>
+<string name="ok">Ok</string>
+<string name="cancel">Cancel</string>
+```
+Hozzuk létre a hiányzó tagváltozókat:
+```java
+private EditText nameEditText;
+private EditText descriptionEditText;
+private EditText estimatedPriceEditText;
+private Spinner categorySpinner;
+private CheckBox alreadyPurchasedCheckBox;
+```
+```java
+Iratkozzunk fel a CheckBox onClick eseményére, hogy a vásárlás állapotát frissíteni lehessen az onBindViewHolder(…) függvényben:
+holder.isBoughtCheckBox.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        boolean checked = holder.isBoughtCheckBox.isChecked();
+        Log.d(TAG, "onClick: checked = " + checked + " in position " 
+         + holder.getAdapterPosition());
+        ShoppingItem item = items.get(holder.getAdapterPosition());
+        item.isBought = checked;
+        item.save();
+    
+});
+```
+Adja hozzá a strings.xml-hez a hiányzó szöveges erőforrásokat:
+```xml
+<string name="name">Name</string>
+<string name="description">Description</string>
+<string name="category">Category</string>
+<string name="estimated_price">Estimated price</string>
+<string name="already_purchased">Already purchased</string>
+<string-array name="category_items">
+    <item>Food</item>
+    <item>Electronic</item>
+    <item>Book</item>
+</string-array>
+```
+Az új elemet az positiveButton onClickListener-jében fogjuk létrehozni, amennyiben a bevitt adatok validak, vagyis a név ki van töltve.
+```java
+@Override
+public void onClick(DialogInterface dialogInterface, int i) {
+    if (isValid()) {
+        listener.onShoppingItemCreated(getShoppingItem());
+    }
+}
+
+private boolean isValid() {
+    return nameEditText.getText().length() > 0;
+}
+
+private ShoppingItem getShoppingItem() {
+    ShoppingItem shoppingItem = new ShoppingItem();
+    shoppingItem.name = nameEditText.getText().toString();
+    shoppingItem.description = descriptionEditText.getText().toString();
+    try {
+        shoppingItem.estimatedPrice = Integer.parseInt(estimatedPriceEditText.getText().toString());
+    } catch (NumberFormatException e) {
+        shoppingItem.estimatedPrice = 0;
+    }
+    shoppingItem.category = ShoppingItem.Category.getByOrdinal(categorySpinner.getSelectedItemPosition());
+    shoppingItem.isBought = alreadyPurchasedCheckBox.isChecked();
+    shoppingItem.save();
+    return shoppingItem;
+}
+```
+A MainActivity onCreate()-jében frissítsük a FloatingActionButton OnClickListener-jét, hogy az a fentebb megvalósított dialógust dobja fel:
+```java
+fab.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        new NewShoppingItemDialogFragment().show(getSupportFragmentManager(), NewShoppingItemDialogFragment.TAG);
+    }
+});
+```
+Frissítse a MainActivity-t, hogy implementálja a dialógusban definiált interface-t:
+```java
+public class MainActivity extends AppCompatActivity implements NewShoppingItemDialogFragment.INewShoppingItemDialogListener {
+
+//…
+
+@Override
+public void onShoppingItemCreated(ShoppingItem newItem) {
+    adapter.addItem(newItem);
+}
+}
+```
+Frissítse az activity_main.xml layout fájlban a FloatingActionButton ikonját:
+```xml
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="@dimen/fab_margin"
+    android:src="@drawable/ic_add_white_36dp"/>
+```
+Próbálja ki az alkalmazást.
+
+
 
 
