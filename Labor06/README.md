@@ -30,7 +30,7 @@ A menüben található „Remove all” opcióval az összes listaelemet töröl
 A labor során az alábbi feladatokat kell megvalósítani a laborvezető segítségével, illetve a jelölt feladatoknál önállóan.
 
 ### Kezdő projekt létrehozása
-Hozzon létre egy `ShoppingList` nevű projektet Android Studioban. A Company domain-nek `aut.bme.hu`-t adjon meg. Az alkalmazás típusának válassza ki a **Phone and Tablet** opciót, a minimum SDK-nak pedig API 15-öt (default). Az Activity típusok közül a **Basic Activity**-t válassza. Ezután kattintson a **Finish** gombra.
+Hozzon létre egy `ShoppingList` nevű projektet Android Studioban. A Company domain-nek `aut.bme.hu`-t adjon meg. Az alkalmazás típusának válassza ki a **Phone and Tablet** opciót, a minimum SDK-nak pedig **API 15-öt (default)**. Az Activity típusok közül a **Basic Activity**-t válassza. Ezután kattintson a **Finish** gombra.
 Másolja be a labor anyagban található *drawables.zip* könyvtár tartalmát a projekt erőforrás mappájába megfelelő módon.
 
 ### Perzisztenica megvalósítása
