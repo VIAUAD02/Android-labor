@@ -33,7 +33,7 @@ A labor során az alábbi feladatokat kell megvalósítani a laborvezető segít
 Hozzon létre egy `ShoppingList` nevű projektet Android Studioban. A Company domain-nek `aut.bme.hu`-t adjon meg. Az alkalmazás típusának válassza ki a **Phone and Tablet** opciót, a minimum SDK-nak pedig **API 15-öt (default)**. Az Activity típusok közül a **Basic Activity**-t válassza. Ezután kattintson a **Finish** gombra.
 Másolja be a labor anyagban található *res.zip* könyvtár tartalmát a projekt erőforrás mappájába megfelelő módon.
 
-### Perzisztenica megvalósítása (2 pont)
+### Perzisztencia megvalósítása (2 pont)
 Az adatok perzisztens tárolásához a Sugar ORM (http://satyan.github.io/sugar/) könyvtárat fogjuk használni.
 
 #### Sugar ORM importálása
