@@ -20,7 +20,7 @@ Az elkészült megoldást egy ZIP formájában (**teljes Android Studio projekt 
 
 ## 3 Az elkészítendő megoldás
 
-Az elkészítendő megoldás egy időjárás jelentést megjelenítő alkalmazás lesz. Az applikáció indításakor egy város lista fogadja a felhasználót. A lista egy elemére kattintva egy új *Activity* nyílik meg, ahol először a fő adatok látszódnak, de jobbra swipe-olással részletesebb információkhoz is juthatunk.
+Az elkészítendő megoldás egy időjárás jelentést megjelenítő alkalmazás lesz. Az applikáció indításakor egy város lista fogadja a felhasználót. A lista egy elemére kattintva egy új *Activity* nyílik meg, ahol először a fő adatok látszódnak, de jobbra *swipe*-olással részletesebb információkhoz is juthatunk.
 
 <p align="center">
 <img src="./assets/list.png">
@@ -30,7 +30,7 @@ Az elkészítendő megoldás egy időjárás jelentést megjelenítő alkalmazá
 
 ## 4 Laborfeladatok
 
-A labor során egy kompelx időjárás alkalmazás készül el. A labor szűkös időkeret miatt szükség lesz nagyobb kódblokkok másolására, azonban minden esetben figyeljen a laborvezető magyarázatára, hogy a kódrészek érthetőek legyenek. A cél nem egy copy-paste labor végigvitele, hanem a bemutatott kódok elmagyarázása, kipróbálása és teljes értékű elsajátítására.
+A labor során egy kompelx időjárás alkalmazás készül el. A labor szűkös időkerete miatt szükség lesz nagyobb kódblokkok másolására, azonban minden esetben figyeljen a laborvezető magyarázatára, hogy a kódrészek érthetőek legyenek. A cél nem egy copy-paste labor végigvitele, hanem a bemutatott kódok elmagyarázása, kipróbálása és teljes értékű elsajátítására.
 
 *Elnézést kérünk még egyszer a nagyobb kód blokkokért, de egy ilyen méretű feladatnál kisebb méretben nem oldható meg, illetve elveszítené a labor a lényegét, ha csak egy „hello world” hálózati kommunikációs lekérést valósítanánk meg. Köszönjük a megértést.*
 
@@ -43,18 +43,19 @@ Hozzon létre egy **WeatherInfo** nevű projektet Android Studioban **Basic Acti
 Vegyük fel az alábbi függőségeket a modul-hoz tartozó **build.gradle**-be:
 
 ```java
-compile 'com.android.support:appcompat-v7:24.2.0' 
-compile 'com.android.support:design:24.2.0' 
-compile 'com.squareup.retrofit2:retrofit:2.1.0' 
-compile 'com.squareup.retrofit2:converter-gson:2.1.0' 
-compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:26.+'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 ```
 
 Ha ez megvan, akkor kattintsunk a jobb felső sarokban megjelent **Sync now** gombra.
 
 Ezek a függőségek előadáson már elhangzottak, ha valamelyik nem ismerős, egyeztesse a laborvezetővel.
 
-Az alkalmazásban szükségünk lesz internet elérésre. Vegyük tehát fel a Manifest állományban az **Internet permission**-t:
+Az alkalmazásban szükségünk lesz internet elérésre. Vegyük tehát fel a Manifest állományban az **Internet permission**-t az application tagen **kívülre**:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -89,7 +90,7 @@ Vegyük fel az alábbi szöveges erőforrásokat a res/values/**strings.xml**-be
 
 ### 4.2 Városlista megvalósítása
 
-Ebben a lépésben a *MainAcitivity*-t valósítjuk meg, amely gyakorlatilag egy *RecyclerView*-t jelenít meg a városok listájával. A város nevére kattintva jelenik meg egy részletező nézet majd (*DetailsAcitivity*), ahol az időjárás információk letöltése fog történni. Új város felvételére egy *FloatingActionButton* fog szolgálni.
+Ebben a lépésben a *MainAcitivity*-t valósítjuk meg, amely gyakorlatilag egy *RecyclerView*-t jelenít meg a városok listájával. A város nevére kattintva jelenik meg egy részletező nézet (*DetailsAcitivity*), ahol az időjárás információk letöltése fog történni. Új város felvételére egy *FloatingActionButton* fog szolgálni.
 
 A városlista megvalósításának első lépéseként adjuk hozzá a *MainActivity*-hez egy *RecyclerView*-t, vagyis cseréljük le a *content_main.xml* tartalmát:
 
@@ -105,7 +106,7 @@ A városlista megvalósításának első lépéseként adjuk hozzá a *MainActiv
     />
 ```
 
-Az *activity_main.xml*-ben cserélje le a *FloatingActionButton* ikonját a kitömörített *ic_add_white_36dp* erőforrásra. A *layout* tartalma így az alábbi lesz:
+Az *activity_main.xml*-ben cserélje le a *FloatingActionButton* ikonját a [kitömörített](./assets/drawables.zip) *ic_add_white_36dp* erőforrásra. A *layout* tartalma így az alábbi lesz:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -467,6 +468,8 @@ A hozzá tartozó *activity_details.xml* layout az alábbi legyen:
 </RelativeLayout>
 ```
 
+Hozzunk létre a hiányzó *dimen* erőforrásokat(*Alt+Enter* - > *Create dimen value...*), értékük legyen *16dp*!
+
 A felület gyakorlatilag egy *ViewPager*-t tartalmaz, melyben két *Fragment*et fogunk megjeleníteni balra-jobbra lapozással. A *PagerTabStrip* biztosítja a *Tab* jellegű fejlécet a lapozáskor.
 
 A *DetailsActivity.java* kezdő kódja az alábbi:
@@ -508,7 +511,7 @@ public class DetailsActivity extends AppCompatActivity {
 }
 ```
 
-Adjuk hozzá a *strings.xml*-hez a hiányzó szöveges erőforrást.
+Cseréljük le a *strings.xml*-ben a *weather* szöveges erőforrást.
 
 ```xml
 <string name="weather">Weather in %s </string>
@@ -602,7 +605,8 @@ private WeatherData weatherData = null;
 **Implementálja** a *DetailsActivity* a *WeatherDataHolder* **interfészt**:
 
 ```java
-public class DetailsActivity extends AppCompatActivity implements WeatherDataHolder {…
+public class DetailsActivity extends AppCompatActivity implements WeatherDataHolder {
+…
 ```
 
 Implementáljuk a szükséges metódust:
@@ -620,7 +624,7 @@ A használt *weatherData* változónak fogunk később értéket adni amikor vis
 
 A hálózati kommunikáció megvalósításához a [Retrofit 2](http://square.github.io/retrofit/) *library*-t fogjuk használni, amit már a *build.gradle*-be felvettünk. 
 
-Hozzuk létre a **network** *package*-t, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni. Ezen belül hozzuk létre a *WeatherApi* interfészt. Ehhez jobb gombbal kattintsunk a *network* *package*-re, majd válasszuk a *New* > *Java class* lehetőséget, és a **kind** *dropdown*-ból válasszuk ki az *Interface*-t. Másoljuk be az alábbi kódot. Látható, hogy **annotációkon** keresztül tudjuk megmondani, hogy a hívás egy *GET* kérést jelent, és hogy a szerver url-en belül milyen címre küldjük a kérést. A függvény argumentumait a *@Query* annotáció a kéréshez fűzi paraméterként, az annotációban megadott kulccsal. A visszatérési érték pedig egy *Call<WeatherData>* objektum lesz, vagyis egy olyan hívás, aminek *WeatherData* a visszatérési értéke.
+Hozzuk létre a **network** *package*-t, amely a hálózati kommunikációhoz kapcsolódó osztályokat fogja tartalmazni. Ezen belül hozzuk létre a *WeatherApi* interfészt. Ehhez jobb gombbal kattintsunk a *network* *package*-re, majd válasszuk a *New* > *Java class* lehetőséget, és a **kind** *dropdown*-ból válasszuk ki az *Interface*-t. Másoljuk be az alábbi kódot. Látható, hogy **annotációkon** keresztül tudjuk megmondani, hogy a hívás egy *GET* kérést jelent, és hogy a szerver *url*-en belül milyen címre küldjük a kérést. A függvény argumentumait a *@Query* annotáció a kéréshez fűzi paraméterként, az annotációban megadott kulccsal. A visszatérési érték pedig egy *Call<WeatherData>* objektum lesz, vagyis egy olyan hívás, aminek *WeatherData* a visszatérési értéke.
 
 ```java
 public interface WeatherApi {
@@ -631,7 +635,7 @@ public interface WeatherApi {
 }
 ```
 
-Hozzuk létre a *NetworkManager* osztályt. Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. Az osztály a **Singleton pattern**-t valósítja meg, hiszen egyetlen példány elég belőle. Konstansokban van tárolva a szerver címe, valamint a szolgáltatás használatához szükséges API kulcs. A *WeatherApi* interfészből a *Retrofit* osztály segítségével tudunk működő implementációt generálni. A *retrofit.create()* függvény eredményeképpen visszaadott objektum megvalósítja a *WeatherApi* interfészt, és metódusát meghívva el is végzi a hálózati kommunikációt. Az APP_ID paramétert elfedjük az időjárást lekérdező osztályok elől, ezért a *NetworkManager* is tartalmaz egy *getWeather()* függvényt, ami a *WeatherApi* implementációba hív tovább.
+Hozzuk létre a *NetworkManager* osztályt. Ez az osztály lesz felelős a hálózati kérések lebonyolításáért. Az osztály a **Singleton pattern**-t valósítja meg, hiszen egyetlen példány elég belőle. Konstansokban van tárolva a szerver címe, valamint a szolgáltatás használatához szükséges API kulcs. A *WeatherApi* interfészből a *Retrofit* osztály segítségével tudunk működő implementációt generálni. A *retrofit.create()* függvény eredményeképpen visszaadott objektum megvalósítja a *WeatherApi* interfészt, és metódusát meghívva el is végzi a hálózati kommunikációt. Az *APP_ID* paramétert elfedjük az időjárást lekérdező osztályok elől, ezért a *NetworkManager* is tartalmaz egy *getWeather()* függvényt, ami a *WeatherApi* implementációba hív tovább.
 
 ```java
 public class NetworkManager {
@@ -760,7 +764,7 @@ A *DetailsPagerAdapter* jelenleg hibás, mivel nem létezik a két *Fragment* (*
 
 *ui/details packageben a DetailsMainFragment.java*:
 
-```xml
+```java
 public class DetailsMainFragment extends Fragment {
     private TextView tvMain;
     private TextView tvDescription;
