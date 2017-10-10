@@ -598,6 +598,7 @@ Elem törlése pozíció alapján:
 - Törlés az adapterből
 - Törlés az adatbázisból
 - RecyclerView frissítése
+
 Összes elem törlése:
 - Törlés az adapterből
 - Törlés az adatbázisból
