@@ -594,10 +594,14 @@ Frissítse az `activity_main.xml` layout fájlban a `FloatingActionButton` ikonj
 Próbálja ki az alkalmazást.
 
 ### Önálló feladat: törlés megvalósítása (1 pont)
-- Adapter-ben érintésre elem törlése
-- Adapter értesítése, hogy frissítse a nézetet
-- Menü kiegészítése: összes elem törlése
-- Összes elem törlésének megvalósítása
+Elem törlése pozíció alapján:
+- Törlés az adapterből
+- Törlés az adatbázisból
+- RecyclerView frissítése
+Összes elem törlése:
+- Törlés az adapterből
+- Törlés az adatbázisból
+- RecyclerView frissítése
 
 ### IMSc feladatok
 #### Megerősítő dialógus
