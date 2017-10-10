@@ -596,7 +596,7 @@ Próbálja ki az alkalmazást.
 ### Önálló feladat: törlés megvalósítása (1 pont)
 - Adapter-ben érintésre elem törlése
 - Adapter értesítése, hogy frissítse a nézetet
-- Menú kiegészítése: összes elem törlése
+- Menü kiegészítése: összes elem törlése
 - Összes elem törlésének megvalósítása
 
 ### IMSc feladatok
