@@ -33,7 +33,7 @@ A labor során az alábbi feladatokat kell megvalósítani a laborvezető segít
 Hozzon létre egy `ShoppingList` nevű projektet Android Studioban. A Company domain-nek `aut.bme.hu`-t adjon meg. Az alkalmazás típusának válassza ki a **Phone and Tablet** opciót, a minimum SDK-nak pedig **API 15-öt (default)**. Az Activity típusok közül a **Basic Activity**-t válassza. Ezután kattintson a **Finish** gombra.
 Másolja be a labor anyagban található *res.zip* könyvtár tartalmát a projekt erőforrás mappájába megfelelő módon.
 
-### Perzisztenica megvalósítása
+### Perzisztenica megvalósítása (2 pont)
 Az adatok perzisztens tárolásához a Sugar ORM (http://satyan.github.io/sugar/) könyvtárat fogjuk használni.
 
 #### Sugar ORM importálása
@@ -302,7 +302,7 @@ public void update(List<ShoppingItem> shoppingItems) {
 }
 ```
 
-### RecyclerView hozzáadása
+### RecyclerView hozzáadása (1 pont)
 A lista megjelenítéséhez a `MainActivity` tartalmát egy *RecyclerView*-ra kell lecserélnünk.
 Ehhez a `content_main.xml` tartalmát kell frissíteni:
 ```xml
@@ -368,7 +368,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 Ezzel az adatbázisban szereplő elemeket meg tudná jeleníteni a program, azonban sajnos még egy elemünk sincs. A következő lépés az új elem létrehozása lesz.
-### Dialógus megvalósítása új elem hozzáadásához
+### Dialógus megvalósítása új elem hozzáadásához (1 pont)
 A dialógus megjelenítéséhez *DialogFragment*-et fogunk használni. Hozzunk létre új Java osztályt `NewShoppingItemDialogFragment` néven. Az osztályban definiálunk egy listener interface-t, amelyen keresztül az *Activity* értesülhet az új elem létrehozásáról.
 ```java
 public class NewShoppingItemDialogFragment extends AppCompatDialogFragment {
@@ -593,7 +593,7 @@ Frissítse az `activity_main.xml` layout fájlban a `FloatingActionButton` ikonj
 ```
 Próbálja ki az alkalmazást.
 
-### Önálló feladat: törlés megvalósítása
+### Önálló feladat: törlés megvalósítása (1 pont)
 - ViewHolder-ben elem pozíciójának tárolása
 - Adapter-ben érintésre elem törlése
 - Adapter értesítése, hogy frissítse a nézetet
