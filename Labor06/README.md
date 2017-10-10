@@ -505,8 +505,8 @@ private EditText estimatedPriceEditText;
 private Spinner categorySpinner;
 private CheckBox alreadyPurchasedCheckBox;
 ```
-```java
 Iratkozzunk fel a CheckBox onClick eseményére, hogy a vásárlás állapotát frissíteni lehessen az onBindViewHolder(…) függvényben:
+```java
 holder.isBoughtCheckBox.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
