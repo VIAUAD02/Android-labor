@@ -416,6 +416,12 @@ public Dialog onCreateDialog(Bundle savedInstanceState) {
             .create();
 }
 ```
+Adjuk hozzá a hiányzó szöveges erőforásokat a `strings.xml` fájlhoz:
+```xml
+<string name="new_shopping_item">New shopping item</string>
+<string name="ok">Ok</string>
+<string name="cancel">Cancel</string>
+```
 Hiányzik még a dialógus tartalmát létrehozó `getContentView()` függvény. Adjuk hozzá ezt is:
 ```java
 private View getContentView() {
@@ -428,6 +434,14 @@ private View getContentView() {
     alreadyPurchasedCheckBox = (CheckBox) contentView.findViewById(R.id.ShoppingItemIsPurchasedCheckBox);
     return contentView;
 }
+```
+Hozzuk létre a hiányzó tagváltozókat:
+```java
+private EditText nameEditText;
+private EditText descriptionEditText;
+private EditText estimatedPriceEditText;
+private Spinner categorySpinner;
+private CheckBox alreadyPurchasedCheckBox;
 ```
 Ezt követően hozzuk létre a dialógushoz tartozó layout file-t. Ehhez kattintson a `getContentView()` első sorában található `R.layout.dialog_new_shopping_item`-re, majd **Alt + Enter**-t nyomva válassza az első lehetőséget: **Create layout resource file …**, majd kattintsunk az **Ok**-ra. Másolja be a layout fájl tartalmát:
 ```xml
@@ -491,19 +505,18 @@ Ezt követően hozzuk létre a dialógushoz tartozó layout file-t. Ehhez kattin
 
 </LinearLayout>
 ```
-Adjuk hozzá a hiányzó szöveges erőforásokat a `strings.xml` fájlhoz:
+Adja hozzá a `strings.xml`-hez a hiányzó szöveges erőforrásokat:
 ```xml
-<string name="new_shopping_item">New shopping item</string>
-<string name="ok">Ok</string>
-<string name="cancel">Cancel</string>
-```
-Hozzuk létre a hiányzó tagváltozókat:
-```java
-private EditText nameEditText;
-private EditText descriptionEditText;
-private EditText estimatedPriceEditText;
-private Spinner categorySpinner;
-private CheckBox alreadyPurchasedCheckBox;
+<string name="name">Name</string>
+<string name="description">Description</string>
+<string name="category">Category</string>
+<string name="estimated_price">Estimated price</string>
+<string name="already_purchased">Already purchased</string>
+<string-array name="category_items">
+    <item>Food</item>
+    <item>Electronic</item>
+    <item>Book</item>
+</string-array>
 ```
 Iratkozzunk fel a CheckBox onClick eseményére, hogy a vásárlás állapotát frissíteni lehessen az onBindViewHolder(…) függvényben:
 ```java
@@ -518,19 +531,6 @@ holder.isBoughtCheckBox.setOnClickListener(new View.OnClickListener() {
         item.save();
     }
 });
-```
-Adja hozzá a `strings.xml`-hez a hiányzó szöveges erőforrásokat:
-```xml
-<string name="name">Name</string>
-<string name="description">Description</string>
-<string name="category">Category</string>
-<string name="estimated_price">Estimated price</string>
-<string name="already_purchased">Already purchased</string>
-<string-array name="category_items">
-    <item>Food</item>
-    <item>Electronic</item>
-    <item>Book</item>
-</string-array>
 ```
 Az új elemet az positiveButton *onClickListener*-jében fogjuk létrehozni, amennyiben a bevitt adatok validak, vagyis a név ki van töltve.
 ```java
