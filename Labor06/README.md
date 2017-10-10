@@ -516,7 +516,7 @@ holder.isBoughtCheckBox.setOnClickListener(new View.OnClickListener() {
         ShoppingItem item = items.get(holder.getAdapterPosition());
         item.isBought = checked;
         item.save();
-    
+    }
 });
 ```
 Adja hozzá a `strings.xml`-hez a hiányzó szöveges erőforrásokat:
