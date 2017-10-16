@@ -88,7 +88,7 @@ Vegyük fel az alábbi szöveges erőforrásokat a res/values/**strings.xml**-be
 
 **Regisztráljunk saját felhasználót** az [OpenWeatherMap](https://openweathermap.org/) oldalon, hogy legyen saját kulcsunk az API használatához: API keys tab regisztráció után.
 
-### 4.2 Városlista megvalósítása
+### 4.2 Városlista megvalósítása (1 pont)
 
 Ebben a lépésben a *MainAcitivity*-t valósítjuk meg, amely gyakorlatilag egy *RecyclerView*-t jelenít meg a városok listájával. A város nevére kattintva jelenik meg egy részletező nézet (*DetailsAcitivity*), ahol az időjárás információk letöltése fog történni. Új város felvételére egy *FloatingActionButton* fog szolgálni.
 
@@ -437,7 +437,7 @@ private void initFab() {
 
 Ezt követően teszteljük az alkalmazást, amely már képes városnevek kezelésére *RecyclerView*-n keresztül.
 
-### 4.3	Részletes nézet létrehozása és bekötése
+### 4.3	Részletes nézet létrehozása és bekötése (0.5 pont)
 
 A következő lépésben a *ui* *package*-n belül hozzuk létre a **details** packaget, melyben hozzuk létre az *Empty Activity* típusú *DetailsActivity*-t.
 
@@ -539,7 +539,7 @@ adapter = new CityAdapter(new OnCitySelectedListener() {
 
 Próbáljuk ki az alkalmazást, kattintsunk egy város nevére.
 
-### 4.4	Modell osztályok létrehozása
+### 4.4	Modell osztályok létrehozása (0.5 pont)
 
 A modell osztályok számára hozzunk létre új *package*-et **model** néven. Az új osztály neve legyen *WeatherData*. Ez fog létrejönni az időjárás szolgáltatástól kapott *JSON* válasz alapján.
 
@@ -620,7 +620,7 @@ public WeatherData getWeatherData() {
 
 A használt *weatherData* változónak fogunk később értéket adni amikor visszaérkezett az értéke a hálózati hívás eredményeként. A *ViewPager* két lapján levő *Fragment*ek a *WeatherDataHolder* interfészen keresztül fogják az *Activity*-től lekérni a *weatherData* objekutmot a megjelenítéshez.
 
-### 4.5	Hálózati kommunikáció megvalósítása
+### 4.5	Hálózati kommunikáció megvalósítása (0.5 pont)
 
 A hálózati kommunikáció megvalósításához a [Retrofit 2](http://square.github.io/retrofit/) *library*-t fogjuk használni, amit már a *build.gradle*-be felvettünk. 
 
@@ -672,7 +672,7 @@ public class NetworkManager {
 
 **Cseréljük le** az *APP_ID* értékét az [OpenWeatherMap](https://openweathermap.org/) oldalon regisztrált saját értékre (bejelentkezés után -> API keys tab).
 
-### 4.6	Részletes nézet továbbfejlesztése
+### 4.6	Részletes nézet továbbfejlesztése (1 pont)
 
 A modell elemek és a hálózati kommunikáció megvalósítása után a részletes nézetet fogjuk továbbfejleszteni.
 
@@ -960,7 +960,7 @@ protected void onResume() {
 
 Próbáljuk ki az alkalmazást, kattintsunk egy városnevére, jelenleg még nem jelennek meg valós adatok.
 
-### 4.7	Hálózati hívás bekötése
+### 4.7	Hálózati hívás bekötése (0.5 pont)
 
 Az időjárás adatok lekérdezésére valósítsunk meg egy *loadWeatherData()* nevű függvényt a *DetailsActivity*-ben:
 
@@ -1014,6 +1014,6 @@ protected void onResume() {
 }
 ```
 
-### 4.8	Önálló feladat: város listában a törlés megvalósítása
+### 4.8	Önálló feladat: város listában a törlés megvalósítása (1 pont)
 
 Valósítsa meg az elemek törlését a remove gomb megfelelő bekötésével.
