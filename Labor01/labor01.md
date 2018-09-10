@@ -92,7 +92,7 @@ SDK szerkezet
 *   **extras:** különböző extra szoftverek helye. Maven repository, support libes anyagok, analytics sdk, google [android usb driver](https://developer.android.com/studio/run/win-usb.html) (amennyiben SDK managerrel ezt is letöltöttük) stb.
 *   **platform-tools:** fastboot és adb binárisok helye (legtöbbet használt eszközök)
 *   **platforms, samples, sources, system-images:** minden API levelhez külön almappában a platform anyagok, források, példaprojektek, OS image-k
-*   **tools:** fordítást és tesztelést segítő eszközök, SDK manager, DDMS, 9Patch drawer, emulátor binárisok stb.
+*   **tools:** fordítást és tesztelést segítő eszközök, SDK manager, 9Patch drawer, emulátor binárisok stb.
 
 ### AVD és SDK manager
 
