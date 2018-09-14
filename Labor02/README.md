@@ -196,9 +196,9 @@ Ha most kipróbáljuk az alkalmazást, már látjuk a beállítások hatását:
 Még egy dolgunk van ezen a képernyőn, az input ellenőrzése. Ezt a `LoginActivity.java` fájlban tehetjük meg. A layout-unkat alkotó View-kat az `onCreate` függvényben lévő `setContentView` hívás után tudjuk először elérni. Itt az alábbi kóddal szerezhetünk referenciákat a szükséges View-kra, az XML kódban lévő ID-juk felhasználásával:
 
 ```java
-final EditText etEmailAddress = (EditText) findViewById(R.id.etEmailAddress);
-final EditText etPassword = (EditText) findViewById(R.id.etPassword);
-final Button btnLogin = (Button) findViewById(R.id.btnLogin);
+final EditText etEmailAddress = findViewById(R.id.etEmailAddress);
+final EditText etPassword = findViewById(R.id.etPassword);
+final Button btnLogin = findViewById(R.id.btnLogin);
 ```
 
 (Az itt látható cast-olások azért szükségesek, mert a support library 26.0.0-es verzióját (2017 július) megelőzően a `findViewById` függvény a `View` típussal tér vissza. Ha esetleg ennél újabb verziót használunk, a `findViewById` visszatérési értéke már generikus, így megfogadhatjuk az Android Studio tanácsát, és elhagyhatjuk a cast-olásokat.)
