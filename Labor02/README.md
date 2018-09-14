@@ -201,8 +201,6 @@ final EditText etPassword = findViewById(R.id.etPassword);
 final Button btnLogin = findViewById(R.id.btnLogin);
 ```
 
-(Az itt látható cast-olások azért szükségesek, mert a support library 26.0.0-es verzióját (2017 július) megelőzően a `findViewById` függvény a `View` típussal tér vissza. Ha esetleg ennél újabb verziót használunk, a `findViewById` visszatérési értéke már generikus, így megfogadhatjuk az Android Studio tanácsát, és elhagyhatjuk a cast-olásokat.)
-
 Ezeket használva már kezelni tudjuk a gomb lenyomását:
 
 ```java
