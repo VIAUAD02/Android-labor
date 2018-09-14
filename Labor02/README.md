@@ -319,9 +319,9 @@ Töltsük ki ehhez hasonló módon a másik két `FrameLayout`-ot is, ID-ként h
 Az Activity Java fájlját megnyitva az alábbi kóddal kikereshetjük a gombjainkat (most is az `onCreate` függvényben):
 
 ```java
-ImageButton btnBike = (ImageButton) findViewById(R.id.btnBike);
-ImageButton btnBus = (ImageButton) findViewById(R.id.btnBus);
-ImageButton btnTrain = (ImageButton) findViewById(R.id.btnTrain);
+ImageButton btnBike = findViewById(R.id.btnBike);
+ImageButton btnBus = findViewById(R.id.btnBus);
+ImageButton btnTrain = findViewById(R.id.btnTrain);
 ```
 
 Ezek lenyomásának kezelésére később fogunk visszatérni.
@@ -534,7 +534,7 @@ private String getTypeString(int transportType) {
 Végül pedig az `onCreate` függvénybe visszatérve meg kell keresnünk a megfelelő `TextView`-t, és beállítani a szövegének a függvény által visszaadott értéket:
 
 ```java
-TextView tvTicketType = (TextView) findViewById(R.id.tvTicketType);
+TextView tvTicketType = findViewById(R.id.tvTicketType);
 tvTicketType.setText(getTypeString(transportType));
 ```
 
@@ -560,9 +560,9 @@ public final static String KEY_TYPE_STRING = "KEY_TYPE_STRING";
 Ezeket az adatokat a `DetailsActivity`-ben kell összekészítenünk és beleraknunk az `Intent`-be. Ehhez először keressük ki a `DetailsActivity` `onCreate` függvényében a View-kat, amikre szükségünk van:
 
 ```java
-final DatePicker dpStartDate = (DatePicker) findViewById(R.id.dpStartDate);
-final DatePicker dpEndDate = (DatePicker) findViewById(R.id.dpEndDate);
-final Button btnPurchase = (Button) findViewById(R.id.btnPurchase);
+final DatePicker dpStartDate = findViewById(R.id.dpStartDate);
+final DatePicker dpEndDate = findViewById(R.id.dpEndDate);
+final Button btnPurchase = findViewById(R.id.btnPurchase);
 ```
 
 Majd adjunk hozzá a vásárlás gombhoz egy listener-t:
