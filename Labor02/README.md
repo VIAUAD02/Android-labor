@@ -645,10 +645,10 @@ Az Activity Java kódjában pedig csak a két `TextView` szövegét kell az `Int
 ```java
 Intent intent = getIntent();
 
-TextView tvTicketType = (TextView) findViewById(R.id.tvTicketType);
+TextView tvTicketType = findViewById(R.id.tvTicketType);
 tvTicketType.setText(intent.getStringExtra(KEY_TYPE_STRING));
 
-TextView tvDates = (TextView) findViewById(R.id.tvDates);
+TextView tvDates = findViewById(R.id.tvDates);
 tvDates.setText(intent.getStringExtra(KEY_DATE_STRING));
 ```
 
