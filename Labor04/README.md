@@ -37,6 +37,8 @@ Az alkalmazást természetesen telefonra készítjük, és használhatjuk az ala
 
 Az első Activity-nk legyen egy Empty Activity, és nevezzük el `MenuActivity`-nek. A hozzá tartozó layout fájl automatikusan megkapja az `activity_menu.xml` nevet.
 
+Előzetesen töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
+
 ## Főmenü képernyő
 
 Az első Activity amit elkészítünk a navigációért lesz felelős. A labor során 2 funkciót fogunk megvalósítani, ezek a Profil és a Szabadság.
@@ -119,7 +121,7 @@ Az első gombot például így készíthetjük el (a `FrameLayout` tagbe írjuk)
 
 A további 3 gombot ennek a mintájára készítsük el ezekkel az értékekkel:
 
-| Név | ID | Kép |
+| Szöveg | ID | Kép |
 | -- | -- | -- |
 | Holiday | `@+id/btnHoliday` | `@drawable/holiday` |
 | Payment | `@+id/btnPayment` | `@drawable/payment` |
@@ -127,14 +129,12 @@ A további 3 gombot ennek a mintájára készítsük el ezekkel az értékekkel:
 
 Ne felejtsük el a szövegeket kiszervezni erőforrásba! (a szövegen állva `Alt+Enter`)
 
-Töltsük le az alkalmazás képeit tartalmazó [tömörített fájlt](./downloads/res.zip) és bontsuk ki. A benne lévő drawable könyvtárat másoljuk be az app/src/main/res mappába (Studio-ban res mappán állva `Ctrl+V`).
-
 Hozzunk létre a két új Empty Activity-t (`ProfileActivity` és `HolidayActivity`)
 
-Az Activity Java fájljában (`MenuActivity.java`) keressük ki a gombokat és rendeljünk a lenyomásukhoz eseménykezelőt az onCreate metódusban:
+A MenuActivity Java fájljában (`MenuActivity.java`) keressük ki a gombokat és rendeljünk a lenyomásukhoz eseménykezelőt az onCreate metódusban:
 
 ```java
-ImageButton btnProfile = (ImageButton) findViewById(R.id.btnProfile);
+ImageButton btnProfile = findViewById(R.id.btnProfile);
 btnProfile.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -143,7 +143,7 @@ btnProfile.setOnClickListener(new View.OnClickListener() {
     }
 });
 
-ImageButton btnHoliday = (ImageButton) findViewById(R.id.btnHoliday);
+ImageButton btnHoliday = findViewById(R.id.btnHoliday);
 btnHoliday.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -244,9 +244,9 @@ public class DataManager {
 }
 ```
 
-Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre a két Fragment-et (New -> Java Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
+Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre egy új `fragments` package-ben a két Fragmentet (New -> Java Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
 
-A két Fragment-ben származzunk le a Fragment osztályból (support-os verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.
+A két Fragmentben származzunk le a Fragment osztályból (support-os verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.
 
 `MainProfileFragment.java`:
 ```java
@@ -449,10 +449,10 @@ Az `activity_profile.xml` fájlba hozzunk létre egy `ViewPager`-t:
 </LinearLayout>
 ```
 
-A ViewPager osztály egy PagerAdapter osztály segítségével tudja az oldalakat létrehozni. Hozzunk létre egy PagerAdaptert a két Fragmentünkhöz.
+A ViewPager osztály egy PagerAdapter osztály segítségével tudja az oldalakat létrehozni. Hozzunk létre egy új `adapter` package-be egy PagerAdaptert a két Fragmentünkhöz.
 `ProfilePagerAdapter.java`:
 ```java
-class ProfilePagerAdapter extends FragmentPagerAdapter {
+public class ProfilePagerAdapter extends FragmentPagerAdapter {
     private static final int NUM_PAGES = 2;
 
     public ProfilePagerAdapter(FragmentManager fm) {
@@ -478,9 +478,9 @@ class ProfilePagerAdapter extends FragmentPagerAdapter {
 }
 ```
 
-A Profile Activity-ben rendeljük hozzá a ViewPager-hez a most elkészített adaptert (onCreate metódus): 
+A ProfileActivity-ben rendeljük hozzá a ViewPagerhez a most elkészített adaptert (onCreate metódus): 
 ```java
-ViewPager vpProfile = (ViewPager) findViewById(R.id.vpProfile);
+ViewPager vpProfile = findViewById(R.id.vpProfile);
 vpProfile.setAdapter(new ProfilePagerAdapter(getSupportFragmentManager()));
 ```
 
@@ -530,11 +530,11 @@ App szintű build.gradle:
 ```groovy
 dependencies {
     ...
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 ```
 
-Ezután kattinsunk az Android Studioban megjelenő `Sync Now` gombra, hogy a library fájljai letöltődjenek.
+Ezután kattinsunk az Android Studioban jobb fent megjelenő `Sync Now` gombra, hogy a library fájljai letöltődjenek.
 
 Ha a library fájljai letöltődtek, akkor írjuk meg az Activity layout-ját (`activity_holiday.xml`):
 ```xml
@@ -577,9 +577,9 @@ public class HolidayActivity extends AppCompatActivity {
 
         dataManager = DataManager.getInstance();
 
-        chartHoliday = (PieChart) findViewById(R.id.chartHoliday);
+        chartHoliday = findViewById(R.id.chartHoliday);
 
-        btnTakeHoliday = (Button) findViewById(R.id.btnTakeHoliday);
+        btnTakeHoliday = findViewById(R.id.btnTakeHoliday);
         btnTakeHoliday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -656,7 +656,7 @@ Az importoknál a `java.util`-t válasszuk a Calendarhoz, a Fragment-hez pedig a
 
 A laborvezetővel vizsgáljuk meg az `OnDateSelectedListener` interface működését. Az osztályt használóknak ezt az interface-t kell implementálnia és a megvalósított `onDateSelected` metódus kapja meg a dátumot.
 
-Állítsuk be a gomb eseménykezelőjét, hogy lenyomáskor jelenítse meg a dátumválasztót:
+Állítsuk be a gomb eseménykezelőjét a HolidayActivity-ben, hogy lenyomáskor jelenítse meg a dátumválasztót:
 ```java
 btnTakeHoliday.setOnClickListener(new View.OnClickListener() {
     @Override
