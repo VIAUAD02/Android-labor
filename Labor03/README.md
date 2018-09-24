@@ -19,7 +19,7 @@ mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja �
 - Beviteli rész: 1 pont
 - Listaelemek layoutja: 1 pont
 - Listaelemek inflate-elése: 1 pont
-- Toast üeznetek helyett SnackBar (önálló): 1 pont
+- Toast üzenetek helyett SnackBar (önálló): 1 pont
 - Összegző mező megjelenítése (önálló): 0,5 pont
 - Összegző mező helyes működése (önálló): 0,5 pont
 
