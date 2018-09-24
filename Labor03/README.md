@@ -95,7 +95,7 @@ action_delete_all néven és Delete All tartalommal, illetve az action_settingse
 ![](assets/resources.png)
 
 - Majd a res/menu/menu_main.xml-ben a pirosra változott action_settingset javítjuk az általunk
-hozzáadott új action_delete_allra.
+hozzáadott új action_delete_allra. Módosítsuk a menüelem azonosítóját is, szintén action_delete_all értékre.
 
 ### Beviteli rész megvalósítása
 
@@ -334,11 +334,11 @@ ha valamelyik mező nincs kitöltve!
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        nameEditText = (EditText) findViewById(R.id.salary_name);
-        amountEditText = (EditText) findViewById(R.id.salary_amount);
-        typeChooserButton = (ToggleButton)findViewById(R.id.expense_or_income);
-        saveButton = (Button) findViewById(R.id.save_button);
-        listOfRows = (LinearLayout) findViewById(R.id.list_of_rows);
+        nameEditText = findViewById(R.id.salary_name);
+        amountEditText = findViewById(R.id.salary_amount);
+        typeChooserButton = findViewById(R.id.expense_or_income);
+        saveButton = findViewById(R.id.save_button);
+        listOfRows = findViewById(R.id.list_of_rows);
 ```
 
 - Mivel a beágyazott LinearLayoutba akarunk bele tenni valamit így kénytelenek
@@ -383,10 +383,9 @@ ide bemásolva, és nem cél, hogy csak kimásolásra kerüljenek)
   - az item-nek a különböző részeit, tehát az ikont, nevet, összeget hozzárendeljük a változókhoz, hogy be tudjuk állítani őket
 
 ```
-                ImageView icon = (ImageView)
-                rowItem.findViewById(R.id.salary_direction_icon);
-                TextView rowItemSalaryName = (TextView) rowItem.findViewById(R.id.row_salary_name);
-                TextView rowItemSalaryAmount = (TextView) rowItem.findViewById(R.id.row_salary_amount);
+                ImageView icon = rowItem.findViewById(R.id.salary_direction_icon);
+                TextView rowItemSalaryName = rowItem.findViewById(R.id.row_salary_name);
+                TextView rowItemSalaryAmount = rowItem.findViewById(R.id.row_salary_amount);
 ```
 
   - a ToggleButton állapota alapján beállítjuk az ikont, ehhez az income.png és expense.png képeket a drawable mappába kell beillesztenünk.
