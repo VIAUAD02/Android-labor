@@ -1,4 +1,4 @@
-# Labor 03 - Felhasználói felület tervezés és készítés Android platformon
+# Labor 03 - Felhasználói felület tervezése és készítése Android platformon
 
 ## Felkészülés a laborra
 
@@ -26,7 +26,7 @@ mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja �
 ## Az elkészítendő megoldás
 A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészítése
 AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel
-tudja venni egy listába a kiadásait, bevételeit vagy törölni tudja az egész lista tartalmát.
+tudja venni egy listába a kiadásait, bevételeit, vagy törölni tudja az egész lista tartalmát.
 
 A képernyő mintaképe:
 
