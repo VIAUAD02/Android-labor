@@ -134,7 +134,7 @@ az android:orientation="vertical" attribútomot.
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="hu.aut.bme.androidwallet.MainActivity"
+    tools:context="hu.bme.aut.androidwallet.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
