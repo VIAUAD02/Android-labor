@@ -21,8 +21,7 @@ oldalán, ahol a laborvezető tudja értékelni.
 
 ### A projekt létrehozása
 
-Hozzunk létre egy új Android projektet. Az _Application name_ mezőben válasszuk a `Simple Drawer` nevet az alkalmazás 
-nevének, a _Company domain_ mezőnek pedig adjuk meg az `aut.bme.hu` értéket. Láthatjuk, hogy a _Package név_ ennek 
+Hozzunk létre egy új Android projektet. Az _Application name_ mezőben ajuk meg a `Simple Drawer` nevet. A _Company domain_ legyen `aut.bme.hu`. Láthatjuk, hogy a _Package név_ ennek 
 megfelelően a következőképp alakul: `hu.bme.aut.simpledrawer`. Ezután nyomjunk a **Next** gombra.
 
 A következő képernyőn hagyjuk meg az alapértelmezett beállításokat (`Phone and tablet/API 15`), majd ismét nyomjunk a 
@@ -30,7 +29,7 @@ A következő képernyőn hagyjuk meg az alapértelmezett beállításokat (`Pho
 
 Válasszuk ki az _Empty activity_-t, majd kattintsunk a **Next** gombra.
 
-_Activity name_-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon _layout_ fájlt és azt, 
+_Activity name_-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon _layout_ fájlt valamint, 
 hogy használja az _AppCompat_-ot. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
 
 Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
@@ -119,7 +118,7 @@ fekete háttérrel, alulra pedig egy `Toolbar`-t rakjunk ki. Végezetül a layou
 Miután létrehoztuk a rajzolás tulajdonságainak állításáért felelős `Toolbar`-t, hozzuk létre a menüt, amivel be lehet 
 állítani, hogy pontot vagy vonalat rajzoljunk. Ehhez hozzunk létre egy új _Android resource directory_-t `menu` néven a `res` mappában, 
 és _Resource type_-nak is válasszuk azt, hogy `menu`. Ezen belül hozzunk létre egy új _Menu resource file_-t 
-`toolbar_menu.xml` néven. Ebben hozzunk létre az alábbi hierarchiát:
+`menu_toolbar.xml` néven. Ebben hozzunk létre az alábbi hierarchiát:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -153,9 +152,9 @@ Ezután kössük be a menüt, hogy megjelenjen a `Toolbar`-on. Ehhez a `DrawingA
 ```java
 @Override
 public boolean onCreateOptionsMenu(final Menu menu) {
-    final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    final Toolbar toolbar = findViewById(R.id.toolbar);
     final Menu toolbarMenu = toolbar.getMenu();
-    getMenuInflater().inflate(R.menu.toolbar_menu, toolbarMenu);
+    getMenuInflater().inflate(R.menu.menu_toolbar, toolbarMenu);
     for (int i = 0; i < toolbarMenu.size(); i++) {
         final MenuItem menuItem = toolbarMenu.getItem(i);
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -306,7 +305,7 @@ private DrawingView canvas;
 protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_drawing);
-    canvas = (DrawingView) findViewById(R.id.canvas);
+    canvas = findViewById(R.id.canvas);
 }
 ```
 Ezután már csak az `onOptionsItemSelected()` függvégy megfelelő `case` ágában meg kell hívnunk a `canvas`-ra a 
@@ -367,7 +366,7 @@ private void initLists() {
 
 Ahhoz, hogy vonalat vagy pontot tudjunk rajzolni a `View`-nkra, kezelnünk kell a felhasználótól kapott gesztusokat, mint 
 például amikor hozzáér a kijelzőhöz, elhúzza rajta, illetve felemeli róla az ujját. Szerencsére ezeket a gesztusokat nem 
-szükséges manuálisan felismernünk és lekezelnünk, a `View` osztály `onTouchEvent()` függvényének felüldefiniálásával 
+szükséges manuálisan felismernünk és lekezelnünk, a `View` ősosztály `onTouchEvent()` függvényének felüldefiniálásával 
 egyszerűen megolható a feladat.
 
 ```java
@@ -714,7 +713,7 @@ private PersistentDataHelper dataHelper;
 protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_drawing);
-    canvas = (DrawingView) findViewById(R.id.canvas);
+    canvas = findViewById(R.id.canvas);
     dataHelper = new PersistentDataHelper(this);
     dataHelper.open();
     restorePersistedObjects();
@@ -764,7 +763,7 @@ private void onExit() {
 
 ### 5. (önálló) feladat: A vászon törlése (1 pont)
 
-Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat.
+Vegyünk fel a vezérlők közé egy olyan gombot, amelynek segíségével a törölhetjük a vásznat, valósítsuk is meg a funkciót!
 
 ## Kiegészítő iMSc feladat (2 iMSc pont)
 
