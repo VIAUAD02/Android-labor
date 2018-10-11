@@ -409,7 +409,7 @@ private void addLineToTheList(final Point startPoint, final Point endPoint) {
 
 Ahogy a fenti kódrészletből is látszik minden gesztusnál elmentjük az adott `TouchEvent` pontját, mint a rajzolás 
 végpontját, illetve ha `MotionEvent.ACTION_DOWN` történt, tehát a felhasználó hozzáért a `View`-hoz, elmentjük ezt 
-kezdőpontként is. Amíg a felhasználó mozgatja az ujját a `View`-n (`MotionEvent.ACTION_MOVe`), addig nem csinálunk 
+kezdőpontként is. Amíg a felhasználó mozgatja az ujját a `View`-n (`MotionEvent.ACTION_MOVE`), addig nem csinálunk 
 semmit, de amint felemeli (`MotionEvent.ACTION_UP`), elmentjük az adott elemet a korábban már definiált listákba. Ezen 
 kívül minden egyes alkalommal meghívjuk az `invalidate()` függvényt, ami kikényszeríti a `View` újrarajzolását.
 
