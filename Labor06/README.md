@@ -71,45 +71,45 @@ A `hu.bme.aut.shoppinglist` package-ben hozzunk létre egy új package-et `data`
 ```java
 @Entity(tableName = "shoppingitem")
 public class ShoppingItem {
-	public enum Category {
-		FOOD, ELECTRONIC, BOOK;
+    public enum Category {
+        FOOD, ELECTRONIC, BOOK;
 
-		@TypeConverter
-		public static Category getByOrdinal(int ordinal) {
-			Category ret = null;
-			for (Category cat : Category.values()) {
-				if (cat.ordinal() == ordinal) {
-					ret = cat;
-					break;
-				}
-			}
-			return ret;
-		}
+        @TypeConverter
+        public static Category getByOrdinal(int ordinal) {
+            Category ret = null;
+            for (Category cat : Category.values()) {
+                if (cat.ordinal() == ordinal) {
+                    ret = cat;
+                    break;
+                }
+            }
+            return ret;
+        }
 
-		@TypeConverter
-		public static int toInt(Category category) {
-			return category.ordinal();
-		}
-	}
+        @TypeConverter
+        public static int toInt(Category category) {
+            return category.ordinal();
+        }
+    }
 
-	@ColumnInfo(name = "id")
-	@PrimaryKey(autoGenerate = true)
-	public Long id;
+    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = true)
+    public Long id;
 
-	@ColumnInfo(name = "name")
-	public String name;
+    @ColumnInfo(name = "name")
+    public String name;
 
-	@ColumnInfo(name = "description")
-	public String description;
+    @ColumnInfo(name = "description")
+    public String description;
 
-	@ColumnInfo(name = "category")
-	public Category category;
+    @ColumnInfo(name = "category")
+    public Category category;
 
-	@ColumnInfo(name="estimated_price")
-	public int estimatedPrice;
+    @ColumnInfo(name="estimated_price")
+    public int estimatedPrice;
 
-	@ColumnInfo(name = "is_bought")
-	public boolean isBought;
+    @ColumnInfo(name = "is_bought")
+    public boolean isBought;
 }
 
 ```
@@ -124,17 +124,17 @@ A `data` package-ben hozzunk létre egy új  Java interfészt, aminek a neve leg
 ```java
 @Dao
 public interface ShoppingItemDao {
-	@Query("SELECT * FROM shoppingitem")
-	List<ShoppingItem> getAll();
+    @Query("SELECT * FROM shoppingitem")
+    List<ShoppingItem> getAll();
 
-	@Insert
-	void insertAll(ShoppingItem... shoppingItems);
+    @Insert
+    void insertAll(ShoppingItem... shoppingItems);
 
-	@Update
-	void update(ShoppingItem shoppingItem);
+    @Update
+    void update(ShoppingItem shoppingItem);
 
-	@Delete
-	void deleteItem(ShoppingItem shoppingItem);
+    @Delete
+    void deleteItem(ShoppingItem shoppingItem);
 }
 ```
 
@@ -148,12 +148,12 @@ A `data` package-ben hozzunk létre egy új Java osztályt, aminek a neve legyen
 
 ```java
 @Database(
-		entities = {ShoppingItem.class},
-		version = 1
+        entities = {ShoppingItem.class},
+        version = 1
 )
 @TypeConverters(value = {ShoppingItem.Category.class})
 public abstract class ShoppingListDatabase extends RoomDatabase {
-	public abstract ShoppingItemDao shoppingItemDao();
+    public abstract ShoppingItemDao shoppingItemDao();
 }
 ```
 
@@ -170,46 +170,46 @@ Az `adapter` package-ben hozzunk létre egy új Java osztályt `ShoppingAdapter`
 
 ```java
 public class ShoppingAdapter
-		extends RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder> {
+        extends RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder> {
 
-	private final List<ShoppingItem> items;
+    private final List<ShoppingItem> items;
 
-	private ShoppingItemClickListener listener;
+    private ShoppingItemClickListener listener;
 
-	public ShoppingAdapter(ShoppingItemClickListener listener) {
-		this.listener = listener;
-		items = new ArrayList<>();
-	}
+    public ShoppingAdapter(ShoppingItemClickListener listener) {
+        this.listener = listener;
+        items = new ArrayList<>();
+    }
 
-	@NonNull
-	@Override
-	public ShoppingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View itemView = LayoutInflater
-				.from(parent.getContext())
-				.inflate(R.layout.item_shopping_list, parent, false);
-		return new ShoppingViewHolder(itemView);
-	}
+    @NonNull
+    @Override
+    public ShoppingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.item_shopping_list, parent, false);
+        return new ShoppingViewHolder(itemView);
+    }
 
-	@Override
-	public void onBindViewHolder(@NonNull ShoppingViewHolder holder, int position) {
-		// TODO implementation
-	}
+    @Override
+    public void onBindViewHolder(@NonNull ShoppingViewHolder holder, int position) {
+        // TODO implementation
+    }
 
-	@Override
-	public int getItemCount() {
-		return items.size();
-	}
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
 
     public interface ShoppingItemClickListener{
-		void onItemChanged(ShoppingItem item);
-	}
+        void onItemChanged(ShoppingItem item);
+    }
 
-	class ShoppingViewHolder extends RecyclerView.ViewHolder {
+    class ShoppingViewHolder extends RecyclerView.ViewHolder {
 
-		ShoppingViewHolder(View itemView) {
-			super(itemView);
-		}
-	}
+        ShoppingViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
 }
 ```
 
@@ -223,70 +223,70 @@ Az `R.layout.item_shopping` azonosítóra hibát jelez a fordító, hiszen még 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:paddingBottom="8dp"
-	android:paddingLeft="16dp"
-	android:paddingRight="16dp"
-	android:paddingTop="8dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
 
-	<CheckBox
-		android:id="@+id/ShoppingItemIsBoughtCheckBox"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_vertical"
-		android:text="@string/bought" />
+    <CheckBox
+        android:id="@+id/ShoppingItemIsBoughtCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/bought" />
 
-	<ImageView
-		android:id="@+id/ShoppingItemIconImageView"
-		android:layout_width="64dp"
-		android:layout_height="64dp"
-		android:layout_marginLeft="8dp"
-		android:padding="8dp"
-		tools:src="@drawable/open_book" />
+    <ImageView
+        android:id="@+id/ShoppingItemIconImageView"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        tools:src="@drawable/open_book" />
 
-	<LinearLayout
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="8dp"
-		android:layout_weight="1"
-		android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-		<TextView
-			android:id="@+id/ShoppingItemNameTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			tools:text="Apple" />
+        <TextView
+            android:id="@+id/ShoppingItemNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Apple" />
 
-		<TextView
-			android:id="@+id/ShoppingItemDescriptionTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			tools:text="My favorite fruit" />
+        <TextView
+            android:id="@+id/ShoppingItemDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="My favorite fruit" />
 
-		<TextView
-			android:id="@+id/ShoppingItemCategoryTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			tools:text="Food" />
+        <TextView
+            android:id="@+id/ShoppingItemCategoryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Food" />
 
-		<TextView
-			android:id="@+id/ShoppingItemPriceTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			tools:text="20 Ft" />
-	</LinearLayout>
+        <TextView
+            android:id="@+id/ShoppingItemPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20 Ft" />
+    </LinearLayout>
 
-	<ImageButton
-		android:id="@+id/ShoppingItemRemoveButton"
-		style="@style/Widget.AppCompat.Button.Borderless"
-		android:layout_width="50dp"
-		android:layout_height="50dp"
-		android:layout_gravity="center_vertical"
-		android:scaleType="fitXY"
-		android:src="@drawable/ic_delete_grey600_48dp" />
+    <ImageButton
+        android:id="@+id/ShoppingItemRemoveButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_delete_grey600_48dp" />
 
 </LinearLayout>
 ```
@@ -461,21 +461,21 @@ public class MainActivity extends AppCompatActivity
 //...
 
     @Override
-	public void onItemChanged(final ShoppingItem item) {
-		new AsyncTask<Void, Void, Boolean>() {
+    public void onItemChanged(final ShoppingItem item) {
+        new AsyncTask<Void, Void, Boolean>() {
 
-			@Override
-			protected Boolean doInBackground(Void... voids) {
-				database.shoppingItemDao().update(item);
-				return true;
-			}
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                database.shoppingItemDao().update(item);
+                return true;
+            }
 
-			@Override
-			protected void onPostExecute(Boolean isSuccessful) {
-				Log.d("MainActivity", "ShoppingItem update was successful");
-			}
-		}.execute();
-	}
+            @Override
+            protected void onPostExecute(Boolean isSuccessful) {
+                Log.d("MainActivity", "ShoppingItem update was successful");
+            }
+        }.execute();
+    }
 }
 ```
 
@@ -518,30 +518,30 @@ A `hu.bme.aut.shoppinglist` package-ben hozzunk létre egy új package-et `fragm
 ```java
 public class NewShoppingItemDialogFragment extends DialogFragment {
 
-	public static final String TAG = "NewShoppingItemDialogFragment";
+    public static final String TAG = "NewShoppingItemDialogFragment";
 
-	public interface NewShoppingItemDialogListener {
-		void onShoppingItemCreated(ShoppingItem newItem);
-	}
+    public interface NewShoppingItemDialogListener {
+        void onShoppingItemCreated(ShoppingItem newItem);
+    }
 
-	private NewShoppingItemDialogListener listener;
+    private NewShoppingItemDialogListener listener;
 
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		FragmentActivity activity = getActivity();
-		if (activity instanceof NewShoppingItemDialogListener) {
-			listener = (NewShoppingItemDialogListener) activity;
-		} else {
-			throw new RuntimeException("Activity must implement the NewShoppingItemDialogListener interface!");
-		}
-	}
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        FragmentActivity activity = getActivity();
+        if (activity instanceof NewShoppingItemDialogListener) {
+            listener = (NewShoppingItemDialogListener) activity;
+        } else {
+            throw new RuntimeException("Activity must implement the NewShoppingItemDialogListener interface!");
+        }
+    }
 
-	@NonNull
-	@Override
-	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		return new AlertDialog.Builder(requireActivity()).create();
-	}
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return new AlertDialog.Builder(requireActivity()).create();
+    }
 }
 ```
 
@@ -579,16 +579,16 @@ Az *Alt+Enter* billentyű kombinációval vegyük fel a hiányzó szöveges erő
 Implementáljuk a dialógus tartalmát létrehozó `getContentView()` függvényt:
 ```java
 private View getContentView() {
-	View contentView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_new_shopping_item, null);
-	nameEditText = contentView.findViewById(R.id.ShoppingItemNameEditText);
-	descriptionEditText = contentView.findViewById(R.id.ShoppingItemDescriptionEditText);
-	estimatedPriceEditText = contentView.findViewById(R.id.ShoppingItemEstimatedPriceEditText);
-	categorySpinner = contentView.findViewById(R.id.ShoppingItemCategorySpinner);
-	categorySpinner.setAdapter(new ArrayAdapter<>(requireContext(), 
-			android.R.layout.simple_spinner_dropdown_item, 
-			getResources().getStringArray(R.array.category_items)));
-	alreadyPurchasedCheckBox = contentView.findViewById(R.id.ShoppingItemIsPurchasedCheckBox);
-	return contentView;
+    View contentView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_new_shopping_item, null);
+    nameEditText = contentView.findViewById(R.id.ShoppingItemNameEditText);
+    descriptionEditText = contentView.findViewById(R.id.ShoppingItemDescriptionEditText);
+    estimatedPriceEditText = contentView.findViewById(R.id.ShoppingItemEstimatedPriceEditText);
+    categorySpinner = contentView.findViewById(R.id.ShoppingItemCategorySpinner);
+    categorySpinner.setAdapter(new ArrayAdapter<>(requireContext(), 
+            android.R.layout.simple_spinner_dropdown_item, 
+            getResources().getStringArray(R.array.category_items)));
+    alreadyPurchasedCheckBox = contentView.findViewById(R.id.ShoppingItemIsPurchasedCheckBox);
+    return contentView;
 }
 ```
 Vegyük fel a hiányzó tagváltozókat:
@@ -670,26 +670,26 @@ Adja hozzá a `strings.xml`-hez a hiányzó szöveges erőforrásokat:
 
 ```xml
 <resources>
-	<string name="app_name">ShoppingList</string>
-	
-	<string name="action_settings">Settings</string>
-	
-	<string name="bought">Bought</string>
-	
-	<string name="new_shopping_item">New shopping item</string>
-	<string name="ok">OK</string>
-	<string name="cancel">Cancel</string>
-	
-	<string name="name">Name</string>
-	<string name="description">Description</string>
-	<string name="category">Category</string>
-	<string name="estimated_price">Estimated price</string>
-	<string name="already_purchased">Already purchased</string>
-	<string-array name="category_items">
-		<item>Food</item>
-		<item>Electronic</item>
-		<item>Book</item>
-	</string-array>
+    <string name="app_name">ShoppingList</string>
+    
+    <string name="action_settings">Settings</string>
+    
+    <string name="bought">Bought</string>
+    
+    <string name="new_shopping_item">New shopping item</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="estimated_price">Estimated price</string>
+    <string name="already_purchased">Already purchased</string>
+    <string-array name="category_items">
+        <item>Food</item>
+        <item>Electronic</item>
+        <item>Book</item>
+    </string-array>
 </resources>
 ```
 Az új elemet az *OK* gomb `ClickListener`-jében fogjuk létrehozni, amennyiben a bevitt adatok érvényesek. Ez esetben az érvényesség a név mező kitöltöttségét jelenti.
@@ -740,27 +740,27 @@ fab.setOnClickListener(new View.OnClickListener() {
 Frissítsük a `MainActivity`-t, hogy implementálja a dialógusban definiált interface-t:
 ```java
 public class MainActivity extends AppCompatActivity
-		implements NewShoppingItemDialogFragment.NewShoppingItemDialogListener,
-		ShoppingAdapter.ShoppingItemClickListener {
+        implements NewShoppingItemDialogFragment.NewShoppingItemDialogListener,
+        ShoppingAdapter.ShoppingItemClickListener {
 
 //...
 
     @Override
-	public void onShoppingItemCreated(final ShoppingItem newItem) {
-		new AsyncTask<Void, Void, ShoppingItem>() {
+    public void onShoppingItemCreated(final ShoppingItem newItem) {
+        new AsyncTask<Void, Void, ShoppingItem>() {
 
-			@Override
-			protected ShoppingItem doInBackground(Void... voids) {
-				database.shoppingItemDao().insertAll(newItem);
-				return newItem;
-			}
+            @Override
+            protected ShoppingItem doInBackground(Void... voids) {
+                database.shoppingItemDao().insertAll(newItem);
+                return newItem;
+            }
 
-			@Override
-			protected void onPostExecute(ShoppingItem shoppingItem) {
-				adapter.addItem(shoppingItem);
-			}
-		}.execute();
-	}
+            @Override
+            protected void onPostExecute(ShoppingItem shoppingItem) {
+                adapter.addItem(shoppingItem);
+            }
+        }.execute();
+    }
 }
 ```
 > Figyeljük meg, hogy ebben az esetben is `AsyncTask`-ba csomagolva futtatunk adatbázis műveletet. A `Room` tiltja a UI szálon történő adatbázis műveletek futtatását. Emellett a *user experience (UX)* is romlik, ha az esetlegesen lassú műveletek megakasztják a UI szálat.
