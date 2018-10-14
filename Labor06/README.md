@@ -779,12 +779,7 @@ Frissítsük az `activity_main.xml` layout fájlban a `FloatingActionButton` iko
 Próbáljuk ki az alkalmazást!
 
 ### Önálló feladat: törlés megvalósítása (1 pont)
-Elem törlése pozíció alapján:
-- Törlés az adapterből
-- Törlés az adatbázisból
-- `RecyclerView` frissítése
-
-Összes elem törlése:
+Elem törlése egyesével, az elemeken található szemetes ikonra kattintás hatására:
 - Törlés az adapterből
 - Törlés az adatbázisból
 - `RecyclerView` frissítése
