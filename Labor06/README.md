@@ -144,7 +144,7 @@ Figyeljük meg, hogy az Android Studio a `@Query` *annotáció* paramétereként
 
 #### Az adatbázis osztály létrehozása
 
-A `data` package-ben hozzunk létre egy új Java osztályt, aminek a neve legyen  `ShoppingItemDatabase`:
+A `data` package-ben hozzunk létre egy új Java osztályt, aminek a neve legyen  `ShoppingListDatabase`:
 
 ```java
 @Database(
