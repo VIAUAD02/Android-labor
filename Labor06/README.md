@@ -47,7 +47,7 @@ A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc p
 Hozzunk létre egy `ShoppingList` nevű projektet Android Studioban! A *Company domain* legyen `aut.bme.hu`. Az alkalmazást telefonra és tabletre készítjük, tehát válasszuk ki a **Phone and Tablet** lehetőséget, minimum SDK-nak pedig válasszuk az **API 15**-öt! Első `Activity`-ként válasszuk a *Basic Activity* lehetőséget, majd kattintsunk a *Finish* gombra!
 Töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](https://github.com/VIAUAC00/Android-labor/tree/master/Labor06/downloads/res.zip), majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappán állva *Ctrl+V*)!
 
-### Perzisztens adattárolás megvalósítása (2 pont)
+### Perzisztens adattárolás megvalósítása (1 pont)
 Az adatok perzisztens tárolásához a `Room` könyvtárat fogjuk használni.
 
 #### Room hozzáadása a projekthez
@@ -219,7 +219,7 @@ A `RecyclerView.Adapter` három absztrakt függvényt definiál, amelyeket köte
 
 A `ShoppingAdapter`-ben definiáltunk egy `ShoppingItemClickListener` nevű interfészt is, aminek a segítségével jelezhetjük az alkalmazás többi része felé, hogy esemény történt egy lista elemen.
 
-Az `R.layout.item_shopping` azonosítóra hibát jelez a fordító, hiszen még nem hoztuk létre a hivatkozott layout erőforrást. Kattintsunk rá, majd nyomjuk meg az *Alt + Enter* billentyű kombinációt. Válasszuk az első lehetőséget: *„Create layout resource file item_shopping_list.xml”*. Cseréljük le az újonnan létrehozott fájl tartalmát az alábbira:
+Az `R.layout.item_shopping_list` azonosítóra hibát jelez a fordító, hiszen még nem hoztuk létre a hivatkozott layout erőforrást. Kattintsunk rá, majd nyomjuk meg az *Alt + Enter* billentyű kombinációt. Válasszuk az első lehetőséget: *„Create layout resource file item_shopping_list.xml”*. Cseréljük le az újonnan létrehozott fájl tartalmát az alábbira:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
