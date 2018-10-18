@@ -128,7 +128,7 @@ public interface ShoppingItemDao {
     List<ShoppingItem> getAll();
 
     @Insert
-    void insertAll(ShoppingItem... shoppingItems);
+    long insert(ShoppingItem shoppingItems);
 
     @Update
     void update(ShoppingItem shoppingItem);
@@ -751,7 +751,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             protected ShoppingItem doInBackground(Void... voids) {
-                database.shoppingItemDao().insertAll(newItem);
+                newItem.id = database.shoppingItemDao().insert(newItem);
                 return newItem;
             }
 
@@ -792,8 +792,3 @@ Az alkalmazás jelenítsen meg egy megerősítő dialógust, amikor a felhaszná
 
 #### Elemek szerkesztése (1 pont)
 Teremtsük meg a lista elemek szerkesztésének lehetőségét. A lista elemre helyezzünk egy szerkesztés gombot, melynek hatására nyíljon meg a már korábban implementált felviteli dialógus, a beviteli mezők pedig legyenek előre kitöltve a mentett értékekkel. Az *OK* gomb hatására a meglévő lista elem módosuljon az adatbázisban és a nézeten is.
-
-
-
-
-
