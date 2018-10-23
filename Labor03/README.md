@@ -1,4 +1,4 @@
-# Labor 03 - Felhasználói felület tervezés és készítés Android platformon
+# Labor 03 - Felhasználói felület tervezése és készítése Android platformon
 
 ## Felkészülés a laborra
 
@@ -19,14 +19,14 @@ mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja �
 - Beviteli rész: 1 pont
 - Listaelemek layoutja: 1 pont
 - Listaelemek inflate-elése: 1 pont
-- Toast üeznetek helyett SnackBar (önálló): 1 pont
+- Toast üzenetek helyett SnackBar (önálló): 1 pont
 - Összegző mező megjelenítése (önálló): 0,5 pont
 - Összegző mező helyes működése (önálló): 0,5 pont
 
 ## Az elkészítendő megoldás
 A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészítése
 AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel
-tudja venni egy listába a kiadásait, bevételeit vagy törölni tudja az egész lista tartalmát.
+tudja venni egy listába a kiadásait, bevételeit, vagy törölni tudja az egész lista tartalmát.
 
 A képernyő mintaképe:
 
@@ -54,12 +54,9 @@ segítségével, illetve a jelölt feladatoknál önállóan.
 
 Hozzon létre egy AndroidWallet nevű projektet Android Studioban:
 - File->New->New Project
-- Application name: AndroidWallet, Package name sor végén editet
-követően: hu.aut.bme. (a varázsló automatikusan kiegészíti az alkalmazásunk nevével),
-- Company Domain-t kihagyjuk,
-
-![](assets/new_project.png)
-
+- Application name: AndroidWallet
+- Company Domain: aut.bme.hu
+- Láthatjuk, hogy ez alapján automatikusan a hu.bme.aut.androidwallet package-et kapja az alkalmazás.
 - Phone and Tablet, Minimum SDK maradhat API 15;
 - válasszuk a Basic Activity-t;
 - az Activity nevéhez próbáljunk meg egy betűt vagy szót írni, figyeljük meg,
@@ -98,7 +95,7 @@ action_delete_all néven és Delete All tartalommal, illetve az action_settingse
 ![](assets/resources.png)
 
 - Majd a res/menu/menu_main.xml-ben a pirosra változott action_settingset javítjuk az általunk
-hozzáadott új action_delete_allra.
+hozzáadott új action_delete_allra. Módosítsuk a menüelem azonosítóját is, szintén action_delete_all értékre.
 
 ### Beviteli rész megvalósítása
 
@@ -137,7 +134,7 @@ az android:orientation="vertical" attribútomot.
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="hu.aut.bme.androidwallet.MainActivity"
+    tools:context="hu.bme.aut.androidwallet.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
@@ -337,11 +334,11 @@ ha valamelyik mező nincs kitöltve!
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        nameEditText = (EditText) findViewById(R.id.salary_name);
-        amountEditText = (EditText) findViewById(R.id.salary_amount);
-        typeChooserButton = (ToggleButton)findViewById(R.id.expense_or_income);
-        saveButton = (Button) findViewById(R.id.save_button);
-        listOfRows = (LinearLayout) findViewById(R.id.list_of_rows);
+        nameEditText = findViewById(R.id.salary_name);
+        amountEditText = findViewById(R.id.salary_amount);
+        typeChooserButton = findViewById(R.id.expense_or_income);
+        saveButton = findViewById(R.id.save_button);
+        listOfRows = findViewById(R.id.list_of_rows);
 ```
 
 - Mivel a beágyazott LinearLayoutba akarunk bele tenni valamit így kénytelenek
@@ -386,16 +383,15 @@ ide bemásolva, és nem cél, hogy csak kimásolásra kerüljenek)
   - az item-nek a különböző részeit, tehát az ikont, nevet, összeget hozzárendeljük a változókhoz, hogy be tudjuk állítani őket
 
 ```
-                ImageView icon = (ImageView)
-                rowItem.findViewById(R.id.salary_direction_icon);
-                TextView rowItemSalaryName = (TextView) rowItem.findViewById(R.id.row_salary_name);
-                TextView rowItemSalaryAmount = (TextView) rowItem.findViewById(R.id.row_salary_amount);
+                ImageView icon = rowItem.findViewById(R.id.salary_direction_icon);
+                TextView rowItemSalaryName = rowItem.findViewById(R.id.row_salary_name);
+                TextView rowItemSalaryAmount = rowItem.findViewById(R.id.row_salary_amount);
 ```
 
   - a ToggleButton állapota alapján beállítjuk az ikont, ehhez az income.png és expense.png képeket a drawable mappába kell beillesztenünk.
 
 ```java
-                icon.setImageResource(typeChooserButton.isChecked() ? R.drawable.income : R.drawable.expense);
+                icon.setImageResource(typeChooserButton.isChecked() ? R.drawable.expense : R.drawable.income);
 ```
 
   - a két EditText alapján beállítjuk a szövegeket

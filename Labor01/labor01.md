@@ -6,7 +6,7 @@
 
 ### iMSC pontok
 
-iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az első laboron  nem szerezhető iMSc pont. A későbbi laborokon ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásainak AUT portálra *.zip fájlba csomagoltan való feltöltési határideje az aktuális labortól számított három nap. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).
+iMSC pontok a ZH-n, a nagyHF-n és várhatóan néhány laboron szerezhetők. Az első laboron nem szerezhető iMSc pont. A későbbi laborokon ha lesz ilyen lehetőség, az iMSc-s feladatok megoldásainak AUT portálra kell feltölteni ugyanúgy a megfelelő labor alá, de érdemes megjezésként odaírni, hogy mely iMSc feladatok lettek megoldva. Ha egy feladatban kérdések szerepelnek, a pontok csak akkor fogadhatók el, ha mellékletben egy igényes jegyzőkönyv is szerepel a kérdésekre vonatkozó válaszokkal. iMSc pont szerzésére bármely hallgató jogosult, aki az előtte lévő feladatokkal már végzett (laborvezető ellenőrzi a haladást).
 
 ### Laborok értékelése
 
@@ -32,7 +32,7 @@ A mérés az alábbi témákat érinti:
 *   Az Android platform alapfogalmainak ismerete
 *   Android Studio fejlesztőkörnyezet alapok
 *   Android Emulátor tulajdonságai
-*   DDMS (Android Device Monitor) nézet jellemzői
+*   Monitoring és log nézet
 *   Android projekt létrehozása és futtatása emulátoron
 *   Manifest állomány felépítése
 
@@ -92,7 +92,7 @@ SDK szerkezet
 *   **extras:** különböző extra szoftverek helye. Maven repository, support libes anyagok, analytics sdk, google [android usb driver](https://developer.android.com/studio/run/win-usb.html) (amennyiben SDK managerrel ezt is letöltöttük) stb.
 *   **platform-tools:** fastboot és adb binárisok helye (legtöbbet használt eszközök)
 *   **platforms, samples, sources, system-images:** minden API levelhez külön almappában a platform anyagok, források, példaprojektek, OS image-k
-*   **tools:** fordítást és tesztelést segítő eszközök, SDK manager, DDMS, 9Patch drawer, emulátor binárisok stb.
+*   **tools:** fordítást és tesztelést segítő eszközök, SDK manager, 9Patch drawer, emulátor binárisok stb.
 
 ### AVD és SDK manager
 
@@ -195,6 +195,7 @@ Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-
 *   **SHIFT + F10:** Fordítás és futtatás
 *   **SHIFT SHIFT:** Keresés mindenhol
 
+Érdemes otthon tanulmányozni a további billentyű kombinációkat.
 
 ### Eszközök, szerkesztők
 
@@ -227,19 +228,15 @@ A Studio sok sablont tartalmaz, röviden tekintsék át a lehetőségeket:
 *   Projektfában, modulon belül, Java-ra kattintva jobb gombbal -> new
 *   Forráskódban ALT+INSERT billentyűkombinációra
 
-## Android Device Monitor
+## LogCat
 
-A készülék erőforráashasználata [monitorozható](https://developer.android.com/studio/profile/android-monitor.html?utm_source=android-studio) ezen a felületen egyéb hasznos funkciók, mint a képernyőfelvétrel készítés (kamera ikon) mellett.
+Keressük meg az Android Studioban a LogCat nézetet, vizsgáljuk meg hol lehet megtekinteni a log és hiba üzeneteket, hogyan lehet képernyőképet és videot készíteni az emulátorról és csatlakoztatott készülékről.
 
-![](assets/ADM.png)
+## Monitoring
 
-## Fejlett Android Device monitor / DDMS
-
-Android studio -> Tools -> Android -> Android Device Monitor
-Itt lehetséges virtuális SMS vagy telefonhívás küldése, fake GPS pozíció beállítása, a fájlok monitoirozása egyébb fejlesztéshez hasznos eszközök mellett.
-
-![](assets/DDMS.png)
-
+Vizsgáljuk meg megnyitott projekt esetén az Android Studio Tools menüpontját, a laborvezetővel elemezzük az itt látható funkciókat.
+Hasonlóképpen próbáljuk ki a Run->Profile lehetőséget, valamint az Analyze->Inspect code-ot.
+Összegezzük a tapasztalatokat.
 
 ## Feladatok:
 
@@ -254,5 +251,6 @@ Itt lehetséges virtuális SMS vagy telefonhívás küldése, fake GPS pozíció
 7.  Változtassa meg az emulátor fölrajzi koordinátáit!
 8.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
 9.  Vizsgálja meg a LogCat nézet tartalmát!
-10. Keresse ki a létrehozott HelloWorld projekt mappáját és az app/build/outputs/apk útvonalon található könyvtáron belül
+10. Vizsgálja meg az Analyze->Inspect code eredményét.
+11. Keresse ki a létrehozott HelloWorld projekt mappáját és az app/build/outputs/apk útvonalon található könyvtáron belül
     vizsgálja meg az .apk állomány tartalmát! Hol található a lefordított kód?

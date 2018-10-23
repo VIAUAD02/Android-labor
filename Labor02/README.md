@@ -31,7 +31,7 @@ IMSc:
 
 ## Projekt létrehozása
 
-Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `PublicTransport`, a Company Domain pedig `aut.bme.hu`. Láthatjuk, hogy ez alapján automatikusan a `hu.bme.aut.publictransport` package-et kapja az alkalmazás. 
+Hozzunk létre egy új Android projektet! Az alkalmazás neve legyen `PublicTransport`, a Company domain pedig `aut.bme.hu`. Láthatjuk, hogy ez alapján automatikusan a `hu.bme.aut.publictransport` package-et kapja az alkalmazás. 
 
 Az alkalmazást természetesen telefonra készítjük, és használhatjuk az alapértelmezett 15-ös minimum SDK szintet.
 
@@ -196,12 +196,10 @@ Ha most kipróbáljuk az alkalmazást, már látjuk a beállítások hatását:
 Még egy dolgunk van ezen a képernyőn, az input ellenőrzése. Ezt a `LoginActivity.java` fájlban tehetjük meg. A layout-unkat alkotó View-kat az `onCreate` függvényben lévő `setContentView` hívás után tudjuk először elérni. Itt az alábbi kóddal szerezhetünk referenciákat a szükséges View-kra, az XML kódban lévő ID-juk felhasználásával:
 
 ```java
-final EditText etEmailAddress = (EditText) findViewById(R.id.etEmailAddress);
-final EditText etPassword = (EditText) findViewById(R.id.etPassword);
-final Button btnLogin = (Button) findViewById(R.id.btnLogin);
+final EditText etEmailAddress = findViewById(R.id.etEmailAddress);
+final EditText etPassword = findViewById(R.id.etPassword);
+final Button btnLogin = findViewById(R.id.btnLogin);
 ```
-
-(Az itt látható cast-olások azért szükségesek, mert a support library 26.0.0-es verzióját (2017 július) megelőzően a `findViewById` függvény a `View` típussal tér vissza. Ha esetleg ennél újabb verziót használunk, a `findViewById` visszatérési értéke már generikus, így megfogadhatjuk az Android Studio tanácsát, és elhagyhatjuk a cast-olásokat.)
 
 Ezeket használva már kezelni tudjuk a gomb lenyomását:
 
@@ -321,9 +319,9 @@ Töltsük ki ehhez hasonló módon a másik két `FrameLayout`-ot is, ID-ként h
 Az Activity Java fájlját megnyitva az alábbi kóddal kikereshetjük a gombjainkat (most is az `onCreate` függvényben):
 
 ```java
-ImageButton btnBike = (ImageButton) findViewById(R.id.btnBike);
-ImageButton btnBus = (ImageButton) findViewById(R.id.btnBus);
-ImageButton btnTrain = (ImageButton) findViewById(R.id.btnTrain);
+ImageButton btnBike = findViewById(R.id.btnBike);
+ImageButton btnBus = findViewById(R.id.btnBus);
+ImageButton btnTrain = findViewById(R.id.btnTrain);
 ```
 
 Ezek lenyomásának kezelésére később fogunk visszatérni.
@@ -536,7 +534,7 @@ private String getTypeString(int transportType) {
 Végül pedig az `onCreate` függvénybe visszatérve meg kell keresnünk a megfelelő `TextView`-t, és beállítani a szövegének a függvény által visszaadott értéket:
 
 ```java
-TextView tvTicketType = (TextView) findViewById(R.id.tvTicketType);
+TextView tvTicketType = findViewById(R.id.tvTicketType);
 tvTicketType.setText(getTypeString(transportType));
 ```
 
@@ -562,9 +560,9 @@ public final static String KEY_TYPE_STRING = "KEY_TYPE_STRING";
 Ezeket az adatokat a `DetailsActivity`-ben kell összekészítenünk és beleraknunk az `Intent`-be. Ehhez először keressük ki a `DetailsActivity` `onCreate` függvényében a View-kat, amikre szükségünk van:
 
 ```java
-final DatePicker dpStartDate = (DatePicker) findViewById(R.id.dpStartDate);
-final DatePicker dpEndDate = (DatePicker) findViewById(R.id.dpEndDate);
-final Button btnPurchase = (Button) findViewById(R.id.btnPurchase);
+final DatePicker dpStartDate = findViewById(R.id.dpStartDate);
+final DatePicker dpEndDate = findViewById(R.id.dpEndDate);
+final Button btnPurchase = findViewById(R.id.btnPurchase);
 ```
 
 Majd adjunk hozzá a vásárlás gombhoz egy listener-t:
@@ -647,10 +645,10 @@ Az Activity Java kódjában pedig csak a két `TextView` szövegét kell az `Int
 ```java
 Intent intent = getIntent();
 
-TextView tvTicketType = (TextView) findViewById(R.id.tvTicketType);
+TextView tvTicketType = findViewById(R.id.tvTicketType);
 tvTicketType.setText(intent.getStringExtra(KEY_TYPE_STRING));
 
-TextView tvDates = (TextView) findViewById(R.id.tvDates);
+TextView tvDates = findViewById(R.id.tvDates);
 tvDates.setText(intent.getStringExtra(KEY_DATE_STRING));
 ```
 
