@@ -42,7 +42,7 @@ A labor során az alábbi feladatokat a laborvezető segítségével, illetve a 
 
 1. Város lista megvalósítása: 1 pont
 2. Részletező nézet létrehozása és bekötése a navigációba: 1 pont
-3. Hálózati kommunikáció megvalósítása: 2 pont
+3. Hálózati kommunikáció megvalósítása: 1 pont
 4. A hálózati réteg bekötése a részletező nézetbe: 1 pont
 5. Önálló feladat: város listából törlés megvalósítása: 1 pont
 
@@ -522,7 +522,7 @@ public void onCitySelected(String city) {
 
 Próbáljuk ki az alkalmazást, kattintsunk egy város nevére!
 
-### 3. Hálózati kommunikáció megvalósítása (2 pont)
+### 3. Hálózati kommunikáció megvalósítása (1 pont)
 
 #### Modell osztályok létrehozása 
 
