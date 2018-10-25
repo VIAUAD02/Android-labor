@@ -967,12 +967,12 @@ Ideiglenesen a `DetailsActivity` `onResume()` függvénye legyen az alábbi:
 
 ```java
 @Override
-    protected void onResume() {
-        super.onResume();
-        ViewPager mainViewPager = findViewById(R.id.mainViewPager);
-        DetailsPagerAdapter detailsPagerAdapter = new DetailsPagerAdapter(getSupportFragmentManager(), this);
-        mainViewPager.setAdapter(detailsPagerAdapter);
-    }
+protected void onResume() {
+    super.onResume();
+    ViewPager mainViewPager = findViewById(R.id.mainViewPager);
+    DetailsPagerAdapter detailsPagerAdapter = new DetailsPagerAdapter(getSupportFragmentManager(), this);
+    mainViewPager.setAdapter(detailsPagerAdapter);
+}
 ```
 
 Próbáljuk ki az alkalmazást, kattintsunk egy városra! jelenleg még nem jelennek meg valós adatok, mivel még nem kötöttük be a az adatok lekéréséért felelős hívást.
