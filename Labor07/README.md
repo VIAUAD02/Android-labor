@@ -407,7 +407,7 @@ Igény szerint vizsgáljuk meg a laborvezetővel az `AddCityDialogFragment` impl
 > Szorgalmi feladat otthonra: az alkalmazás ne engedje a város létrehozsát, ha a városnév mező üres!
 > Tipp: [http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked](http://stackoverflow.com/questions/13746412/prevent-dialogfragment-from-dismissing-when-button-is-clicked)
 
-Végül egészítsök ki a `CityActivity` `initFab(…)` függvényét úgy, hogy a gombra kattintva jelenjen meg az új dialógus:
+Végül egészítsük ki a `CityActivity` `initFab(…)` függvényét úgy, hogy a gombra kattintva jelenjen meg az új dialógus:
 
 ```java
 private void initFab() {
