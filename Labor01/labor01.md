@@ -100,13 +100,11 @@ Az SDK kezelésére az SDK managert használjuk, ezzel lehet letölteni és fris
 
 SDK manager ikon:
 
-![](assets/sdk_manager_icon.png)
+![](assets/sdk_manager_icon_new.png)
 
 SDK manager felülete:
 
-![](assets/sdk_manager.png)
-
-![](assets/sdk_manager_stendalone.png)
+![](assets/sdk_manager_new.png)
 
 Indítsuk el, és vizsgáljuk meg a laborvezetővel, rendelkezésre áll-e minden, ami az első alkalmazásunkhoz kelleni fog.
 
@@ -116,7 +114,7 @@ Az AVD az Android Virtual Device rövidítése. Ahogy arról már előadáson is
 
 AVD ikon:
 
-![](assets/avd_icon.png)
+![](assets/avd_icon_new.png)
 
 ![](assets/avd.png)
 
