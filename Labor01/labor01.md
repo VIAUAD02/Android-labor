@@ -118,21 +118,25 @@ AVD ikon:
 
 ![](assets/avd.png)
 
-Az AVD bal oldali tabfülén a létező virtuális eszközök listáját találjuk, jobb oldalon pedig az ún. eszköz definíciókét. Itt néhány előre elkészített sablon áll rendelkezésre, magunk is készíthetünk ilyet, ha tipikusan adott eszközre szeretnénk fejleszteni (pl. galaxy s4). Készítsünk új emulátort (értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül)!
+Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A létrehozás gombra kattintva elkezdhetjük egy új virtuális készülék összeállítását. Néhány előre elkészített sablon áll rendelkezésre, magunk is készíthetünk ilyet, ha tipikusan adott eszközre szeretnénk fejleszteni (pl. galaxy s4). Készítsünk új emulátort (értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül)!
 
-1.  A bal oldali tabfülön, kattintsunk a jobb oldali “Create…” gombra!
-2.  Töltsük ki a mezőket!
-    1.  Név legyen mondjuk “Labor_1″.
-    2.  Az eszköz pl. Nexus 5.
-    3.  Célnak adjunk meg egy rendelkezésre álló API szintet, legyen mondjuk Android O.
-    4.  A CPU/ABI x86 legyen, ez gyorsabban fut, mert az ARM-ot emulálni kell. Viszont ahhoz, hogy otthon is működjön, engedélyezni kell az Intel VT-X-et, telepíteni kell az Intel HAXM-ot, és ki kell kapcsolni a Hyper-V-t.
-    5.  Van-e billentyűzet, milyen kinézete legyen.
-    6.  Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
-    7.  Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
-    8.  Belső flash memória és SD kártya mérete.
-    9.  Snapshot: elmenti az emulátor állapotát, és abból tölti vissza legközelebb, ha igényeljük.
-    10.  GPU segítsége: Kizáró vagy kapcsolatban áll a Snapshot funkcióval, viszont nem csak a megjelenésen tud javítani, az emulátor sebessége is javulhat tőle. Gyengébb GPU és IO teljesítmény esetén inkább a snapshotot válasszuk. (Intel HD4000 és alatta, például).
-3.  Ha mindent rendben talál az ablak, akkor OK!
+1.  Kattintsunk a "Create Virtual Device..." gombra!
+2. Válasszuk ki a kiindulási eszköz definíciót!
+    1. Kategória: "Phone"
+    2. Az eszköz legyen például Pixel 2.
+3. A következő lapon a megfelelő rendszer image-et tudjuk kiválasztani.
+    1. Válasszunk az ajánlottak ("Recommended") közül olyan image-et, ami már le van töltve a gépünkre! 
+4. A konfiguráció véglegesítése oldalon részletesebben is testre szabhatjuk a virtuális készülékünket.
+    1. A készülék neve legyen mondjuk “Labor_1″.
+    2. Beállíthatjuk, hogy látszódjon-e a készülék kerete az emulátoron.
+    3. A "Show Advanced Settings" gombra kattintva egyéb, részletesebb beállításokat módosíthatunk:
+        Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
+        Szimulált hálózati sebesség.
+        Virtuális eszköz indulása: újonnani indítás, legutóbbi, vagy tetszőleges mentett állapot alapján. 
+        Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
+        Belső flash memória és SD kártya mérete.
+        Billentyűzet: gépelhessünk-e a csatlakoztatott hardveres billentyűzettel.
+5.  Ha mindent rendben talál az ablak, akkor Finish!
 
 ![](assets/avd_create.png)
 
