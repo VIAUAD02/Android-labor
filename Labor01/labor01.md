@@ -130,13 +130,13 @@ Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A 
     1. A készülék neve legyen mondjuk “Labor_1″.
     2. Beállíthatjuk, hogy látszódjon-e a készülék kerete az emulátoron.
     3. A "Show Advanced Settings" gombra kattintva egyéb, részletesebb beállításokat módosíthatunk:
-        Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
-        Szimulált hálózati sebesség.
-        Virtuális eszköz indulása: újonnani indítás, legutóbbi, vagy tetszőleges mentett állapot alapján. 
-        Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
-        Belső flash memória és SD kártya mérete.
-        Billentyűzet: gépelhessünk-e a csatlakoztatott hardveres billentyűzettel.
-5.  Ha mindent rendben talál az ablak, akkor Finish!
+        1. Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
+        2. Szimulált hálózati sebesség.
+        3. Virtuális eszköz indulása: újonnani indítás, legutóbbi, vagy tetszőleges mentett állapot alapján. 
+        4. Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
+        5. Belső flash memória és SD kártya mérete.
+        6. Billentyűzet: gépelhessünk-e a csatlakoztatott hardveres billentyűzettel.
+5.  Ha mindent rendben találunk, akkor Finish!
 
 ![](assets/avd_create.png)
 
