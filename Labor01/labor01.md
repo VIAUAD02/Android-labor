@@ -120,6 +120,8 @@ AVD ikon:
 
 Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A létrehozás gombra kattintva elkezdhetjük egy új virtuális készülék összeállítását. Néhány előre elkészített sablon áll rendelkezésre, magunk is készíthetünk ilyet, ha tipikusan adott eszközre szeretnénk fejleszteni (pl. galaxy s4). Készítsünk új emulátort (értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül)!
 
+![](assets/avd_create_step1.PNG)
+
 1.  Kattintsunk a "Create Virtual Device..." gombra!
 2. Válasszuk ki a kiindulási eszköz definíciót!
     1. Kategória: "Phone"
@@ -138,9 +140,7 @@ Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A 
         6. Billentyűzet: gépelhessünk-e a csatlakoztatott hardveres billentyűzettel.
 5.  Ha mindent rendben találunk, akkor Finish!
 
-![](assets/avd_create.png)
-
-Új emulátor készítése
+![](assets/avd_create_step2.PNG)
 
 Indítsuk el az új emulátort! A felbukkanó Launch options ablakban lehetőségünk van leskálázni a felbontást (például arra az esetre, ha esetleg nem 1:1 arányban szeretnénk megfeleltetni  1920×1080 pixelt az 1366×768-as kijelzőnkön), törölhetjük az adatokat (wipe user data ~ gyári visszaállítás) illetve befolyásolhatjuk a snapshot állapotát.
 
