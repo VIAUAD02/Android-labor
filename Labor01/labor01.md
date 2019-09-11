@@ -120,8 +120,6 @@ AVD ikon:
 
 Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A létrehozás gombra kattintva elkezdhetjük egy új virtuális készülék összeállítását. Néhány előre elkészített sablon áll rendelkezésre, magunk is készíthetünk ilyet, ha tipikusan adott eszközre szeretnénk fejleszteni (pl. galaxy s4). Készítsünk új emulátort (értelemszerűen csak olyan API szintű eszközt készíthetünk, amilyenek rendelkezésre állnak az SDK manageren keresztül)!
 
-![](assets/avd_create_step1.PNG)
-
 1.  Kattintsunk a "Create Virtual Device..." gombra!
 2. Válasszuk ki a kiindulási eszköz definíciót!
     1. Kategória: "Phone"
@@ -181,7 +179,7 @@ Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-
     *   CTRL-t lenyomva navigálhatunk a kódban (pl. osztályra, metódushívásra kattintva). Ezt a navigációt (és az egyszerű másik osztályba kattintást is) rögzíti, és a history előre-hátra gombokkal lehet lépkedni benne. Ha van az egerünkön/billentyűzetünkön ilyen gomb, és netes böngészés közben aktívan használjuk, ezt a funkciót nagyon hasznosnak fogjuk találni.
     *   Szín ikonja a sor elején; kiemelve jobb oldalon, hogy melyik nézeten vagyunk; szabadszavas kiegészítés; a “Hello world” igazából _“@string/very_very_very_long_hello_world”_
 
-![](assets/Nice-studio.png)
+![](assets/Nice-studio_new.PNG)
 
 ### Billentyűkombinációk
 
