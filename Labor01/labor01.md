@@ -18,7 +18,7 @@ Az első labort kivéve minden labor előtt lesz beugró, mely feltétele a labo
 
 ### Kis ZH-k
 
-A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át.
+A félév során hat alkalommal kis zárthelyit íratunk a laboratórium alkalmakon. Ezek közül a négy legjobban sikerült kis zárthelyi pontszámnak egyenként el kell érje a szerezhető pontszám 40%-át. A KisZH kiváltja a beugró szerepét.
 
 A kisZH-k kettő vagy három hetente lesznek, ezek időpontját az első vagy második előadáson kihirdetjük. A mostani Labor 01-en nincs kisZH.
 
@@ -129,11 +129,11 @@ Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A 
 4. A konfiguráció véglegesítése oldalon részletesebben is testre szabhatjuk a virtuális készülékünket.
     1. A készülék neve legyen mondjuk “Labor_1″.
     2. Beállíthatjuk, hogy látszódjon-e a készülék kerete az emulátoron.
-    3. A "Show Advanced Settings" gombra kattintva egyéb, részletesebb beállításokat módosíthatunk:
+    3. A "Show Advanced Settings" gombra kattintva egyéb, részletesebb beállításokat módosíthatunk (most célszerű ezeket így hagyni):
         1. Kamera(ák): WebcamX, hardveres kamera, ami a számítógépre van csatlakoztatva; Emulated, egy szoftveres megoldás, most legalább az egyik kamera legyen ilyen.
         2. Szimulált hálózati sebesség.
         3. Virtuális eszköz indulása: újonnani indítás, legutóbbi, vagy tetszőleges mentett állapot alapján. 
-        4. Memória mérete. A laborszámítógépeken, mivel kevés a rendszermemóriánk nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
+        4. Memória mérete. Gyengébb számítógépeken, ha kevés a rendszermemóriánk, nem érdemes 768 MB-nál többet adni, könnyen futhat az ember problémákba. Ha az emulátor lefagy, vagy az egész OS megáll működés közben, akkor állítsuk alacsonyabbra az értéket (saját laptop esetén 8GB vagy több rendszermemória esetén nyugodtan állíthatjuk az emulátor memóriáját 1024/2048MB-ra). VM heap, az alkalmazások virtuális gépének szól, maradhat az alapérték. Tudni kell, hogy készülékek esetében gyártónként változik.
         5. Belső flash memória és SD kártya mérete.
         6. Billentyűzet: gépelhessünk-e a csatlakoztatott hardveres billentyűzettel.
 5.  Ha mindent rendben találunk, akkor Finish!
@@ -141,6 +141,8 @@ Az AVD megnyitásakor a létező virtuális eszközök listáját láthatjuk. A 
 ![](assets/avd_create_step2.PNG)
 
 Indítsuk el az új emulátort! A felbukkanó Launch options ablakban lehetőségünk van leskálázni a felbontást (például arra az esetre, ha esetleg nem 1:1 arányban szeretnénk megfeleltetni  1920×1080 pixelt az 1366×768-as kijelzőnkön), törölhetjük az adatokat (wipe user data ~ gyári visszaállítás) illetve befolyásolhatjuk a snapshot állapotát.
+
+Tekintse át az emulátor vezérlésének lehetőségeit a laborvezető segítségével!
 
 Az elindított emulátoron próbálják ki az “API Demos” és “Dev Tools” alkalmazásokat!
 
@@ -175,7 +177,7 @@ Ez a rész azoknak szól, akik korábban már használták az Eclipse nevű IDE-
     *   Kódkiegészítésnél szabad a kereső, a szótöredéket keresi, nem pedig a szóval kezdődő lehetőségeket (lásd képen)
     *   Változónév ajánlás: amikor változónévre van szükségünk, nyomjunk CTRL+SPACE-t. Ha adottak a körülmények, a Studio egész jó neveket tud felajánlani.
     *   Szigorú lint. A Studio megengedi a warningot. Ezért szigorúbb a lint, több mindenre figyelmeztet (olyan apróságra is, hogy egy view egyik oldalán van padding, a másikon nincs)
-    *   Layout szerkesztés. A grafikus layout építés lehetséges, 2016-os béta verziós újítás: *CoordinatorLayout*.
+    *   Layout szerkesztés. A grafikus layout építés lehetséges, 2016-os újítás: *CoordinatorLayout*.
     *   CTRL-t lenyomva navigálhatunk a kódban (pl. osztályra, metódushívásra kattintva). Ezt a navigációt (és az egyszerű másik osztályba kattintást is) rögzíti, és a history előre-hátra gombokkal lehet lépkedni benne. Ha van az egerünkön/billentyűzetünkön ilyen gomb, és netes böngészés közben aktívan használjuk, ezt a funkciót nagyon hasznosnak fogjuk találni.
     *   Szín ikonja a sor elején; kiemelve jobb oldalon, hogy melyik nézeten vagyunk; szabadszavas kiegészítés; a “Hello world” igazából _“@string/very_very_very_long_hello_world”_
 
@@ -203,11 +205,10 @@ A View menü Tool Windows menüpontjában lehetőség van különböző ablakok 
 
 *   Project
 *   Structure
-*   Debug
 *   TODO
 *   Terminal
-*   Messages
 *   Gradle
+*   Logcat
 
 Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott fájl tabfülére jobb gombbal!
 
@@ -243,14 +244,13 @@ Hasonlóképpen próbáljuk ki a Run->Profile lehetőséget, valamint az Analyze
 **A megoldásokról készítsen jegyzőkönyvet (képernyőképekkel és lényegre törő szöveggel), melyet a tárgy oldalára töltsön fel a labor végén!**
 
 1.  Az új alkalmazást futtassák emulátoron (akinek saját készüléke van, az is próbálja ki)!
-2.  Helyezzenek breakpointot a kódba, és debug módban indítsák az alkalmazást! (érdemes megyfigyelni, hogy most másik Gradle Task fut a képernyő alján)
+2.  Helyezzenek breakpointot a kódba, és debug módban indítsák az alkalmazást! (Run -> Debug)
 3.  Indítsanak hívást és küldjenek SMS-t az emulátoron! Mit tapasztalnak?
-4.  Tekintse át az emulátor vezérlésének lehetőségeit a laborvezető segítségével!
-5.  Hajtson végre egy bejövő telefonhívást emulátorban!
-6.  Küldjön egy SMS-t az emulátor vezérlő nézetről!
-7.  Változtassa meg az emulátor fölrajzi koordinátáit!
-8.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
-9.  Vizsgálja meg a LogCat nézet tartalmát!
-10. Vizsgálja meg az Analyze->Inspect code eredményét.
-11. Keresse ki a létrehozott HelloWorld projekt mappáját és az app/build/outputs/apk útvonalon található könyvtáron belül
+4.  Hajtson végre egy bejövő telefonhívást emulátorban!
+5.  Küldjön egy SMS-t az emulátor vezérlő nézetről!
+6.  Változtassa meg az emulátor fölrajzi koordinátáit!
+7.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
+8.  Vizsgálja meg a LogCat nézet tartalmát!
+9. Vizsgálja meg az Analyze->Inspect code eredményét.
+10. Keresse ki a létrehozott HelloWorld projekt mappáját és az app/build/outputs/apk útvonalon található könyvtáron belül
     vizsgálja meg az .apk állomány tartalmát! Hol található a lefordított kód?
