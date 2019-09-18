@@ -144,8 +144,6 @@ Indítsuk el az új emulátort! A felbukkanó Launch options ablakban lehetősé
 
 Tekintse át az emulátor vezérlésének lehetőségeit a laborvezető segítségével!
 
-Az elindított emulátoron próbálják ki az “API Demos” és “Dev Tools” alkalmazásokat!
-
 Megjegyzés: A gyári emulátoron kívül több alternatíva is létezik, a Genymotion az egyik legjobb, nagyon gyors AMD processzorokon is (igaz Windows 10 esetén problémás a használata).
 
 ## Fejlesztői környezet
@@ -216,7 +214,6 @@ Lehetőség van felosztani a szerkesztőablakot, ehhez kattinsunk egy megnyitott
 
 A laborvezető segítségével állítsák be a következő hasznos funkciókat:
 
-*   kis- nagybetű érzékenység kikapcsolása a kódkiegészítőben (settingsben keresés: sensitive)
 *   "laptop mód" ki- és bekapcsolása (File/Power Saver mode)
 *   sorszámozás bekapcsolása (settingsben keresés: Show line numbers)
 *   beírás közbeni autoimport bekapcsolása (settingsben keresés: import, utána Editor/Auto import)
@@ -249,7 +246,7 @@ Hasonlóképpen próbáljuk ki a Run->Profile lehetőséget, valamint az Analyze
 4.  Hajtson végre egy bejövő telefonhívást emulátorban!
 5.  Küldjön egy SMS-t az emulátor vezérlő nézetről!
 6.  Változtassa meg az emulátor fölrajzi koordinátáit!
-7.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait, memóriafoglalását!
+7.  Vizsgálja meg az elindított HelloWorld projekt nyitott szálait(Profiler-ben CPU-ra katt), memóriafoglalását!
 8.  Vizsgálja meg a LogCat nézet tartalmát!
 9. Vizsgálja meg az Analyze->Inspect code eredményét.
 10. Keresse ki a létrehozott HelloWorld projekt mappáját és az app/build/outputs/apk útvonalon található könyvtáron belül
