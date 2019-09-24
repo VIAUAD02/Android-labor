@@ -21,9 +21,11 @@ oldalán, ahol a laborvezető tudja értékelni.
 
 ### A projekt létrehozása
 
-Hozzunk létre egy új Android projektet, Add no Activity beállítással. Az _Application name_ mezőben ajuk meg a `Simple Drawer` nevet. A _Package név legyen `hu.bme.aut.simpledrawer`. Nyelvnek a Java legyen kiválasztva. A _Use androidx.* artifacts_ legyen bepipálva. Ezután nyomjunk a **Finish** gombra.
+Hozzunk létre egy új Android projektet, _Add no Activity_ opcióval. Az _Application name_ mezőben ajuk meg a 
+`Simple Drawer` nevet. A _Package_ név legyen `hu.bme.aut.simpledrawer`. Nyelvnek a Java legyen kiválasztva. 
+A _Use androidx.* artifacts_ legyen bepipálva. Ezután nyomjunk a **Finish** gombra.
 
-Adjunk a projekthez egy új Activity osztályt, _Empty activity_ opcióval.
+Adjunk a projekthez egy új _Empty activity_ osztályt.
 _Activity name_-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon _layout_ fájlt, valamint pipáljuk be a _Launcher Activity_ opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
 
 Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
