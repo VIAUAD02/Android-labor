@@ -14,6 +14,8 @@ dokumentáció segítségével kell elkészíteni az alkalmazást.
 ## Feltöltés
 Az elkészült megoldást egy ZIP formájában (teljes Android Studio projekt – build
 mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
+Ehhez használhatjuk az Android Studio `File -> Export to ZIP file...` funkcióját. 
+(Az elkészült zip file ~10MB vagy annál kevesebb lesz.)
 
 ## Értékelés
 - Beviteli rész: 1 pont
@@ -28,10 +30,10 @@ A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészít�
 AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel
 tudja venni egy listába a kiadásait, bevételeit, vagy törölni tudja az egész lista tartalmát.
 
-A képernyő mintaképe:
+A képernyő mintaképe: 
 
 ![](assets/sample_screen.png)
-
+ 
 Az alkalmazás felépítése és működése a következő:
 
 - Kezdőképernyő a listával illetve egy beviteli résszel, amelyen a felhasználó
@@ -54,14 +56,10 @@ segítségével, illetve a jelölt feladatoknál önállóan.
 
 Hozzon létre egy AndroidWallet nevű projektet Android Studioban:
 - File->New->New Project
-- Application name: AndroidWallet
-- Company Domain: aut.bme.hu
-- Láthatjuk, hogy ez alapján automatikusan a hu.bme.aut.androidwallet package-et kapja az alkalmazás.
-- Phone and Tablet, Minimum SDK maradhat API 15;
 - válasszuk a Basic Activity-t;
-- az Activity nevéhez próbáljunk meg egy betűt vagy szót írni, figyeljük meg,
-hogy az összes többi mezőt is ehhez igazítja a varázsló, ez egy hasznos funkciója
-a varázslónak, de maradjunk most a MainActivity elnevezésnél;
+- Application name: AndroidWallet;
+- package name: hu.bme.aut.androidwallet ;
+- Minumum API level: 15; 
 - Finish, és várjuk meg amíg a Studio mindent legenerál, ez első alkalomkor
 valamivel hosszabb időt vesz igénybe.
 
