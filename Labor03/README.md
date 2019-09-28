@@ -455,7 +455,7 @@ egy ScrollView-ba kell foglalnunk és már működik is.
 ### További Önálló feladatok
 
 - A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi,
-a SnackBar. Cseréljük le a Toast figyelmeztetést SnackBarra!
+a [SnackBar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést SnackBarra!
 - Vegyünk fel egy összegző mezőt a gombok alá, amely minden bevitt érték után frissül.
 Figyeljünk rá, hogy ha még nincs egy bejegyzés sem, akkor ne jelenjen meg semmi, illetve
 hogy a felhasználó nem fog mínusz karaktert beírni tehát a kapcsoló alapján kell eldöntenünk,
