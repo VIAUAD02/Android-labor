@@ -14,6 +14,8 @@ dokumentáció segítségével kell elkészíteni az alkalmazást.
 ## Feltöltés
 Az elkészült megoldást egy ZIP formájában (teljes Android Studio projekt – build
 mappa kivehető) kell feltölteni a tárgy oldalán, ahol a laborvezető tudja értékelni.
+Ehhez használhatjuk az Android Studio `File -> Export to ZIP file...` funkcióját. 
+(Az elkészült zip file ~10MB vagy annál kevesebb lesz.)
 
 ## Értékelés
 - Beviteli rész: 1 pont
@@ -28,10 +30,10 @@ A feladat egy kiadás / bevétel naplózására alkalmas alkalmazás elkészít�
 AndroidWallet néven. Az alkalmazás alap funkcionalitása, hogy a felhasználó fel
 tudja venni egy listába a kiadásait, bevételeit, vagy törölni tudja az egész lista tartalmát.
 
-A képernyő mintaképe:
+A képernyő mintaképe: 
 
 ![](assets/sample_screen.png)
-
+ 
 Az alkalmazás felépítése és működése a következő:
 
 - Kezdőképernyő a listával illetve egy beviteli résszel, amelyen a felhasználó
@@ -54,14 +56,10 @@ segítségével, illetve a jelölt feladatoknál önállóan.
 
 Hozzon létre egy AndroidWallet nevű projektet Android Studioban:
 - File->New->New Project
-- Application name: AndroidWallet
-- Company Domain: aut.bme.hu
-- Láthatjuk, hogy ez alapján automatikusan a hu.bme.aut.androidwallet package-et kapja az alkalmazás.
-- Phone and Tablet, Minimum SDK maradhat API 15;
 - válasszuk a Basic Activity-t;
-- az Activity nevéhez próbáljunk meg egy betűt vagy szót írni, figyeljük meg,
-hogy az összes többi mezőt is ehhez igazítja a varázsló, ez egy hasznos funkciója
-a varázslónak, de maradjunk most a MainActivity elnevezésnél;
+- Application name: AndroidWallet;
+- package name: hu.bme.aut.androidwallet ;
+- Minumum API level: 15; 
 - Finish, és várjuk meg amíg a Studio mindent legenerál, ez első alkalomkor
 valamivel hosszabb időt vesz igénybe.
 
@@ -72,7 +70,7 @@ valamivel hosszabb időt vesz igénybe.
 Mivel a varázsló olyan dolgokat is generál, amelyelre nekünk semmi szükségünk most, ezért
 ezeket most eltávolítjuk. 
 - A Studio a generálást követően a content_main.xml fájlt hozza be, ebből töröljük a TextView komponenst.
-- Nyissuk meg a res/layout/activity_main.xml fájlt, és töröljük ki belőle a FloatingActionButtont
+- Nyissuk meg a `res/layout/activity_main.xml` fájlt, és töröljük ki belőle a FloatingActionButtont
 (mellesleg itt láthatjuk is az includeolt content_main layoutot).
 - Nyissuk meg a MainActivity osztályt, ebből a FloatingActionButton-hoz kapcsolódó részt töröljük.
 
@@ -89,17 +87,19 @@ csinálni semmit a kattintásra. De mivel ez a menüpont a Settings nevet viseli
 
 ![](assets/app_screen.png)
 
-- res/values/strings: egy új stringet veszünk fel a már ott megtalálhatókhoz hasonlóan
+### Menü testreszabása
+
+- `res/values/strings`: egy új stringet veszünk fel a már ott megtalálhatókhoz hasonlóan
 action_delete_all néven és Delete All tartalommal, illetve az action_settingset töröljük.
 
 ![](assets/resources.png)
 
-- Majd a res/menu/menu_main.xml-ben a pirosra változott action_settingset javítjuk az általunk
+- Majd a `res/menu/menu_main.xml`-ben a pirosra változott action_settingset javítjuk az általunk
 hozzáadott új action_delete_allra. Módosítsuk a menüelem azonosítóját is, szintén action_delete_all értékre.
 
 ### Beviteli rész megvalósítása
 
-Az alkalmazás működéséhez szükség lesz két EditTextre, amelyekben a felhasználó a megnevezést
+Az alkalmazás működéséhez szükség lesz két `EditTextre`, amelyekben a felhasználó a megnevezést
 és az összeget adhatja meg. Szükséges továbbá egy kapcsoló működésű gomb, például a ToggleButton,
 amellyel a pénzforgalom irányát állíthatja, illetve mentés gombra, amelyet egy egyszerű
 Button fog megvalósítani.
@@ -112,7 +112,7 @@ megvalósítani a feladatot.
 
 Mivel a feladatunk lineárisan összerakható elemekből épül fel, ezért érdemes egy ilyen
 magvalósításban gondolkodnunk.
-- Nyissuk meg a res/layout/content_main.xml fájlt. (Akinek nem jelenik meg egyből a preview nézet, jobb oldalon találja a gombot).
+- Nyissuk meg a `res/layout/content_main.xml` fájlt. (Akinek nem jelenik meg egyből a preview nézet, jobb oldalon találja a gombot).
 - Módosítsuk az előre legenerált ConstraintLayoutot LinearLayoutra,
 (Az Android Studio már kezeli, hogy ha a kezdő XML taget módosítjuk, akkor a zárót is átírja automatikusan) és adjuk hozzá
 az android:orientation="vertical" attribútomot.
@@ -128,11 +128,7 @@ az android:orientation="vertical" attribútomot.
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical" 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="hu.bme.aut.androidwallet.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -246,7 +242,7 @@ csak akkor javasolt ha néhány elem kezelése szükséges csak.
 A listaelemünk felépítése szintén teljesen lineáris elrendezéssel kivitelezhető
 tehát a LinearLayoutot használjuk.
 
-- res/layout mappán jobb gomb, new -> Layout resource file, salary_row néven LinerLayout root elemmel.
+- res/layout mappán jobb gomb, new -> XML ->  Layout XML File file, `salary_row` néven LinerLayout root elemmel.
 
 ![](assets/layout.png)
 
@@ -361,6 +357,9 @@ ide bemásolva, és nem cél, hogy csak kimásolásra kerüljenek)
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+            }
+        });
 ```
 
   - Mielőtt bármit csinálnánk, ellenőrizzük, hogy bármelyik mező üres,
@@ -388,7 +387,7 @@ ide bemásolva, és nem cél, hogy csak kimásolásra kerüljenek)
                 TextView rowItemSalaryAmount = rowItem.findViewById(R.id.row_salary_amount);
 ```
 
-  - a ToggleButton állapota alapján beállítjuk az ikont, ehhez az income.png és expense.png képeket a drawable mappába kell beillesztenünk.
+  - a ToggleButton állapota alapján beállítjuk az ikont, ehhez az [income.png](income.png) és [expense.png](expense.png) képeket a drawable mappába kell beillesztenünk.
 
 ```java
                 icon.setImageResource(typeChooserButton.isChecked() ? R.drawable.expense : R.drawable.income);
@@ -456,7 +455,7 @@ egy ScrollView-ba kell foglalnunk és már működik is.
 ### További Önálló feladatok
 
 - A Toast üzeneteknél már van egy sokkal szebb megoldás, ami a Material Designt követi,
-a SnackBar. Cseréljük le a Toast figyelmeztetést SnackBarra!
+a [SnackBar](https://material.io/develop/android/components/snackbar/). Cseréljük le a Toast figyelmeztetést SnackBarra!
 - Vegyünk fel egy összegző mezőt a gombok alá, amely minden bevitt érték után frissül.
 Figyeljünk rá, hogy ha még nincs egy bejegyzés sem, akkor ne jelenjen meg semmi, illetve
 hogy a felhasználó nem fog mínusz karaktert beírni tehát a kapcsoló alapján kell eldöntenünk,
