@@ -246,7 +246,7 @@ public class DataManager {
 
 Ezután elkészíthetjük a két oldalt, Fragmentekkel. Hozzuk létre egy új `fragments` package-ben a két Fragmentet (New -> Java Class), ezek neve legyen `MainProfileFragment` és `DetailsProfileFragment`.
 
-A két Fragmentben származzunk le a Fragment osztályból (support-os verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.
+A két Fragmentben származzunk le a Fragment osztályból (androidx-es verziót válasszuk) és definiáljuk felül az onCreateView metódust. Ebben betöltjük a layout-ot és a Person objektum adatait kiírjuk a TextView-kra.
 
 `MainProfileFragment.java`:
 ```java
@@ -442,7 +442,7 @@ Az `activity_profile.xml` fájlba hozzunk létre egy `ViewPager`-t:
     android:layout_height="match_parent"
     tools:context="hu.bme.aut.workplaceapp.ProfileActivity">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -534,7 +534,7 @@ dependencies {
 }
 ```
 
-Ezután kattinsunk az Android Studioban jobb fent megjelenő `Sync Now` gombra, hogy a library fájljai letöltődjenek.
+Ezután kattinsunk az Android Studioban jobb fent megjelenő `Sync Now` feliratra vagy a fejlécen szereplő mérges gradle elefánt gombra, hogy a library fájljai letöltődjenek.
 
 Ha a library fájljai letöltődtek, akkor írjuk meg az Activity layout-ját (`activity_holiday.xml`):
 ```xml
@@ -652,7 +652,7 @@ public class DatePickerDialogFragment extends DialogFragment
 }
 ```
 
-Az importoknál a `java.util`-t válasszuk a Calendarhoz, a Fragment-hez pedig a `support`-os verziót.
+Az importoknál a `java.util`-t válasszuk a Calendarhoz, a Fragment-hez pedig az `androidx`-es verziót.
 
 A laborvezetővel vizsgáljuk meg az `OnDateSelectedListener` interface működését. Az osztályt használóknak ezt az interface-t kell implementálnia és a megvalósított `onDateSelected` metódus kapja meg a dátumot.
 
