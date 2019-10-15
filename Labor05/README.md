@@ -14,23 +14,19 @@ is visszatöltődjön.
 
 ## Feltöltés
 
-Az elkészült megoldást `.zip` formátumban (teljes Android Studio projekt – build mappa kivehető) kell feltölteni a tárgy
+Az elkészült megoldást `.zip` formátumban (File -> Export to zip file...) kell feltölteni a tárgy
 oldalán, ahol a laborvezető tudja értékelni.
 
 ## A projekt előkészítése
 
 ### A projekt létrehozása
 
-Hozzunk létre egy új Android projektet. Az _Application name_ mezőben ajuk meg a `Simple Drawer` nevet. A _Company domain_ legyen `aut.bme.hu`. Láthatjuk, hogy a _Package név_ ennek 
-megfelelően a következőképp alakul: `hu.bme.aut.simpledrawer`. Ezután nyomjunk a **Next** gombra.
+Hozzunk létre egy új Android projektet, _Add no Activity_ opcióval. Az _Application name_ mezőben ajuk meg a 
+`Simple Drawer` nevet. A _Package_ név legyen `hu.bme.aut.simpledrawer`. Nyelvnek a Java legyen kiválasztva. 
+A _Use androidx.* artifacts_ legyen bepipálva. Ezután nyomjunk a **Finish** gombra.
 
-A következő képernyőn hagyjuk meg az alapértelmezett beállításokat (`Phone and tablet/API 15`), majd ismét nyomjunk a 
-**Next** gombra.
-
-Válasszuk ki az _Empty activity_-t, majd kattintsunk a **Next** gombra.
-
-_Activity name_-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon _layout_ fájlt valamint, 
-hogy használja az _AppCompat_-ot. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
+Adjunk a projekthez egy új _Empty activity_ osztályt.
+_Activity name_-nek adjuk meg, hogy `DrawingActivity`, és hagyjuk bepipálva azt, hogy generáljon _layout_ fájlt, valamint pipáljuk be a _Launcher Activity_ opciót. Ha ezekkel megvagyunk, akkor rányomhatunk a **Finish**-re.
 
 Miután létrejött a projekt, töröljük ki a teszt package-eket, mert most nem lesz rá szükségünk.
 
@@ -74,8 +70,8 @@ A labor során a következő feladatokat kell megvalósítani a laborvezető seg
 
 ### 1. feladat: A kezdő layout létrehozása (1 pont)
 
-Első lépésként hozzunk létre egy új _package_-et az `hu.be.aut.simpledrawer`-en belül, aminek adjuk a `view` nevet.
-Ebben hozzunk létre egy új osztályt, amit nevezzünk el `DrawingView`-nak, és származzon le a `View` osztályból.
+Első lépésként hozzunk létre egy új _package_-et az `hu.bme.aut.simpledrawer`-en belül, aminek adjuk a `view` nevet.
+Ebben hozzunk létre egy új osztályt, amit nevezzünk el `DrawingView`-nak, és származzon le a `View` osztályból (`android.view.View`).
 
 Hozzuk létre a szükséges konstruktort ezen belül:
 
@@ -104,12 +100,12 @@ fekete háttérrel, alulra pedig egy `Toolbar`-t rakjunk ki. Végezetül a layou
 		android:layout_above="@+id/toolbar"
 		android:background="@android:color/black" />
 
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:background="@color/colorPrimary" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary" />
 </RelativeLayout>
 ```
 
@@ -202,7 +198,7 @@ A rajzprogramunk, ahogy az már az előző feladatban is kiderült, kétféle ra
 pont- és vonalrajzolást. Ahhoz, hogy a rajzolt alakzatokat el tudjuk tárolni szükségünk lesz két új típusra, modellre, 
 amihez hozzunk létre egy új _package_-et a `hu.be.aut.simpledrawer`-en belül `model` néven.
 
-Ezen belül először hozzunk létre egy `Point` osztályt, ami értelemszerűen a pontokat fogja reprezentálni.
+Ezen belül először hozzunk létre egy `Point` osztályt, ami értelemszerűen a pontokat fogja reprezentálni (használjuk az _ALT+INSERT_ által kínált lehetőségeket).
 
 ```java
 public class Point {
@@ -295,7 +291,7 @@ public void setDrawingStyle(final DrawingStyle drawingStyle) {
 Ha ezek megvannak, akkor egészítsük ki a `DrawingActivity`-ben a menükezelést, úgy, hogy a megfelelő függvények 
 hívódjanak meg.
  
-Ehhez először egy referenciát kell létrehoznunk az `xml`-ben definiált `canvas` ID-jú `DravingView`-ra. Ehhez létre kell 
+Ehhez először egy referenciát kell létrehoznunk az `xml`-ben definiált `canvas` ID-jú `DrawingView`-ra. Ehhez létre kell 
 hozni egy úgy `field`-et a `DrawingActivity`-n belül, majd az `onCreate()` függvényen belül ennek értéket kell adni.
 
 ```java
@@ -385,8 +381,8 @@ public boolean onTouchEvent(final MotionEvent event) {
                     addPointToTheList(endPoint);
                     break;
                 case LINE:
-                default:
                     addLineToTheList(startPoint, endPoint);
+					break;
             }
             startPoint = null;
             endPoint = null;
@@ -436,8 +432,8 @@ protected void onDraw(final Canvas canvas) {
             drawPoint(canvas, endPoint);
             break;
         case LINE:
-        default:
             drawLine(canvas, startPoint, endPoint);
+			break;
     }
 }
  
