@@ -44,7 +44,7 @@ A laborfeladatok sikeres befejezése után az IMSc feladatokat megoldva 2 IMSc p
 * Elemek szerkesztése: 1 pont
 
 ### Projekt létrehozása
-Hozzunk létre egy `ShoppingList` nevű projektet Android Studioban! A *Company domain* legyen `aut.bme.hu`. Az alkalmazást telefonra és tabletre készítjük, tehát válasszuk ki a **Phone and Tablet** lehetőséget, minimum SDK-nak pedig válasszuk az **API 15**-öt! Első `Activity`-ként válasszuk a *Basic Activity* lehetőséget, majd kattintsunk a *Finish* gombra!
+Hozzunk létre egy új projektet Android Studioban! Első `Activity`-ként válasszuk a *Basic Activity* lehetőséget, a projekt neve legyen `ShoppingList`, a *Company domain* `aut.bme.hu`, minimum SDK-nak pedig válasszuk az **API 15**-öt és kattintsunk a *Finish* gombra!
 Töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](https://github.com/VIAUAC00/Android-labor/tree/master/Labor06/downloads/res.zip), majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappán állva *Ctrl+V*)!
 
 ### Perzisztens adattárolás megvalósítása (1 pont)
@@ -331,7 +331,7 @@ class ShoppingViewHolder extends RecyclerView.ViewHolder {
 ```
 Figyeljük meg, hogy az `isBoughtCheckBox`-ra egyszer, a `ViewHolder` létrehozásakor állítunk `OnCheckedChangeListener`-t, és csak a callbackben visszaadott `item` fog változni!
 
-Valósítsuk meg az `onBindViewHolder()`függvényt, azaz kössük hozzá a megfelelő modell elem tulajdonságait lista elem nézeteihez:
+Valósítsuk meg a `ShoppingAdapter` osztály `onBindViewHolder()`függvényét, azaz kössük hozzá a megfelelő modell elem tulajdonságait lista elem nézeteihez:
 
 ```java
 @Override
@@ -389,7 +389,7 @@ Szeretnék, hogy a bevásárlólista alkalmazás egyetlen `Activity`-jét teljes
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+<androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/MainRecyclerView"
@@ -545,7 +545,7 @@ public class NewShoppingItemDialogFragment extends DialogFragment {
 }
 ```
 
-> A `DialogFragment` és az `AlertDialog` importálásakor az `android.support` package-ben található változatokat válasszuk!
+> A `DialogFragment`-et az `androidx.fragment.app` csomagból, az `AlertDialog`-ot pedig az `androidx.appcompat.app` csomagból importáljuk!
 
 Az osztályban definiáltunk egy `NewShoppingItemDialogListener` nevű *callback interface*-t, amelyen keresztül a dialógust megjelenítő `Activity` értesülhet az új elem létrehozásáról.
 
@@ -694,7 +694,7 @@ Adja hozzá a `strings.xml`-hez a hiányzó szöveges erőforrásokat:
 ```
 Az új elemet az *OK* gomb `ClickListener`-jében fogjuk létrehozni, amennyiben a bevitt adatok érvényesek. Ez esetben az érvényesség a név mező kitöltöttségét jelenti.
 
-Implementáljuk a dialógus pozitív gombjának eseménykezelőjét:
+Implementáljuk a dialógus pozitív gombjának eseménykezelőjét a `NewShoppingItemDialogFragment` osztály `onCreateDialog` függvényén belül:
 
 ```java
 @Override
@@ -768,7 +768,7 @@ public class MainActivity extends AppCompatActivity
 Frissítsük az `activity_main.xml` layout fájlban a `FloatingActionButton` ikonját:
 
 ```xml
-<android.support.design.widget.FloatingActionButton
+<com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
