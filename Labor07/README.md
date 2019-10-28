@@ -52,9 +52,7 @@ A labor során egy kompelx időjárás alkalmazás készül el. A labor szűkös
 
 ### Projekt létrehozása
 
-Hozzunk létre egy `WeatherInfo` nevű projektet Android Studioban! A *Company domain* legyen `aut.bme.hu`! Az alkalmazást telefonra és tabletre készítjük, tehát válasszuk ki a **Phone and Tablet** lehetőséget, minimum SDK-nak pedig válasszuk az **API 15**-öt! Első `Activity`-ként válasszuk a *Basic Activity* lehetőséget `Fragment` használata **nélkül** és nevezzük el `CityActivity`-nek, majd kattintsunk a *Finish* gombra!
-
-Töröljük ki a *res/menu* erőforrást és a `CityActivity`-ben a menü kezelésre vonatkozó függvényeket (`onCreateOptionsMenu`, `onOptionsItemSelected`), mivel nem lesz rájuk szükség.
+Hozzunk létre egy `WeatherInfo` nevű projektet Android Studioban, `Add no activity` opcióval ! A *Company domain* legyen `aut.bme.hu`! Az alkalmazást telefonra és tabletre készítjük, tehát válasszuk ki a **Phone and Tablet** lehetőséget, minimum SDK-nak pedig válasszuk az **API 15**-öt! Első `Activity`-ként hozzunk létre egy *Basic Activity*, `Fragment` használata **nélkül** és nevezzük el `CityActivity`-nek, legyen ez a **Launcher Activity**-nk majd kattintsunk a *Finish* gombra!
 
 Töltsük le és tömörítsük ki [az alkalmazáshoz szükséges erőforrásokat](./assets/drawables.zip) , majd másoljuk be őket a projekt *app/src/main/res* mappájába (Studio-ban a *res* mappa kijelölése után *Ctrl+V*)!
 
@@ -134,7 +132,7 @@ Cseréljük le a *content_city.xml* tartalmát egy `RecyclerView`-ra:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+<androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/MainRecyclerView"
@@ -147,7 +145,7 @@ Cseréljük le a *content_city.xml* tartalmát egy `RecyclerView`-ra:
 Cseréljük le a `FloatingActionButton` ikonját az  `activity_city.xml`-ben:
 
 ```xml
-<android.support.design.widget.FloatingActionButton
+<com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -156,7 +154,7 @@ Cseréljük le a `FloatingActionButton` ikonját az  `activity_city.xml`-ben:
     android:src="@drawable/ic_add_white_36dp"/>
 ```
 
-Az egyes funkciókhoz tartozó osztályokat külön package-ekbe fogjuk szervezni. 
+Az egyes funkciókhoz tartozó osztályokat külön package-ekbe fogjuk szervezni. Előfordulhat, hogy a másolások miatt az Android Studio nem ismeri fel egyből a package szerkezetet, így ha ilyen problémánk lenne, az osztály néven állva Alt+Enter után állítassuk be a megfelelő package nevet.
 
 A `hu.bme.aut.weatherinfo` package-ben hozzunk létre egy `feature` nevű package-et. A `feature` package-ben hozzunk létre egy `city` nevű package-et. *Drag and drop* módszerrel helyezzük át a `CityActivity`-t a `city` *package*-be, a felugró dialógusban pedig kattintsunk a *Refactor* gombra.
 
@@ -442,17 +440,17 @@ A hozzá tartozó `activity_details.xml` layout kódja:
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.view.PagerTabStrip
+        <androidx.viewpager.widget.PagerTabStrip
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top" />
 
-    </android.support.v4.view.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>
 ```
@@ -980,6 +978,8 @@ Próbáljuk ki az alkalmazást, kattintsunk egy városra! jelenleg még nem jele
 #### Hálózati hívás bekötése
 
 Az időjárás adatok lekérdezésének bekötéséhez implementáljunk egy `loadWeatherData()` nevű függvényt a `DetailsActivity`-ben:
+
+`(amennyiben a Callback-et nem ismerné fel a studio, Alt+Enter után importáljuk a retrofit2-es megoldást)`
 
 ```java
 private void loadWeatherData() {
